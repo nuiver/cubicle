@@ -1,1 +1,14 @@
-<h1>Pieces#index</h1>
+<h1>Pieces</h1>
+<table class="indextable">
+  <% @pieces.each do |piece| %>
+    <tr>
+      <th><%= piece.name %></th>
+      <th><%= piece.brand %></th>
+      <th><%= piece.size %></th>
+      <th><%= piece.colour %></th>
+      <th><%= image_tag piece.image_f_url%></th>
+      <th><%= image_tag piece.image_b_url%></th>
+      <th><a href="#">Book</a>
+    </tr>
+  <% end %>
+</table>
