@@ -1,0 +1,32 @@
+<%= form_for @piece do |f| %>
+
+<ul>
+   <% @piece.errors.full_messages.each do |msg| %>
+     <li><%= msg %></li>
+   <% end %>
+</ul>
+
+<%= f.label :name %>
+<%= f.text_field :name %>
+
+<%= f.label :brand %>
+<%= f.text_field :brand %>
+
+<%= f.label :image %>
+<%= f.file_field :image %>
+
+<%= f.label :image_b %>
+<%= f.file_field :image_b %>
+
+<%= f.label :size %>
+<%= f.text_field :size %>
+
+<%= f.label :colour %>
+<%= f.text_field :colour %>
+
+<%= f.label :price_cat %>
+<%= f.text_field :price_cat  %>
+
+<%= f.submit (@piece.new_record? ? "Bring it online" : "Update your item") %>
+
+<% end %>
