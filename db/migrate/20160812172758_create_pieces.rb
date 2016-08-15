@@ -4,8 +4,8 @@ class CreatePieces < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :brand
       t.text :description
-      t.string :image_f_url
-      t.string :image_b_url
+      t.string :image
+      t.string :image_b
       t.string :size
       t.string :colour
       t.string :type
