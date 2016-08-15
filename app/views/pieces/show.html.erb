@@ -2,7 +2,10 @@
 
 <p>Brand: <%= @piece.brand %></p>
 <p>Colour: <%= @piece.colour %></p>
-<%= image_tag @piece.image.to_s %>
+<div class="img_preview">
+  <%= image_tag @piece.image.to_s %>
+  <%= image_tag @piece.image_b.to_s %>
+</div>
 <br>
 <%= link_to "[Edit]", edit_piece_path( @piece.id ) %>
 <%= link_to "[Delete]", piece_path( @piece.id ), method: :delete, data: { confirm: "Are you sure?" } %>
