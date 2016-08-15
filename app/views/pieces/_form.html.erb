@@ -27,6 +27,9 @@
 <%= f.label :price_cat %>
 <%= f.text_field :price_cat  %>
 
+<%= f.hidden_field(:image_cache) %>
+<%= f.hidden_field(:image_b_cache) %>
+
 <%= f.submit (@piece.new_record? ? "Bring it online" : "Update your item") %>
 
 <% end %>
