@@ -6,6 +6,20 @@
   background-color: #ffffff;
 }
 
+
+// show
+
+.img_show {
+  width: 100%;
+  display: flex;
+}
+.img_front, .img_back {
+  flex: 1;
+  float: left;
+}
+.img_front img, .img_back img {
+  width: 100%;
+}
 // styling of the pieces#index
 .item {
   width: 470px;

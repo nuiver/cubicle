@@ -11,6 +11,7 @@ class CreateProfiles < ActiveRecord::Migration[5.0]
       t.string :fav_color
       t.string :phone
       t.string :gender
+      t.string :size
 
       t.timestamps
     end

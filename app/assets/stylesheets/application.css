@@ -42,3 +42,6 @@ header {
 .userlogin li {
   list-style: none;
 }
+.navbar-text {
+  font-weight: 800;
+}

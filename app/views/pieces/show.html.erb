@@ -1,10 +1,12 @@
 <h1><%= @piece.name %></h1>
-
-<p>Brand: <%= @piece.brand %></p>
-<p>Colour: <%= @piece.colour %></p>
-<div class="img_preview">
-  <%= image_tag @piece.image.to_s %>
-  <%= image_tag @piece.image_b.to_s %>
+<p><%= @piece.brand %></p>
+<div class="img_show">
+  <div class="img_front">
+    <%= image_tag @piece.image.to_s %>
+  </div>
+  <div class="img_back">
+    <%= image_tag @piece.image_b.to_s %>
+  </div>
 </div>
 <br>
 <%= link_to "[Edit]", edit_piece_path( @piece.id ) %>
