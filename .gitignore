@@ -18,3 +18,4 @@
 
 # Ignore carrierwave uploads
 /public/uploads/
+/design/

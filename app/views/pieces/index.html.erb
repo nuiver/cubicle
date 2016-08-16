@@ -1,9 +1,27 @@
-<h1>Pieces</h1>
-<table class="indextable">
+<div class="main">
   <% @pieces.each do |piece| %>
+
+<div class="item">
+  <div class="infotag">
+    <div class="name_item"><%= link_to "#{piece.name}", piece_path( piece.id ) %></div>
+    <th><%= piece.brand %></th>
+  </div>
+
+  <div class="namebar">
+    <div class="nametag">
+      <%= piece.user.email %>
+    </div>
+  </div>
+  <div class="img_preview">
+    <%= image_tag piece.image%>
+  </div>
+
+</div>
+
+
+
     <tr>
-      <th><%= image_tag piece.image%></th>
-      <th><%= image_tag piece.image_b%></th>
+      <th></th>
       <th><%= link_to "#{piece.name}", piece_path( piece.id ) %></th>
       <th><%= piece.brand %></th>
       <th><%= piece.size %></th>
