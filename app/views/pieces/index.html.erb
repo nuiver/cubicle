@@ -2,13 +2,15 @@
 <table class="indextable">
   <% @pieces.each do |piece| %>
     <tr>
-      <th><%= piece.name %></th>
+      <th><%= image_tag piece.image%></th>
+      <th><%= image_tag piece.image_b%></th>
+      <th><%= link_to "#{piece.name}", piece_path( piece.id ) %></th>
       <th><%= piece.brand %></th>
       <th><%= piece.size %></th>
       <th><%= piece.colour %></th>
-      <th><%= image_tag piece.image%></th>
-      <th><%= image_tag piece.image_b%></th>
-      <th><a href="#">Book</a>
+
+      <th><%= link_to "Details", piece_path( piece.id ) %></th>
+      <th><%= link_to "Edit", edit_piece_path( piece.id ) %></th>
     </tr>
   <% end %>
 </table>

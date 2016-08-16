@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   get 'pieces/new' => 'pieces#new', as: :new_piece
   get 'pieces/:id' => 'pieces#show', as: :piece
   post 'pieces' => 'pieces#create'
+  patch 'pieces/:id' => 'pieces#update'
+  delete 'pieces/:id' => 'pieces#destroy'
+
 end
