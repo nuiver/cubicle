@@ -6,15 +6,18 @@
   background-color: #ffffff;
 }
 
+// styling of the pieces#index
 .item {
   width: 470px;
   height: 260px;
   background: #e2e2e2;
+  float: left;
+  margin: 7px 3px;
 }
 .infotag {
   position: relative;;
   left: 210px;
-  top: 30px;
+  top: -25px;
   width: 235px;
   height: 100px;
 }
@@ -28,7 +31,7 @@
 .namebar {
   position: relative;
   left: 0;
-  top: 80px;
+  top: 25px;
   height: 70px;
   background-color: #353535;
   padding-top: 10px;
@@ -37,9 +40,26 @@
   margin-left: 210px;
   color: #ffffff;
 }
+.sizeoval {
+  position: relative;
+  left: 8px;
+  top: -5px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #5FBA7D;
+  z-index: 10;
+}
+.sizeoval p {
+  text-align: center;
+  padding-top: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+}
 .img_preview {
   position: relative;
-  top: -160px;
+  top: -215px;
   left: 20px;
   height: 220px;
   width: 160px;
