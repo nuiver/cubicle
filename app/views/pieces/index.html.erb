@@ -1,34 +1,25 @@
 <div class="main">
   <% @pieces.each do |piece| %>
 
-<div class="item">
-  <div class="infotag">
-    <div class="name_item"><%= link_to "#{piece.name}", piece_path( piece.id ) %></div>
-    <th><%= piece.brand %></th>
-  </div>
-
-  <div class="namebar">
-    <div class="nametag">
-      <%= piece.user.email %>
+    <div class="item">
+      <div class="sizeoval">
+        <p><%= piece.size %></p>
+      </div>
+      <div class="infotag">
+        <div class="name_item"><%= link_to "#{piece.name}", piece_path( piece.id ) %></div>
+        <%= piece.brand %><br/>
+        <%= piece.colour %><br/>
+      </div>
+      <div class="namebar">
+        <div class="nametag">
+          <%= piece.user.profile.first_name %> <%= piece.user.profile.surname %><br/>
+          <%= piece.user.profile.addr_town %>
+        </div>
+      </div>
+      <div class="img_preview">
+        <%= link_to image_tag(piece.image), piece_path( piece.id )%>
+      </div>
     </div>
-  </div>
-  <div class="img_preview">
-    <%= image_tag piece.image%>
-  </div>
 
-</div>
-
-
-
-    <tr>
-      <th></th>
-      <th><%= link_to "#{piece.name}", piece_path( piece.id ) %></th>
-      <th><%= piece.brand %></th>
-      <th><%= piece.size %></th>
-      <th><%= piece.colour %></th>
-
-      <th><%= link_to "Details", piece_path( piece.id ) %></th>
-      <th><%= link_to "Edit", edit_piece_path( piece.id ) %></th>
-    </tr>
   <% end %>
 </table>
