@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2>Sign up for Cubicle</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -20,6 +20,17 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
+
+  <%= f.fields_for :profile do |profile_f| %>
+    <div class="field">
+      <%= profile_f.label :first_name %><br />
+      <%= profile_f.text_field :first_name %>
+    </div>
+    <div class="field">
+      <%= profile_f.label :surname %><br />
+      <%= profile_f.text_field :surname %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit "Sign up" %>

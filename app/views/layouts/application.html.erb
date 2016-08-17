@@ -3,7 +3,7 @@
   <head>
     <title>Cubicle</title>
     <%= csrf_meta_tags %>
-    <!-- <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'> --> -->
+    <!-- <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'> -->
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -17,7 +17,7 @@
           <% if !user_signed_in? %>
             <li><%= link_to "LOG IN", new_user_session_path %></li>
           <% else %>
-            <li><span class="navbar-text"><%= current_user.profile.first_name.upcase %> <%= current_user.profile.surname.upcase %></span></li>
+            <li><span class="navbar-text"><%= current_user.email.upcase %></span></li>
             <li><%= link_to "LOG OUT", destroy_user_session_path, :method => :delete %></li>
           <% end %>
         </ul>
