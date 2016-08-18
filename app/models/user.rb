@@ -12,9 +12,4 @@ class User < ApplicationRecord
 
   before_create :create_profile
 
-  def create_profile
-    profile = Profile.create
-    self.default_card = profile.id
-  end
-
 end

@@ -3,12 +3,17 @@
 <div class="img_show">
   <div class="img_front">
     <%= image_tag @piece.image.to_s %>
-  </div>w
+  </div>
   <div class="img_back">
     <%= image_tag @piece.image_b.to_s %>
   </div>
 </div>
 <br>
+<% if user_signed_in? && current_user != @piece.user %>
+  <%= link_to "[Book this]", new_deal_path(@piece.id) %>
+  <%= render 'bookings/form', booking: @booking %>
+
+<% end %>
 <%= link_to "[Edit]", edit_piece_path( @piece.id ) %>
 <%= link_to "[Delete]", piece_path( @piece.id ), method: :delete, data: { confirm: "Are you sure?" } %>
 <%= link_to "[Show all]", pieces_path %>
