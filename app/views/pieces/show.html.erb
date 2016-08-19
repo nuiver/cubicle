@@ -11,7 +11,6 @@
 <br>
 <% if user_signed_in? && current_user != @piece.user %>
   <%= link_to "[Book this]", new_deal_path(@piece.id) %>
-  <%= render 'bookings/form', booking: @booking %>
 
 <% end %>
 <%= link_to "[Edit]", edit_piece_path( @piece.id ) %>

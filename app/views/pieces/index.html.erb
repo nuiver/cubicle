@@ -3,7 +3,11 @@
     <% if (user_signed_in? && current_user != piece.user) || !user_signed_in? %>
 
       <div class="item">
-        <div class="sizeoval">
+        <% if piece.size == current_user.profile.size %>
+          <div class="sizeoval fit">
+        <% else %>
+          <div class="sizeoval">
+        <% end %>
           <p><%= piece.size %></p>
         </div>
         <div class="infotag">

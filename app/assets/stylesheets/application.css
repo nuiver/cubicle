@@ -28,8 +28,20 @@ header {
   height: 40px;
   border-bottom: 1px dotted #bbb;
 }
+.logo {
+  flex: 1;
+  padding-left: 40px;
+}
+.logo h1 {
+  font-weight: 900;
+  font-size: 16px;
+}
+.logo a {
+  color: #000000;
+  text-decoration: none;
+}
 .tabs {
-  flex:5;
+  flex:4;
 }
 .userlogin {
   flex:3;
@@ -44,4 +56,21 @@ header {
 }
 .navbar-text {
   font-weight: 800;
+}
+
+/*flash bar*/
+.flashbar {
+  height: 10px;
+  border-bottom: 1px dotted #bbb;
+  padding: 5px 40px;
+}
+.flashbar .notice {
+  color: #444444;
+  text-transform: uppercase;
+  font-size: 10px;
+
+}
+/*divise forms*/
+.devise_container {
+  padding: 5px 40px;
 }
