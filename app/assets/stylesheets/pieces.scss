@@ -4,11 +4,17 @@
 
 .main {
   background-color: #ffffff;
+  padding: 0 40px;
 }
 
 
 // show
-
+.piece_top{
+  margin-left: 40px;
+}
+.piece_top h1 {
+  font-size: 40px;
+}
 .img_show {
   width: 100%;
   display: flex;
@@ -26,7 +32,7 @@
   height: 260px;
   background: #e2e2e2;
   float: left;
-  margin: 7px 3px;
+  margin: 8px 8px 0 0;
 }
 .infotag {
   position: relative;;
@@ -61,13 +67,16 @@
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background: #5FBA7D;
+  background: #DDDDDD;
   z-index: 10;
+}
+.fit {
+  background: #5FBA7D;
 }
 .sizeoval p {
   text-align: center;
-  padding-top: 5px;
-  font-size: 20px;
+  padding-top: 7px;
+  font-size: 18px;
   font-weight: 700;
   color: #ffffff;
 }

@@ -1,5 +1,7 @@
-<h1><%= @piece.name %></h1>
-<p><%= @piece.brand %></p>
+<div class="piece_top">
+  <h1><%= @piece.name %></h1>
+  <p><%= @piece.brand %></p>
+</div>
 <div class="img_show">
   <div class="img_front">
     <%= image_tag @piece.image.to_s %>
@@ -11,7 +13,6 @@
 <br>
 <% if user_signed_in? && current_user != @piece.user %>
   <%= link_to "[Book this]", new_deal_path(@piece.id) %>
-  <%= render 'bookings/form', booking: @booking %>
 
 <% end %>
 <%= link_to "[Edit]", edit_piece_path( @piece.id ) %>

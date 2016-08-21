@@ -1,3 +1,4 @@
+<div class="devise_container">
 <h2>Sign up for Cubicle</h2>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -20,7 +21,7 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <%= f.fields_for :profile do |profile_f| %>
+  <%= f.fields_for :profile, Profile.new do |profile_f| %>
     <div class="field">
       <%= profile_f.label :first_name %><br />
       <%= profile_f.text_field :first_name %>
@@ -28,6 +29,34 @@
     <div class="field">
       <%= profile_f.label :surname %><br />
       <%= profile_f.text_field :surname %>
+    </div>
+    <div class="field">
+      <%= profile_f.label "Date of birth" %><br />
+      <%= profile_f.date_field :date_of_birth %>
+    </div>
+    <div class="field">
+      <%= profile_f.label "Street" %><br />
+      <%= profile_f.text_field :addr_street %>
+    </div>
+    <div class="field">
+      <%= profile_f.label "Postcode" %><br />
+      <%= profile_f.text_field :postcode %>
+    </div>
+    <div class="field">
+      <%= profile_f.label "Town" %><br />
+      <%= profile_f.text_field :addr_town %>
+    </div>
+    <div class="field">
+      <%= profile_f.label :gender %><br />
+      <%= profile_f.select :gender, [['female','female'],['male','male']] %>
+    </div>
+    <div class="field">
+      <%= profile_f.label :size %><br />
+      <%= profile_f.select :size, [['XS','XS'],['S','S'],['M','M'],['L','L'],['XL','XL']] %>
+    </div>
+    <div class="field">
+      <%= profile_f.label :fav_color %><br />
+      <%= profile_f.select :fav_color, [['red','red'],['orange','orange'],['yellow','yellow'],['green','green'],['blue','blue'],['purple','purple'],['pink','pink'],['black','black'],['white','white']] %>
     </div>
   <% end %>
 
@@ -37,3 +66,4 @@
 <% end %>
 
 <%= render "users/shared/links" %>
+</div>

@@ -10,6 +10,9 @@
 
   <body>
     <header>
+      <div class="logo">
+        <h1><%= link_to "C U B I C L E", root_path %></h1>
+      </div>
       <div class='tabs'>
       </div>
       <div class='userlogin'>
@@ -26,6 +29,13 @@
     <nav class="navbar">
 
     </nav>
+
+    <% if flash[:notice] %>
+      <div class="flashbar">
+        <div class="notice"><%= flash[:notice] %></div>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
