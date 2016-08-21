@@ -1,6 +1,10 @@
 class PiecesController < ApplicationController
+
+  load_and_authorize_resource
+  
   def index
     @pieces = Piece.all
+    authorize! :read, @pieces
   end
 
   def new
@@ -11,6 +15,8 @@ class PiecesController < ApplicationController
     piece_params
 
     @piece = Piece.new( piece_params )
+    authorize! :create, @piece
+
     @piece.user = current_user
 
     if @piece.save
