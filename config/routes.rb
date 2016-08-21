@@ -8,10 +8,9 @@ Rails.application.routes.draw do
   resources :users, only: :index
   resource :profile
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-  get 'pieces' => 'pieces#index'
+  get 'pieces/owned' => 'pieces#owned', as: :pieces_owned
+  get 'pieces' => 'pieces#index', as: :pieces_all
   get "pieces/:id/edit" => "pieces#edit", as: :edit_piece
-
   get 'pieces/new/' => 'pieces#new', as: :new_piece
   get 'pieces/:id' => 'pieces#show', as: :piece
   post 'pieces' => 'pieces#create'
