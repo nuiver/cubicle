@@ -5,30 +5,45 @@
      <li><%= msg %></li>
    <% end %>
 </ul>
-
+<div class="field">
 <%= f.label :name %>
 <%= f.text_field :name %>
+</div>
 
+<div class="field">
 <%= f.label :brand %>
 <%= f.text_field :brand %>
+</div>
 
+<div class="field">
 <%= f.label :image %>
 <%= f.file_field :image %>
+</div>
 
+<div class="field">
 <%= f.label :image_b %>
 <%= f.file_field :image_b %>
+</div>
 
+<div class="field">
 <%= f.label :size %>
 <%= f.text_field :size %>
+</div>
 
+<div class="field">
 <%= f.label :colour %>
 <%= f.text_field :colour %>
+</div>
 
+<div class="field">
 <%= f.label :price_cat %>
 <%= f.text_field :price_cat  %>
+</div>
 
+<div class="field">
 <%= f.hidden_field(:image_cache) %>
 <%= f.hidden_field(:image_b_cache) %>
+</div>
 
 <%= f.submit (@piece.new_record? ? "Bring it online" : "Update your item") %>
 

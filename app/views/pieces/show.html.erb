@@ -1,5 +1,7 @@
-<h1><%= @piece.name %></h1>
-<p><%= @piece.brand %></p>
+<div class="piece_top">
+  <h1><%= @piece.name %></h1>
+  <p><%= @piece.brand %></p>
+</div>
 <div class="img_show">
   <div class="img_front">
     <%= image_tag @piece.image.to_s %>
