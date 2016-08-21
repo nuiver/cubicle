@@ -9,26 +9,8 @@
   </head>
 
   <body>
-    <header>
-      <div class="logo">
-        <h1><%= link_to "C U B I C L E", root_path %></h1>
-      </div>
-      <div class='tabs'>
-      </div>
-      <div class='userlogin'>
-        <ul>
-          <% if !user_signed_in? %>
-            <li><%= link_to "LOG IN", new_user_session_path %></li>
-          <% else %>
-            <li><span class="navbar-text"><%= current_user.email.upcase %></span></li>
-            <li><%= link_to "LOG OUT", destroy_user_session_path, :method => :delete %></li>
-          <% end %>
-        </ul>
-      </div>
-    </header>
-    <nav class="navbar">
-
-    </nav>
+    <%= render "layouts/header" %>
+    <%= render "layouts/nav" %>
 
     <% if flash[:notice] %>
       <div class="flashbar">

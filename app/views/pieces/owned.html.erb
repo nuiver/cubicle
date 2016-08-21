@@ -1,0 +1,29 @@
+<div class="main">
+  <% @pieces.each do |piece| %>
+
+      <div class="item">
+        <% if user_signed_in? && piece.size == current_user.profile.size %>
+          <div class="sizeoval fit">
+        <% else %>
+          <div class="sizeoval">
+        <% end %>
+          <p><%= piece.size %></p>
+        </div>
+        <div class="infotag">
+          <div class="name_item"><%= link_to "#{piece.name}", piece_path( piece.id ) %></div>
+          <%= piece.brand %><br/>
+          <%= piece.colour %><br/>
+        </div>
+        <div class="namebar">
+          <div class="nametag">
+            <%= piece.user.profile.first_name %> <%= piece.user.profile.surname %><br/>
+            <%= piece.user.profile.addr_town %>
+          </div>
+        </div>
+        <div class="img_preview">
+          <%= link_to image_tag(piece.image), piece_path( piece.id )%>
+        </div>
+      </div>
+
+  <% end %>
+</table>

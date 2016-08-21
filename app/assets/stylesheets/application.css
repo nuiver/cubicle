@@ -20,6 +20,7 @@ body {
 }
 a {
   color: #8F2A67;
+  text-decoration: none;
 }
 
 /*header styles*/
@@ -57,6 +58,22 @@ header {
 .navbar-text {
   font-weight: 800;
 }
+/*navigation bar*/
+.navbar {
+  height: 24px;
+  border-bottom: 1px dotted #bbb;
+  font-size: 12px;
+}
+.nav {
+  margin: 0;
+  padding-top: 5px;
+}
+.nav li{
+  list-style: none;
+  font-weight: 800;
+  display: inline;
+  margin-right: 50px;
+}
 
 /*flash bar*/
 .flashbar {
@@ -70,6 +87,7 @@ header {
   font-size: 10px;
 
 }
+
 /*divise forms*/
 .devise_container {
   padding: 5px 40px;

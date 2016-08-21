@@ -1,0 +1,11 @@
+<nav class="navbar">
+  <ul class="nav">
+    <% unless cannot?(:create, Piece) %>
+      <li><%= link_to "Add new piece", new_piece_path %></li>
+    <% end %>
+    <% if user_signed_in? %>
+      <li><%= link_to "My pieces", pieces_owned_path %></li>
+    <% end %>
+
+  </ul>
+</nav>

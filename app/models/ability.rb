@@ -9,9 +9,9 @@ class Ability
 
     if user.persisted? # in db, so logged in
       # Can MANAGE (create, read, update, destroy, etc.) own Post
-      can :manage, Piece, user: user
+      can :manage, Piece, :user_id => user.id
 
-    
+
     end
   end
 end

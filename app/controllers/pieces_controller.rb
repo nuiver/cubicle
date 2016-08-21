@@ -1,9 +1,19 @@
 class PiecesController < ApplicationController
 
   load_and_authorize_resource
-  
+
   def index
-    @pieces = Piece.all
+    if user_signed_in?
+      @pieces = Piece.where.not(user: current_user.id)
+    else
+      @pieces = Piece.all
+    end
+    authorize! :read, @pieces
+  end
+
+  def owned
+    @pieces = Piece.where(user: current_user.id)
+
     authorize! :read, @pieces
   end
 
