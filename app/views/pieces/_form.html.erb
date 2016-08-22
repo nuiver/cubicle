@@ -27,17 +27,18 @@
 
 <div class="field">
 <%= f.label :size %>
-<%= f.text_field :size %>
+<%= f.select :size, [['XS','XS'],['S','S'],['M','M'],['L','L'],['XL','XL']] %>
 </div>
+
 
 <div class="field">
 <%= f.label :colour %>
-<%= f.text_field :colour %>
+<%= f.select :colour, [['red','red'],['orange','orange'],['yellow','yellow'],['green','green'],['blue','blue'],['purple','purple'],['pink','pink'],['black','black'], ['grey','grey'], ['white','white']] %>
 </div>
 
 <div class="field">
 <%= f.label :price_cat %>
-<%= f.text_field :price_cat  %>
+<%= f.select :price_cat, [['1','1'],['2','2'],['3','3'],['4','4'],['5','5']] %>
 </div>
 
 <div class="field">
