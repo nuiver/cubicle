@@ -88,6 +88,15 @@ header {
 
 }
 
+/*forms*/
+.form {
+  padding: 5px 40px;
+}
+.form .field{
+  width: 400px;
+  margin: 2px 0;
+}
+
 /*divise forms*/
 .devise_container {
   padding: 5px 40px;
