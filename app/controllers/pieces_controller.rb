@@ -12,8 +12,7 @@ class PiecesController < ApplicationController
   end
 
   def owned
-    @pieces = Piece.where(user: current_user.id)
-
+    @pieces = current_user.pieces
     authorize! :read, @pieces
   end
 
@@ -22,9 +21,11 @@ class PiecesController < ApplicationController
   end
 
   def create
+
     piece_params
 
     @piece = Piece.new( piece_params )
+
     authorize! :create, @piece
 
     @piece.user = current_user
@@ -42,10 +43,13 @@ class PiecesController < ApplicationController
 
   def edit
     @piece = Piece.find(params[:id])
+    authorize! :update, @piece
   end
 
   def update
     @piece = Piece.find(params[:id])
+    authorize! :update, @piece
+
     piece_params
     if @piece.update_attributes(piece_params)
        redirect_to @piece
