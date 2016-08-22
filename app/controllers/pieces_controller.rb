@@ -4,9 +4,9 @@ class PiecesController < ApplicationController
 
   def index
     if user_signed_in?
-      @pieces = Piece.where.not(user: current_user.id)
+      @pieces = Piece.not_owned_by(current_user.id).order_by_new
     else
-      @pieces = Piece.all
+      @pieces = Piece.all.order_by_new
     end
     authorize! :read, @pieces
   end
