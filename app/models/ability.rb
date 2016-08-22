@@ -5,7 +5,7 @@ class Ability
     user ||= User.new # guest user (not logged in)
 
     # Can READ anything
-    can :read, :all
+    can :manage, :all
 
     if user.persisted? # in db, so logged in
       # Can MANAGE (create, read, update, destroy, etc.) own Post
