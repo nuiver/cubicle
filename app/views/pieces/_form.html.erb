@@ -1,51 +1,53 @@
-<%= form_for @piece do |f| %>
+<div class="form">
+  <%= form_for @piece do |f| %>
 
-<ul>
-   <% @piece.errors.full_messages.each do |msg| %>
-     <li><%= msg %></li>
-   <% end %>
-</ul>
-<div class="field">
-<%= f.label :name %>
-<%= f.text_field :name %>
+  <ul>
+     <% @piece.errors.full_messages.each do |msg| %>
+       <li><%= msg %></li>
+     <% end %>
+  </ul>
+  <div class="field">
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+  <%= f.label :brand %>
+  <%= f.text_field :brand %>
+  </div>
+
+  <div class="field">
+  <%= f.label :image %>
+  <%= f.file_field :image %>
+  </div>
+
+  <div class="field">
+  <%= f.label :image_b %>
+  <%= f.file_field :image_b %>
+  </div>
+
+  <div class="field">
+  <%= f.label :size %>
+  <%= f.select :size, [['XS','XS'],['S','S'],['M','M'],['L','L'],['XL','XL']] %>
+  </div>
+
+
+  <div class="field">
+  <%= f.label :colour %>
+  <%= f.select :colour, [['red','red'],['orange','orange'],['yellow','yellow'],['green','green'],['blue','blue'],['purple','purple'],['pink','pink'],['black','black'], ['grey','grey'], ['white','white']] %>
+  </div>
+
+  <div class="field">
+  <%= f.label :price_cat %>
+  <%= f.select :price_cat, [['1','1'],['2','2'],['3','3'],['4','4'],['5','5']] %>
+  </div>
+
+  <div class="field">
+  <%= f.hidden_field(:image_cache) %>
+  <%= f.hidden_field(:image_b_cache) %>
+  </div>
+
+  <%= f.submit (@piece.new_record? ? "Bring it online" : "Update your item") %>
+
+  <% end %>
 </div>
-
-<div class="field">
-<%= f.label :brand %>
-<%= f.text_field :brand %>
-</div>
-
-<div class="field">
-<%= f.label :image %>
-<%= f.file_field :image %>
-</div>
-
-<div class="field">
-<%= f.label :image_b %>
-<%= f.file_field :image_b %>
-</div>
-
-<div class="field">
-<%= f.label :size %>
-<%= f.select :size, [['XS','XS'],['S','S'],['M','M'],['L','L'],['XL','XL']] %>
-</div>
-
-
-<div class="field">
-<%= f.label :colour %>
-<%= f.select :colour, [['red','red'],['orange','orange'],['yellow','yellow'],['green','green'],['blue','blue'],['purple','purple'],['pink','pink'],['black','black'], ['grey','grey'], ['white','white']] %>
-</div>
-
-<div class="field">
-<%= f.label :price_cat %>
-<%= f.select :price_cat, [['1','1'],['2','2'],['3','3'],['4','4'],['5','5']] %>
-</div>
-
-<div class="field">
-<%= f.hidden_field(:image_cache) %>
-<%= f.hidden_field(:image_b_cache) %>
-</div>
-
-<%= f.submit (@piece.new_record? ? "Bring it online" : "Update your item") %>
-
-<% end %>
