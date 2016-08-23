@@ -22,16 +22,21 @@ a {
   color: #8F2A67;
   text-decoration: none;
 }
+.container {
+  width: 940px;
+  margin:0 auto;
+}
 
 /*header styles*/
 header {
-  display: flex;
   height: 40px;
   border-bottom: 1px dotted #bbb;
 }
+.headcontainer {
+  display: flex;
+}
 .logo {
-  flex: 1;
-  padding-left: 40px;
+  flex: 2;
 }
 .logo h1 {
   font-weight: 900;
