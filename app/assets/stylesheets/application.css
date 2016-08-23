@@ -30,7 +30,7 @@ header {
   border-bottom: 1px dotted #bbb;
 }
 .logo {
-  flex: 1;
+  flex: 2;
   padding-left: 40px;
 }
 .logo h1 {
@@ -42,7 +42,7 @@ header {
   text-decoration: none;
 }
 .tabs {
-  flex:4;
+  flex:3;
 }
 .userlogin {
   flex:3;
