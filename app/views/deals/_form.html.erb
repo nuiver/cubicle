@@ -1,0 +1,17 @@
+<%= form_for(@deal) do |f| %>
+
+<div class="field">
+  <%= f.label 'Begin date of your reservation:' %>
+  <%= f.date_field :begin_res %>
+</div>
+
+<div class="field">
+  <%= f.label 'End date of your reservation:' %>
+  <%= f.date_field :end_res %>
+</div>
+
+<div class="actions">
+  <%= f.submit "Let's make a deal"%>
+</div>
+
+<% end %>

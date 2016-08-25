@@ -3,6 +3,7 @@ class Piece < ApplicationRecord
   mount_uploader :image_b, ImageBUploader
   belongs_to :user
   has_many :periods
+  has_many :deals
 
   COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink']
   UK_SIZES = ['6', '8', '10', '12', '14', '16', '18']
@@ -21,6 +22,22 @@ class Piece < ApplicationRecord
 
   def self.not_added_today
     where("created_at < ?", Time.zone.now.beginning_of_day)
+  end
+
+  def available_now?
+    status = false
+    self.periods.each do |period|
+      if period.begin_date <= Time.zone.now.beginning_of_day && period.end_date > Time.zone.now.beginning_of_day
+        status = true
+        break
+      end
+    end
+    status
+  end
+
+  def first_dates_available
+    begin_dates = self.periods.map{|x| x[:begin_date]}
+    begin_dates.sort.first
   end
 
 end

@@ -2,4 +2,9 @@
 <p>And see what happens...</p>
 <p><%= @piece.name %></p>
 
-<%= render 'form' %>
+<% if @piece.available_now? %>
+  <h3><%= @piece.name %>is available at the moment</h3>
+  <%= render 'form' %>
+<% else %>
+  <p>Sorry, this piece is not available until <%= @piece.first_dates_available.strftime("%d %B %Y") %></p>
+<% end %>
