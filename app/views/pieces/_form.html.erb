@@ -28,13 +28,13 @@
 
   <div class="field">
   <%= f.label :size %>
-  <%= f.select :size, [['XS','XS'],['S','S'],['M','M'],['L','L'],['XL','XL']] %>
+  <%= f.select :size, Piece::UK_SIZES.collect { |size| [ size, size ] } %>
   </div>
 
 
   <div class="field">
   <%= f.label :colour %>
-  <%= f.select :colour, [['red','red'],['orange','orange'],['yellow','yellow'],['green','green'],['blue','blue'],['purple','purple'],['pink','pink'],['black','black'], ['grey','grey'], ['white','white']] %>
+  <%= f.select :colour, Piece::COLOURS.collect { |col| [ col, col ] } %>
   </div>
 
   <div class="field">

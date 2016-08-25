@@ -8,9 +8,12 @@
     <div class='userlogin'>
       <ul>
         <% if !user_signed_in? %>
-          <li><%= link_to "LOG IN", new_user_session_path %></li>
+          <table class="signin_table"><tr>
+            <th><%= link_to "LOG IN", new_user_session_path %><th>
+            <th><%= link_to "SIGN UP", new_user_registration_path %></th>
+          </tr></table>
         <% else %>
-          <li><span class="navbar-text"><%= current_user.email.upcase %></span></li>
+          <li><span class="navbar-text"><%= current_user.profile.first_name.upcase %> <%= current_user.profile.surname.upcase %></span></li>
           <li><%= link_to "LOG OUT", destroy_user_session_path, :method => :delete %></li>
         <% end %>
       </ul>

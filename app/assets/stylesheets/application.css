@@ -22,6 +22,9 @@ a {
   color: #8F2A67;
   text-decoration: none;
 }
+a:hover {
+  color: #e24a96;
+}
 .container {
   width: 940px;
   margin:0 auto;
@@ -49,9 +52,16 @@ header {
 .tabs {
   flex:4;
 }
+.signin_table {
+width: 250px:
+}
 .userlogin {
   flex:3;
   font-size: 10px;
+  padding: 0;
+}
+.userlogin ul {
+  padding: 0;
 }
 .userlogin a {
   text-decoration: none;
@@ -71,7 +81,7 @@ header {
 }
 .nav {
   margin: 0;
-  padding-top: 5px;
+  padding: 5px 0;
 }
 .nav li{
   list-style: none;
@@ -85,9 +95,10 @@ header {
   height: 10px;
   border-bottom: 1px dotted #bbb;
   padding: 5px 40px;
+  background-color: #8F2A67;
 }
 .flashbar .notice {
-  color: #444444;
+  color: #ffffff;
   text-transform: uppercase;
   font-size: 10px;
 
@@ -104,5 +115,5 @@ header {
 
 /*divise forms*/
 .devise_container {
-  padding: 5px 40px;
+  padding: 5px 0;
 }

@@ -4,6 +4,9 @@ class Piece < ApplicationRecord
   belongs_to :user
   has_many :periods
 
+  COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink']
+  UK_SIZES = ['6', '8', '10', '12', '14', '16', '18']
+
   def self.order_by_new
     order(updated_at: :desc)
   end

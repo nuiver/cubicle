@@ -8,4 +8,9 @@ class DealsController < ApplicationController
 
   end
 
+  def index
+    @deals = current_user.deals
+    authorize! :read, @pieces
+  end
+
 end

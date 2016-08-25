@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   delete 'pieces/:id' => 'pieces#destroy'
 
   get 'deals/new' => 'deals#new', as: :new_deal
+  get 'deals' => 'deals#index', as: :deals
   post 'deals' => 'deals#create'
   get 'deals/:id' => 'deals#show', as: :deal
   patch 'deals/:id' => 'deals#update'
