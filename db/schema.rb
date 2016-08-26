@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160825192748) do
+ActiveRecord::Schema.define(version: 20160825201455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20160825192748) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
-    t.integer  "deal_id"
-    t.index ["deal_id"], name: "index_deals_on_deal_id", using: :btree
+    t.integer  "piece_id"
+    t.index ["piece_id"], name: "index_deals_on_piece_id", using: :btree
     t.index ["user_id"], name: "index_deals_on_user_id", using: :btree
   end
 
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20160825192748) do
     t.index ["role_id"], name: "index_users_on_role_id", using: :btree
   end
 
-  add_foreign_key "deals", "deals"
+  add_foreign_key "deals", "pieces"
   add_foreign_key "deals", "users"
   add_foreign_key "periods", "pieces"
   add_foreign_key "pieces", "users"

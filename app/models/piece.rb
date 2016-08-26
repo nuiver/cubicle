@@ -35,6 +35,11 @@ class Piece < ApplicationRecord
     status
   end
 
+  def sizewarning(user_size)
+    user_size != self.size ? true : false
+  end
+
+
   def first_dates_available
     begin_dates = self.periods.map{|x| x[:begin_date]}
     begin_dates.sort.first

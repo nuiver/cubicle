@@ -8,3 +8,7 @@
 <% else %>
   <p>Sorry, this piece is not available until <%= @piece.first_dates_available.strftime("%d %B %Y") %></p>
 <% end %>
+
+<% if @piece.sizewarning(current_user.profile.size) %>
+<h3>Are you aware that this piece is a size <%= @piece.size %>, not <%= current_user.size %>?</h3>
+<% end %>

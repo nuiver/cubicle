@@ -7,7 +7,8 @@ class DealsController < ApplicationController
 
   def create
     @deal = Deal.new(deal_params)
-
+    @deal.user = current_user
+    @deal.piece_id = params[:piece_id]
       respond_to do |format|
           if @deal.save
             format.html { redirect_to deal_path(@deal.id), notice: 'The deal was successfully proposed to the owner of the piece.' }
@@ -20,6 +21,8 @@ class DealsController < ApplicationController
   end
 
   def show
+    @deal = Deal.find_by id: params[:id]
+    # @piece = Piece.find_by(id: @deal.piece_id)
   end
 
   def index
@@ -30,7 +33,7 @@ class DealsController < ApplicationController
   private
 
   def deal_params
-      params.require(:deal).permit(:begin_res, :end_res)
+      params.require(:deal).permit(:begin_res, :end_res, :piece_id, :piece)
   end
 
 end
