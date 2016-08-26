@@ -8,6 +8,9 @@ class PiecesController < ApplicationController
     else
       @pieces = Piece.all.order_by_new
     end
+    @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
+    @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
+    @size = params[:size]
     authorize! :read, @pieces
   end
 
@@ -64,9 +67,19 @@ class PiecesController < ApplicationController
     redirect_to pieces_path
   end
 
+  def search
+    if user_signed_in?
+      @pieces = Piece.not_owned_by(current_user.id).order_by_new
+    else
+      @pieces = Piece.all.order_by_new
+    end
+    @pieces = @pieces.search(params[:search]) if params[:search].present?
+  end
+
+
 private
 
   def piece_params
-    params.require( :piece ).permit( :name, :brand, :image, :image_b, :size, :colour, :price_cat, :image_cache, :image_b_cache)
+    params.require( :piece ).permit( :name, :brand, :image, :image_b, :size, :colour, :price_cat, :image_cache, :image_b_cache, colour: [])
   end
 end

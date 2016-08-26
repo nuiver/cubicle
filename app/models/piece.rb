@@ -5,7 +5,7 @@ class Piece < ApplicationRecord
   has_many :periods
   has_many :deals
 
-  COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink']
+  COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink', 'brown', 'grey', 'black']
   UK_SIZES = ['6', '8', '10', '12', '14', '16', '18']
 
   def self.order_by_new
@@ -45,4 +45,11 @@ class Piece < ApplicationRecord
     begin_dates.sort.first
   end
 
+  def self.coloursearch(colour)
+    where("colour LIKE ?", "%#{colour[:colour]}%")
+  end
+
+  def self.sizesearch(sz)
+    where(size: sz[:size])
+  end
 end

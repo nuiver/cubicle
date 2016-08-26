@@ -1,5 +1,19 @@
 <div class="filter">
   <div class="container">
-    <p>filter time</p>
+    <%= form_tag(pieces_path, method: "get", name: "list", id: "colour-form", remote: true ) do %>
+      <% Piece::COLOURS.each do |colour| %>
+        <%= check_box_tag("colour[colour]", colour, false, :onclick => "javascript: document.list.submit();") %>
+        <%= label_tag(:colour, colour) %>
+      <% end %>
+      <br />
+      <% Piece::UK_SIZES.each do |size| %>
+        <% if @size == size %>
+        <%= check_box_tag("size[size]", size, true, :onclick => "javascript: document.list.submit();") %>
+        <% else %>
+        <%= check_box_tag("size[size]", size, false, :onclick => "javascript: document.list.submit();") %>
+        <% end %>
+        <%= label_tag(:size, size) %>
+      <% end %>
+    <% end %>
   </div>
 </div>
