@@ -1,4 +1,5 @@
-<div class="main">
+<%= render 'filter' %>
+<div class="main container">
   <% if @pieces.added_today %>
     <h3>Pieces added today</h3>
     <% @pieces.added_today.each do |piece| %>

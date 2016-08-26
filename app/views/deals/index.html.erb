@@ -4,7 +4,7 @@
   <table>
     <tr>
       <td><%= deal.id %></td>
-      <td><%= deal.piece.name %></td>
+      <td><%= link_to deal.piece.name, deal_path(deal.id) %></td>
     </tr>
   </table>
 <% end %>
