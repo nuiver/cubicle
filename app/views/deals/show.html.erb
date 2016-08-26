@@ -1,0 +1,23 @@
+<h1>proposed deal <%= @deal.id %> for <%= @deal.piece.name %></h1>
+
+<div class="img_showpage">
+  <%= image_tag @deal.piece.image.to_s %>
+</div>
+Piece: <%= @deal.piece.name %><br />
+Brand: <%= @deal.piece.brand %><br />
+Colour: <%= @deal.piece.colour %><br />
+Size: <%= @deal.piece.size %><br />
+Price category: <%= @deal.piece.price_cat %><br />
+<br />
+
+<br />
+<table>
+  <tr>
+    <th>Start date</th>
+    <th>End date</th>
+  </tr>
+  <tr>
+    <td><%= @deal.begin_res.strftime("%d %B %Y") %></td>
+    <td><%= @deal.end_res.strftime("%d %B %Y") %></td>
+  </tr>
+</table>

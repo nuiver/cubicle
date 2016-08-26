@@ -2,6 +2,7 @@ class User < ApplicationRecord
 
   has_one :profile
   has_many :pieces
+  has_many :deals
 
   accepts_nested_attributes_for :profile, :allow_destroy => true
 
