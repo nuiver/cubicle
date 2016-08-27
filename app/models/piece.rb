@@ -6,7 +6,7 @@ class Piece < ApplicationRecord
   has_many :deals
 
   COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink', 'brown', 'grey', 'black']
-  UK_SIZES = ['6', '8', '10', '12', '14', '16', '18']
+  UK_SIZES = [6, 8, 10, 12, 14, 16, 18]
 
   def self.order_by_new
     order(updated_at: :desc)
@@ -22,6 +22,11 @@ class Piece < ApplicationRecord
 
   def self.not_added_today
     where("created_at < ?", Time.zone.now.beginning_of_day)
+  end
+
+  def frontpage
+    # sort_by { |item| item[:size] }
+    # first(8)
   end
 
   def available_now?
@@ -45,8 +50,8 @@ class Piece < ApplicationRecord
     begin_dates.sort.first
   end
 
-  def self.coloursearch(colour)
-    where("colour LIKE ?", "%#{colour[:colour]}%")
+  def self.coloursearch(clr)
+    where(colour: clr[:colour])
   end
 
   def self.sizesearch(sz)
