@@ -10,7 +10,10 @@ class PiecesController < ApplicationController
     end
     @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
+
+    @pieces = @pieces.sort_by { |item| item[:size] }
     @size = params[:size]
+    @colour = params[:colour]
     authorize! :read, @pieces
   end
 

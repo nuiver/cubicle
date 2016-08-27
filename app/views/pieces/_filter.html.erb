@@ -2,15 +2,19 @@
   <div class="container">
     <%= form_tag(pieces_path, method: "get", name: "list", id: "colour-form", remote: true ) do %>
       <% Piece::COLOURS.each do |colour| %>
-        <%= check_box_tag("colour[colour]", colour, false, :onclick => "javascript: document.list.submit();") %>
+        <% if  @colour && (@colour[:colour].include? colour) %>
+          <%= check_box_tag("colour[colour][]", colour, true, :onclick => "javascript: document.list.submit();") %>
+        <% else %>
+          <%= check_box_tag("colour[colour][]", colour, false, :onclick => "javascript: document.list.submit();") %>
+        <% end %>
         <%= label_tag(:colour, colour) %>
       <% end %>
       <br />
       <% Piece::UK_SIZES.each do |size| %>
-        <% if @size == size %>
-        <%= check_box_tag("size[size]", size, true, :onclick => "javascript: document.list.submit();") %>
+        <% if  @size && (@size[:size].include? size.to_s) %>
+          <%= check_box_tag("size[size][]", size, true, :onclick => "javascript: document.list.submit();") %>
         <% else %>
-        <%= check_box_tag("size[size]", size, false, :onclick => "javascript: document.list.submit();") %>
+          <%= check_box_tag("size[size][]", size, false, :onclick => "javascript: document.list.submit();") %>
         <% end %>
         <%= label_tag(:size, size) %>
       <% end %>
