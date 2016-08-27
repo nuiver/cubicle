@@ -11,7 +11,7 @@
       <% end %>
       <br />
       <% Piece::UK_SIZES.each do |size| %>
-        <% if  @size && (@size[:size].include? size) %>
+        <% if  @size && (@size[:size].include? size.to_s) %>
           <%= check_box_tag("size[size][]", size, true, :onclick => "javascript: document.list.submit();") %>
         <% else %>
           <%= check_box_tag("size[size][]", size, false, :onclick => "javascript: document.list.submit();") %>
