@@ -18,6 +18,13 @@
         <% end %>
         <%= label_tag(:size, size) %>
       <% end %>
+      <br />
+        <% if  params.key?('available') && params[:available] == true.to_s %>
+          <%= check_box_tag("available", true, true, :onclick => "javascript: document.list.submit();") %>
+        <% else %>
+          <%= check_box_tag("available", true, false, :onclick => "javascript: document.list.submit();") %>
+        <% end %>
+        <%= label_tag('Available now') %>
     <% end %>
   </div>
 </div>
