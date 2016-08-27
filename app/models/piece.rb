@@ -5,7 +5,7 @@ class Piece < ApplicationRecord
   has_many :periods
   has_many :deals
 
-  COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink', 'brown', 'grey', 'black']
+  COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink', 'brown', 'grey', 'black', 'white']
   UK_SIZES = [6, 8, 10, 12, 14, 16, 18]
 
   def self.order_by_new
@@ -29,7 +29,7 @@ class Piece < ApplicationRecord
     # first(8)
   end
 
-  def available_now?
+  def is_available_now?
     status = false
     self.periods.each do |period|
       if period.begin_date <= Time.zone.now.beginning_of_day && period.end_date > Time.zone.now.beginning_of_day
@@ -38,6 +38,10 @@ class Piece < ApplicationRecord
       end
     end
     status
+  end
+
+  def self.are_available_now?
+    select { |i| i.is_available_now? == true }
   end
 
   def sizewarning(user_size)

@@ -10,8 +10,8 @@ class PiecesController < ApplicationController
     end
     @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
-
-    @pieces = @pieces.sort_by { |item| item[:size] }
+    @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
+    @pieces = @pieces.sort_by { |item| item[:id] }.reverse
     @size = params[:size]
     @colour = params[:colour]
     authorize! :read, @pieces
@@ -83,6 +83,6 @@ class PiecesController < ApplicationController
 private
 
   def piece_params
-    params.require( :piece ).permit( :name, :brand, :image, :image_b, :size, :colour, :price_cat, :image_cache, :image_b_cache, colour: [])
+    params.require( :piece ).permit( :name, :brand, :image, :image_b, :size, :colour, :price_cat, :image_cache, :image_b_cache, :available, colour: [])
   end
 end
