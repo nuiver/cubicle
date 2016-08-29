@@ -30,10 +30,10 @@ class Piece < ApplicationRecord
   end
 
   def is_available_now?
-    status = false
+    status = true
     self.periods.each do |period|
       if period.begin_date <= Time.zone.now.beginning_of_day && period.end_date > Time.zone.now.beginning_of_day
-        status = true
+        status = false
         break
       end
     end

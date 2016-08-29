@@ -71,13 +71,8 @@ class PiecesController < ApplicationController
     redirect_to pieces_path
   end
 
-  def search
-    if user_signed_in?
-      @pieces = Piece.not_owned_by(current_user.id).order_by_new
-    else
-      @pieces = Piece.all.order_by_new
-    end
-    @pieces = @pieces.search(params[:search]) if params[:search].present?
+  def own
+    @piece = Piece.find(params[:id])
   end
 
 
