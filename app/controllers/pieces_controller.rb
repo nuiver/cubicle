@@ -20,6 +20,7 @@ class PiecesController < ApplicationController
   def owned
     @pieces = current_user.pieces
     authorize! :read, @pieces
+    render 'index'
   end
 
   def new
