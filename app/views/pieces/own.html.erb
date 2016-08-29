@@ -1,0 +1,15 @@
+<div class="main container">
+  <h1>Reservation info for <%= @piece.name %></h1>
+  <% if !@piece.is_available_now? %>
+    <div class="warn_not_available">Piece is currently with <%=@piece.deals.get_current.user.profile.first_name %></div>
+  <% end %>
+  <div class="piece_top">
+    <p><%= @piece.brand %></p>
+  </div>
+  <div class="img_own_front">
+    <%= image_tag @piece.image.to_s, size: "150x180" %>
+  </div>
+  <div class="piece_own_deals">
+    <%= render @piece.deals %>
+  </div>
+</div>
