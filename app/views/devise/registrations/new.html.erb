@@ -32,11 +32,11 @@
         <%= profile.text_field :surname, required: true %>
       </div>
       <div class="field">
-        <%= profile.label "Street / no." %><br />
+        <%= profile.label "Street" %><br />
         <%= profile.text_field :addr_street, required: true %>
       </div>
       <div class="field">
-        <%= profile.label "No." %><br />
+        <%= profile.label "Number" %><br />
         <%= profile.text_field :addr_number, required: true %>
       </div>
       <div class="field">
@@ -53,14 +53,14 @@
       </div>
       <div class="field">
         <%= profile.label :gender %><br />
-        <%= profile.select :gender, [['male','male'],['female','female']] %>
+        <%= profile.select :gender, [['female','female'],['male','male']] %>
       </div>
       <div class="field">
         <%= profile.label :date_of_birth %><br />
         <%= profile.date_field :date_of_birth, required: true %>
       </div>
       <div class="field">
-        <%= profile.label :fav_color %><br />
+        <%= profile.label "Favourite colour" %><br />
         <%= profile.select :fav_color, Piece::COLOURS.collect { |col| [ col, col ] } %>
       </div>
       <div class="field">
