@@ -5,6 +5,10 @@ class Piece < ApplicationRecord
   has_many :periods
   has_many :deals
 
+  validates :name, presence: true
+  validates :size, presence: true
+  validates :colour, presence: true
+
   COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink', 'brown', 'grey', 'black', 'white']
   UK_SIZES = [6, 8, 10, 12, 14, 16, 18]
 
@@ -22,11 +26,6 @@ class Piece < ApplicationRecord
 
   def self.not_added_today
     where("created_at < ?", Time.zone.now.beginning_of_day)
-  end
-
-  def frontpage
-    # sort_by { |item| item[:size] }
-    # first(8)
   end
 
   def is_available_now?

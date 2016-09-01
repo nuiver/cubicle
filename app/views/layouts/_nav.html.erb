@@ -2,7 +2,7 @@
   <div class="container">
     <ul class="nav">
       <% unless cannot?(:create, Piece) %>
-        <li><%= link_to "ADD NEW PIECE", new_piece_path %></li>
+        <li><%= link_to "ADD NEW PIECE", new_piece_path, id: 'add_piece' %></li>
       <% end %>
       <% if user_signed_in? %>
         <li><%= link_to "MY PIECES", pieces_owned_path %></li>
