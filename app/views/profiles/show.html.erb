@@ -1,6 +1,22 @@
-<%= form_for current_user, url: profile_path do |f| %>
-   <%= f.fields_for :profile do |p| %>
-      <%= p.text_field :name %>
-   <% end %>
-   <%= f.submit %>
-<% end %>
+<div class="container">
+
+<h1>Profile page of <%= @profile.first_name %></h1>
+
+<div class='profile_item'>
+  <div class="profile_key">First name</div>
+  <div class="profile_val"><%= @profile.first_name %></div>
+</div>
+<div class='profile_item'>
+  <div class="profile_key">Surname</div>
+  <div class="profile_val"><%= @profile.surname %></div>
+</div>
+<div class='profile_item'>
+  <div class="profile_key">Size</div>
+  <div class="profile_val"><%= @profile.size %></div>
+</div>
+<div class='profile_item'>
+  <div class="profile_key">Favourite colour</div>
+  <div class="profile_val"><%= @profile.fav_color %></div>
+</div>
+
+</div>
