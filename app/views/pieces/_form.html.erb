@@ -40,7 +40,7 @@
 
   <div class="field">
   <%= f.label :colour %>
-  <%= f.select :colour, Piece::COLOURS.collect { |col| [ col, col ] }, value: ( current_user ? current_user.size : 10 )  %>
+  <%= f.select :colour, Piece::COLOURS.collect { |col| [ col, col ] }, value: (current_user ? current_user.profile.size : 10)  %>
   </div>
 
   <div class="field">
