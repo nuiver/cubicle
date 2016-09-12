@@ -19,6 +19,11 @@ class User < ApplicationRecord
     self.profile.first_name+" "+self.profile.surname
   end
 
+  def has_pieces?
+    self.pieces.empty? ? false : true
+  end
+
+
   private
     def set_default_role
     self.role_id ||= Role.find_by_name('Member')

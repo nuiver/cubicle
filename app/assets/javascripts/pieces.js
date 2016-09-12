@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 function viewFilter() {
 
-  $('.filter_button_link').click(function(e) {
+  $('#filter_button_link').click(function(e) {
     e.preventDefault();
     console.log("Function called");
     $('#filterbox').slideToggle();
