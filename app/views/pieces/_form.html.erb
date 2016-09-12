@@ -1,59 +1,63 @@
-<div class="form">
+<div class="piece_form">
   <%= form_for @piece do |f| %>
 
-  <ul>
-     <% @piece.errors.full_messages.each do |msg| %>
-       <li><%= msg %></li>
-     <% end %>
-  </ul>
+    <ul>
+       <% @piece.errors.full_messages.each do |msg| %>
+         <li><%= msg %></li>
+       <% end %>
+    </ul>
 
-  <div class="field">
-  <%= f.label :product_type %>
-  <%= f.select :product_type, Piece::TYPES.collect { |type| [ type, type ] } %>
-  </div>
+    <div class="inputfield">
+      <div class="label"><%= f.label :product_type %></div>
+      <div class="field"><%= f.select :product_type, Piece::TYPES.collect { |type| [ type, type ] } %></div>
+    </div>
 
-  <div class="field">
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  </div>
+    <div class="inputfield">
+      <div class="label"><%= f.label :name %></div>
+      <div class="field"><%= f.text_field :name %></div>
+    </div>
 
-  <div class="field">
-  <%= f.label :brand %>
-  <%= f.text_field :brand %>
-  </div>
+    <div class="inputfield">
+      <div class="label"><%= f.label :brand %></div>
+      <div class="field"><%= f.text_field :brand %></div>
+    </div>
 
-  <div class="field">
-  <%= f.label :image %>
-  <%= f.file_field :image %>
-  </div>
+    <div class="inputfield">
+      <div class="label"><%= f.label :description %></div>
+      <div class="field"><%= f.text_field :description %></div>
+    </div>
 
-  <div class="field">
-  <%= f.label :image_b %>
-  <%= f.file_field :image_b %>
-  </div>
+    <div class="inputfield">
+      <div class="label"><%= f.label :image %></div>
+      <div class="field"><%= f.file_field :image %></div>
+    </div>
 
-  <div class="field">
-  <%= f.label :size %>
-  <%= f.select :size, Piece::UK_SIZES.collect { |size| [ size, size ] } %>
-  </div>
+    <div class="inputfield">
+      <div class="label"><%= f.label :image_b %></div>
+      <div class="field"><%= f.file_field :image_b %></div>
+    </div>
 
+    <div class="inputfield">
+      <div class="label"><%= f.label :size %></div>
+      <div class="field"><%= f.select :size, Piece::UK_SIZES.collect { |size| [ size, size ] } %></div>
+    </div>
 
-  <div class="field">
-  <%= f.label :colour %>
-  <%= f.select :colour, Piece::COLOURS.collect { |col| [ col, col ] }, value: (current_user ? current_user.profile.size : 10)  %>
-  </div>
+    <div class="inputfield">
+      <div class="label"><%= f.label :colour %></div>
+      <div class="field"><%= f.select :colour, Piece::COLOURS.collect { |col| [ col, col ] }, value: (current_user ? current_user.profile.size : 10)  %></div>
+    </div>
 
-  <div class="field">
-  <%= f.label :price_cat %>
-  <%= f.select :price_cat, [['1','1'],['2','2'],['3','3'],['4','4'],['5','5']] %>
-  </div>
+    <div class="inputfield">
+      <div class="label"><%= f.label :price_cat %></div>
+      <div class="field"><%= f.select :price_cat, [['1','1'],['2','2'],['3','3'],['4','4'],['5','5']] %></div>
+    </div>
 
-  <div class="field">
-  <%= f.hidden_field(:image_cache) %>
-  <%= f.hidden_field(:image_b_cache) %>
-  </div>
+    <div class="label">
+    <%= f.hidden_field(:image_cache) %>
+    <%= f.hidden_field(:image_b_cache) %>
+    </div>
 
-  <%= f.submit (@piece.new_record? ? "Bring it online" : "Update your item") %>
+    <%= f.submit (@piece.new_record? ? "Bring it online" : "Update your item") %>
 
   <% end %>
 </div>

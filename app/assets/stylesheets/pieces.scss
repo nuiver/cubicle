@@ -96,9 +96,49 @@
 
 // filter styles
 .filter {
-  height: 48px;
+  height: 55px;
   border-bottom: 1px dotted #bbb;
   font-size: 12px;
   padding: 5px 0 0 0;
+  margin-bottom: 20px;
 }
-// temp style
+// form style
+.piece_form {
+  background-color:  #f2c6dc;
+  padding: 10px;
+}
+
+.inputfield {
+  // width: 100%;
+}
+
+.piece_form .label {
+  // position: relative;
+  // float: left;
+  width: 100px;
+  color: #8F2A67;
+}
+.piece_form .field {
+  // position: relative;
+  // display: inline-block;
+  // float: left;
+  background: #fff;
+  color: #8F2A67;
+}
+.piece_form input {
+  // position: relative;
+  // display: inline-block;
+  // float: left;
+  height: 30px;
+  width: 100%;
+  font-size: 1.1em;
+  background: #fff;
+  color: #8F2A67;
+}
+.piece_form select {
+  width: 100%;
+  font-size: 1.1em;
+  color: #8F2A67;
+  background: transparent;
+  border: none;
+}
