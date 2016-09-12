@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
 
   root "pieces#index"
-
   devise_for :users
   # devise_for :users
 
-  resources :users, only: :index
-  resource :profile
+  # resources :users, only: :index
+  resources :profiles
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'pieces/owned' => 'pieces#owned', as: :pieces_owned
   get 'pieces/:id/own' => 'pieces#own', as: :piece_own

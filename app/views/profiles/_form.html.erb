@@ -1,0 +1,82 @@
+<%= form_for(@profile) do |f| %>
+
+  <% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% @profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>Your emailaddress is: <%= current_user.email %>, isn't it?</p>
+  <%= link_to "Click here to update your email or password.", edit_user_registration_path %>
+
+  <div class="field">
+    <%= f.label "First name" %><br />
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Last name" %><br />
+    <%= f.text_field :surname %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Avatar" %><br />
+    <%= f.file_field :avatar %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Street" %><br />
+    <%= f.text_field :addr_street, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Number" %><br />
+    <%= f.text_field :addr_number, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Postcode" %><br />
+    <%= f.text_field :postcode, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Town" %><br />
+    <%= f.text_field :addr_town, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Phone" %><br />
+    <%= f.text_field :phone, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.select :gender, [['female','female'],['male','male']] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :date_of_birth %><br />
+    <%= f.date_field :date_of_birth, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Favourite colour" %><br />
+    <%= f.select :fav_color, Piece::COLOURS.collect { |col| [ col, col ] } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :size %><br />
+    <%= f.select :size, Piece::UK_SIZES.collect { |sz| [ sz, sz ] } %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Save your profile"%>
+  </div>
+
+<% end %>
