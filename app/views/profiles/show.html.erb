@@ -1,6 +1,6 @@
 <div class="profile_box container">
 <div class='profile_picture'>
-  <%= cl_image_tag(current_user.profile.avatar, width: 250, height: 250, crop: :fill, radius: :max) %></h1>
+  <%= cl_image_tag(current_user.profile.avatar, width: 250, height: 250, crop: :fill, gravity: :face, radius: :max) %></h1>
 </div>
 <div class='profile_item'>
   <div class="profile_val"><h2><%= @profile.first_name %> <%= @profile.surname %></h2></div>

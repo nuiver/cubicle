@@ -7,7 +7,7 @@
     </div>
     <div class='userlogin'>
       <% if user_signed_in? %>
-        <div class="header_pic"><%= link_to cl_image_tag(current_user.profile.avatar, width: 35, height: 35, crop: :fill, radius: :max), profile_path(current_user.profile.id), id: 'user_name_link'  %></div>
+        <div class="header_pic"><%= link_to cl_image_tag(current_user.profile.avatar, width: 35, height: 35, crop: :fill, gravity: :face, radius: :max), profile_path(current_user.profile.id), id: 'user_name_link'  %></div>
       <% end %>
       <div class="header_signin">
         <ul>
