@@ -4,13 +4,12 @@
   </div>
 
   <h1>Book this item</h1>
-  
+
   <h3><%= @piece.name %></h3>
 
   <% if @piece.sizewarning(current_user.profile.size) %>
   <h3>Are you aware that this piece is a size <%= @piece.size %>, not <%= current_user.profile.size %>?</h3>
   <% end %>
-
 
   <% if @piece.is_available_now? %>
     <h3><%= @piece.name %>is available at the moment</h3>
