@@ -6,6 +6,12 @@
        <li><%= msg %></li>
      <% end %>
   </ul>
+
+  <div class="field">
+  <%= f.label :type %>
+  <%= f.select :type, Piece::TYPES.collect { |type| [ type, type ] } %>
+  </div>
+
   <div class="field">
   <%= f.label :name %>
   <%= f.text_field :name %>
