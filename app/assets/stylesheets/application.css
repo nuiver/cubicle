@@ -53,6 +53,18 @@ header {
 .tabs {
   flex:4;
 }
+
+.header_pic {
+  width: 40px;
+  display: inline-block;
+  float: left
+}
+.header_signin {
+  display: inline-block;
+  position: relative;
+  margin-left: 5px;
+}
+
 .signin_table {
 width: 250px;
 }
