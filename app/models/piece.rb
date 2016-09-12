@@ -61,4 +61,13 @@ class Piece < ApplicationRecord
   def self.sizesearch(sz)
     where(size: sz[:size])
   end
+
+  def self.sort_colours_in_collection(pieces)
+    colours = pieces.map{ |i| i[:colour] }.uniq
+    sorted_colourlist = []
+    COLOURS.map { |col|   (sorted_colourlist << col) if colours.include? col }
+    sorted_colourlist
+  end
+
+
 end

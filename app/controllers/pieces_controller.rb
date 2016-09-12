@@ -8,6 +8,9 @@ class PiecesController < ApplicationController
     else
       @pieces = Piece.all.order_by_new
     end
+    @colours_in_unfiltered_pieces = @pieces.sort_colours_in_collection(@pieces)
+    @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
+
     @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
