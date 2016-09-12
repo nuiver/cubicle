@@ -20,6 +20,8 @@ class PiecesController < ApplicationController
 
   def owned
     @pieces = current_user.pieces
+    @colours_in_unfiltered_pieces = @pieces.sort_colours_in_collection(@pieces)
+    @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
     authorize! :read, @pieces
     render 'index'
   end

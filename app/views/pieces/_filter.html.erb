@@ -1,5 +1,8 @@
-<div class="filter">
-  <div class="container">
+  <% if params[:colour].present? || params[:size].present?  || params[:available].present? %>
+    <div id="filterbox" class="container filter">
+  <% else %>
+    <div id="filterbox" class="container filter hidden">
+  <% end %>
     <%= form_tag(pieces_path, method: "get", name: "list", id: "colour-form", remote: true ) do %>
       <!-- Method for available colours in the @pieces-->
       <% @colours_in_unfiltered_pieces.each do |colour| %>
@@ -30,4 +33,8 @@
         <%= label_tag('Available now') %>
     <% end %>
   </div>
-</div>
+  <div class="container">
+    <div class="filter_button">
+      <a id="filter_button_link" href="#">Filter</a>
+    </div>
+  </div>
