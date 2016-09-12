@@ -1,14 +1,17 @@
 <h1>Book this item</h1>
+
 <div class="img_showpage">
   <%= image_tag @piece.image.to_s %>
 </div>
+
 <h3><%= @piece.name %></h3>
 
 <% if @piece.sizewarning(current_user.profile.size) %>
 <h3>Are you aware that this piece is a size <%= @piece.size %>, not <%= current_user.profile.size %>?</h3>
 <% end %>
 
-<% if @piece.is_available_now ? %>
+
+<% if @piece.is_available_now? %>
   <h3><%= @piece.name %>is available at the moment</h3>
   <%= render 'form' %>
 <% else %>
