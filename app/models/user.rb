@@ -15,6 +15,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
 
+  def full_name
+    self.profile.first_name+" "+self.profile.surname
+  end
+
   private
     def set_default_role
     self.role_id ||= Role.find_by_name('Member')

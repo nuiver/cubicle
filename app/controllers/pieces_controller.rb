@@ -12,8 +12,6 @@ class PiecesController < ApplicationController
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
     @pieces = @pieces.sort_by { |item| item[:id] }.reverse
-    @size = params[:size]
-    @colour = params[:colour]
     authorize! :read, @pieces
   end
 

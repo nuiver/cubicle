@@ -6,17 +6,22 @@
     <div class='tabs'>
     </div>
     <div class='userlogin'>
-      <ul>
-        <% if !user_signed_in? %>
-          <table class="signin_table"><tr>
-            <th><%= link_to "LOG IN", new_user_session_path %><th>
-            <th><%= link_to "SIGN UP", new_user_registration_path %></th>
-          </tr></table>
-        <% else %>
-          <li><span class="navbar-text"><%= link_to (current_user.profile.first_name.upcase+" "+current_user.profile.surname.upcase), profile_path, id: 'user_name_link' %></span></li>
-          <li><%= link_to "LOG OUT", destroy_user_session_path, :method => :delete %></li>
-        <% end %>
-      </ul>
+      <% if user_signed_in? %>
+        <div class="header_pic"><%= link_to cl_image_tag(current_user.profile.avatar, width: 35, height: 35, crop: :fill, radius: :max), profile_path, id: 'user_name_link'  %></div>
+      <% end %>
+      <div class="header_signin">
+        <ul>
+          <% if !user_signed_in? %>
+            <table class="signin_table"><tr>
+              <th><%= link_to "LOG IN", new_user_session_path %><th>
+              <th><%= link_to "SIGN UP", new_user_registration_path %></th>
+            </tr></table>
+          <% else %>
+            <li><span class="navbar-text"><%= link_to current_user.full_name.upcase, profile_path, id: 'user_name_link' %></span></li>
+            <li><%= link_to "LOG OUT", destroy_user_session_path, :method => :delete %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </header>
