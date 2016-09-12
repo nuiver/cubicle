@@ -79,6 +79,6 @@ class PiecesController < ApplicationController
 private
 
   def piece_params
-    params.require( :piece ).permit( :name, :brand, :image, :image_b, :size, :colour, :price_cat, :image_cache, :image_b_cache, :available, colour: [])
+    params.require( :piece ).permit( :name, :brand, :image, :image_b, :size, :colour, :product_type, :price_cat, :image_cache, :image_b_cache, :available, colour: [])
   end
 end

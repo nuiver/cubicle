@@ -11,6 +11,7 @@ class Piece < ApplicationRecord
 
   COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink', 'brown', 'grey', 'black', 'white']
   UK_SIZES = [6, 8, 10, 12, 14, 16, 18]
+  TYPES = ['dress', 'jeans', 'jumper', 'cardigan', 'jumpsuit', 'lingerie', 'shirt', 'shoes', 'shorts', 'skirt', 'swimwear', 'top', 'trousers', 'accessiories']
 
   def self.order_by_new
     order(updated_at: :desc)
