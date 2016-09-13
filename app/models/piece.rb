@@ -6,13 +6,15 @@ class Piece < ApplicationRecord
   has_many :deals
   has_one :heart
 
+  before_create :build_heart
+
   validates :name, presence: true
   validates :size, presence: true
   validates :colour, presence: true
 
-  COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink', 'brown', 'grey', 'black', 'white']
+  COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink', 'brown', 'grey', 'silver', 'black', 'white']
   UK_SIZES = [6, 8, 10, 12, 14, 16, 18]
-  TYPES = ['dress', 'jeans', 'jumper', 'cardigan', 'jumpsuit', 'lingerie', 'shirt', 'shoes', 'shorts', 'skirt', 'swimwear', 'top', 'trousers', 'accessiories']
+  TYPES = ['dress', 'jacket', 'jeans', 'jumper', 'cardigan', 'jumpsuit', 'lingerie', 'shirt', 'shoes', 'shorts', 'skirt', 'swimwear', 'top', 'trousers', 'accessiories']
 
   def self.order_by_new
     order(updated_at: :desc)

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_user
-    cookies[:userid] = current_user.id || 'guest'
+    cookies[:userid] = (current_user.id if user_signed_in?)  || 'guest'
   end
 
   protected

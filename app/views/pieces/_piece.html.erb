@@ -7,7 +7,11 @@
       <p><%= piece.size %></p>
     </div>
   <div class="infotag">
-    <a id="star-<%= piece.heart.id %>" href="#" class="fa fa-star-o"></a>
+    <% if user_signed_in? && current_user.hearts.ids.include?(piece.heart.id) %>
+      <a id="star-<%= piece.heart.id %>" href="#" class="fa fa-star"></a>
+    <% elsif user_signed_in? %>
+      <a id="star-<%= piece.heart.id %>" href="#" class="fa fa-star-o"></a>
+    <% end %>
     <div class="name_item"><%= link_to "#{piece.name}", piece_path( piece.id ) %></div>
     <%= piece.brand %><br/>
     <%= piece.colour %><br/>
