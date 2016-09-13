@@ -33,26 +33,33 @@ function starPiece() {
 
   $("[id^=star-]").click(function(e) {
     e.preventDefault();
-    $('#'+this.id).toggleClass('fa-star-o');
-    $('#'+this.id).toggleClass('fa-star');
 
     heartId = this.id.match(/[^star-]+/)[0];
-
     userid = getCookie('userid')
-    console.log(userid);
 
-    // update Star
-    var newUser = { user: userid };
+    if ($('#'+this.id).hasClass('fa-star-o')) {
+      $.ajax({
+        type: "PUT",
+        url:  "/hearts/" + heartId + ".json",
+        data: JSON.stringify({
+            heart: { user_ids: [userid] }
+        }),
+        contentType: "application/json",
+        dataType: "json"
+      });
+    } else {
+      $.ajax({
+        type: "DELETE",
+        url: "/hearts/" + heartId + ".json",
+        data: JSON.stringify({
+            heart: { user_ids: [userid] }
+        }),
+        contentType: "application/json",
+        dataType: "json"})
+    };
 
-    $.ajax({
-      type: "PUT",
-      url:  "/heart/" + heartId + ".json",
-      data: JSON.stringify({
-          todo: newUser
-      }),
-      contentType: "application/json",
-      dataType: "json"
-    });
+    $('#'+this.id).toggleClass('fa-star-o');
+    $('#'+this.id).toggleClass('fa-star');
 
   });
 

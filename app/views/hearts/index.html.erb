@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Hearts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hearts.each do |heart| %>
+      <tr>
+        <td><%= link_to 'Show', heart %></td>
+        <td><%= link_to 'Edit', edit_heart_path(heart) %></td>
+        <td><%= link_to 'Destroy', heart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Heart', new_heart_path %>
