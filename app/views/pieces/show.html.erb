@@ -9,20 +9,49 @@
     <div class="img_front">
       <%= image_tag @piece.image.to_s %>
     </div>
+    <% if user_signed_in? && @piece.user.id == current_user.id %>
+      <div class="user_dash">
+
+
+      </div>
+    <% end %>
     <div class="img_back">
       <%= image_tag @piece.image_b.to_s %>
     </div>
     <div class="item_info">
-      <%= cl_image_tag @piece.image, crop: :fill  %>
+      <div style="background-color:<%= @piece.colour %>;">
+        <%= cl_image_tag @piece.image, transformation: [ {effect: 'colorize:80'}] %>
+      </div>
+      <% if user_signed_in? && @piece.size == current_user.profile.size %>
+        <div class="fit item_size">
+      <% else %>
+        <div class="item_size">
+      <% end %>
+        <p><%= @piece.size %></p>
+      </div>
+      <div class="item_heart">
+        <% if user_signed_in? && current_user.hearts.ids.include?(@piece.heart.id) %>
+          <a id="heart-<%= @piece.heart.id %>" href="#" class="fa fa-heart"></a>
+        <% elsif user_signed_in? %>
+          <a id="heart-<%= @piece.heart.id %>" href="#" class="fa fa-heart-o"></a>
+        <% end %>
+      </div>
+      <div class="item_header">
+        <h1><%= @piece.name.upcase %></h1>
+        <p><%= @piece.brand %></p>
+      </div>
+      <div class="item_description">
+        <p><%= @piece.description %></p>
+      </div>
     </div>
   </div>
 
 
-  <!-- <% if user_signed_in? && current_user != @piece.user %>
+  <% if user_signed_in? && current_user != @piece.user %>
     <%= link_to "[Book this]", new_deal_path(@piece.id) %>
   <% end %>
 
   <%= link_to "[Edit]", edit_piece_path( @piece.id ) %>
   <%= link_to "[Delete]", piece_path( @piece.id ), method: :delete, data: { confirm: "Are you sure?" } %>
-  <%= link_to "[Show all]", pieces_path %> -->
+  <%= link_to "[Show all]", pieces_path %>
 </div>

@@ -20,6 +20,7 @@ class Piece < ApplicationRecord
     order(updated_at: :desc)
   end
 
+
   def self.not_owned_by(id)
     where.not(user: id)
   end
