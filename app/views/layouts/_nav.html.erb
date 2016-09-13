@@ -6,7 +6,7 @@
       <% end %>
       <% if user_signed_in? %>
         <% if current_user.has_pieces? %>
-          <li><%= link_to "MY PIECES", pieces_owned_path %></li>
+          <li><%= link_to "MY PIECES", pieces_owned_path, method: :get %></li>
         <% end %>
         <li><%= link_to "MY DEALS", deals_path %></li>
       <% end %>

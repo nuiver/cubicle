@@ -6,15 +6,15 @@
   </div> -->
 
   <div class="item_show">
-    <div class="img_front">
-      <%= image_tag @piece.image.to_s %>
-    </div>
     <% if user_signed_in? && @piece.user.id == current_user.id %>
       <div class="user_dash">
 
 
       </div>
     <% end %>
+    <div class="img_front">
+      <%= image_tag @piece.image.to_s %>
+    </div>
     <div class="img_back">
       <%= image_tag @piece.image_b.to_s %>
     </div>

@@ -13,7 +13,7 @@
       <a id="heart-<%= piece.heart.id %>" href="#" class="fa fa-heart-o"></a>
     <% end %>
     <div class="name_item"><%= link_to "#{piece.name}", piece_path( piece.id ) %></div>
-    <%= piece.brand %><br/>
+    <div class="brand_item"><%= piece.brand %></div><br/>
     <%= piece.colour %><br/>
   </div>
   <div class="namebar">
@@ -24,10 +24,10 @@
       <%= piece.user.profile.addr_town %>
     </div>
     <div class="profile_picture_bar">
-      <%= link_to cl_image_tag(piece.user.profile.avatar, width: 40, height: 40, crop: :fill, gravity: :face, radius: :max, background: '#353535' ), profile_path(piece.user.profile.id)  %>
+      <%= link_to cl_image_tag(piece.user.profile.avatar, width: 40, height: 40, crop: :fill, gravity: :face, radius: :max, background: '#353535' ), profile_path(piece.user.profile.id), method: :get  %>
     </div>
   </div>
   <div class="img_preview">
-    <%= link_to image_tag(piece.image), piece_path( piece.id )%>
+    <%= link_to image_tag(piece.image), piece_path( piece.id ), method: :get %>
   </div>
 </div>
