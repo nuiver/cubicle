@@ -8,19 +8,78 @@
 
 
 // show
-.piece_top{
-  margin-left: 0px;
-}
-.piece_top h1 {
-  font-size: 40px;
-}
-.img_show {
+.item_show {
   width: 100%;
   display: flex;
 }
 .img_front, .img_back {
-  flex: 1;
+  flex: 3;
   float: left;
+}
+.item_info {
+  flex: 3;
+}
+.item_info img {
+  width: 100%;
+  opacity: 0.8;
+}
+.item_colourfield {
+  background-color: #000000;
+  opacity: 0.5;
+  width: 200px;
+  height: 200px;
+  position: absolute;;
+  top: 0;
+  left: 0;
+}
+.item_header {
+  padding: 0 18px;
+  position: relative;
+  top: -400px;
+}
+.item_header h1 {
+  color: #fff;
+  font-size: 24px;
+  margin: 20px 0 0 0;
+}
+.item_header p {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+  margin: 5px 0 15px 0;
+}
+.item_size {
+  position: relative;
+  top: -410px;
+  left: 263px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #DDDDDD;
+  z-index: 10;
+  margin-bottom: -30px;
+}
+.item_heart {
+  position: relative;
+  top: -410px;
+  left: 19px;
+}
+.item_heart a {
+  color: #ffffff;
+}
+.item_description {
+  background-color: #ffffff;
+  opacity: 0.8;
+  position: relative;
+  top: -400px;
+  margin: 0 15px;
+  padding:5px;
+  height: 200px;
+  overflow: auto;
+}
+.item_description p {
+font-size: 13px;
+line-height: 18px;
 }
 .img_front img, .img_back img {
   width: 100%;
@@ -40,16 +99,21 @@
 .infotag {
   position: relative;;
   left: 210px;
-  top: -25px;
+  top: -30px;
   width: 235px;
   height: 100px;
 }
 .item .name_item {
+  margin: 5px 0;
   font-weight: bolder;;
   font-size: 24px;
 }
 .item .name_item a {
   text-decoration: none;
+}
+.item .brand_item {
+  text-transform: uppercase;
+  font-weight: 600;
 }
 .namebar {
   position: relative;
@@ -84,13 +148,13 @@
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background: #DDDDDD;
+  background: #CCCCCC;
   z-index: 10;
 }
 .fit {
   background: #5FBA7D;
 }
-.sizeoval p {
+.sizeoval p, .item_size p {
   text-align: center;
   padding-top: 7px;
   font-size: 18px;
@@ -107,6 +171,15 @@
 .img_preview img {
   height: 220px;
 }
+.user_dash {
+  width: 28px;
+  height: 120px;
+  background-color: #aaa;
+  opacity: 0.6;
+  position: absolute;
+  margin-top: 18px;
+}
+
 
 // filter styles
 .filter {
