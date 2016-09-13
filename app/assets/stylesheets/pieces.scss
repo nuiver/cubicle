@@ -14,14 +14,23 @@
 .piece_top h1 {
   font-size: 40px;
 }
-.img_show {
+.item_show {
   width: 100%;
   display: flex;
 }
 .img_front, .img_back {
-  flex: 1;
+  flex: 3;
   float: left;
 }
+.item_info {
+  flex: 2;
+  background-color: #aaaaaa;
+}
+.item_info img {
+  width: 100%;
+  opacity: 0.5;
+}
+
 .img_front img, .img_back img {
   width: 100%;
 }

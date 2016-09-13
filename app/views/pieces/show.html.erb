@@ -1,21 +1,28 @@
 <div class="main container">
-  <div class="piece_top">
+
+  <!-- <div class="piece_top">
     <h1><%= @piece.name %></h1>
     <p><%= @piece.brand %></p>
-  </div>
-  <div class="img_show">
+  </div> -->
+
+  <div class="item_show">
     <div class="img_front">
       <%= image_tag @piece.image.to_s %>
     </div>
     <div class="img_back">
       <%= image_tag @piece.image_b.to_s %>
     </div>
+    <div class="item_info">
+      <%= cl_image_tag @piece.image, crop: :fill  %>
+    </div>
   </div>
-  <br>
-  <% if user_signed_in? && current_user != @piece.user %>
+
+
+  <!-- <% if user_signed_in? && current_user != @piece.user %>
     <%= link_to "[Book this]", new_deal_path(@piece.id) %>
   <% end %>
+
   <%= link_to "[Edit]", edit_piece_path( @piece.id ) %>
   <%= link_to "[Delete]", piece_path( @piece.id ), method: :delete, data: { confirm: "Are you sure?" } %>
-  <%= link_to "[Show all]", pieces_path %>
+  <%= link_to "[Show all]", pieces_path %> -->
 </div>
