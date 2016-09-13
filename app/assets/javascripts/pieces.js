@@ -49,10 +49,10 @@ function starPiece() {
       });
     } else {
       $.ajax({
-        type: "DELETE",
+        type: "PUT",
         url: "/hearts/" + heartId + ".json",
         data: JSON.stringify({
-            heart: { user_ids: [userid] }
+            heart: { user_ids: [] }
         }),
         contentType: "application/json",
         dataType: "json"})
