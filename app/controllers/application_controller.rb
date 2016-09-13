@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
 
   def set_user
     cookies[:userid] = (current_user.id if user_signed_in?)  || 'guest'
+    cookies[:usertown] = (current_user.profile.addr_town if user_signed_in?)  || 'Breda'
   end
 
   protected

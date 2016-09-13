@@ -64,3 +64,20 @@ function heartPiece() {
   });
 
 };
+
+function getDistance(x){
+
+  var y = getCookie('usertown');
+
+  $.ajax({
+      url: "https://maps.googleapis.com/maps/api/distancematrix/json?origins="+x+"&destinations="+y+"&key=AIzaSyA8vWOJFz6zehCpsh8CIckrpjiF-DR-OVo",
+      type: "GET",
+      dataType: 'json',
+      cache: false,
+      success: function(response){
+      var dist = response.rows["0"].elements["0"].distance.text;
+      $("."+x).text( dist );
+      }
+  });
+
+};
