@@ -1,6 +1,6 @@
 $(document).ready(function() {
   viewFilter();
-  starPiece();
+  heartPiece();
 });
 
 
@@ -29,15 +29,15 @@ function viewFilter() {
 };
 
 
-function starPiece() {
+function heartPiece() {
 
-  $("[id^=star-]").click(function(e) {
+  $("[id^=heart-]").click(function(e) {
     e.preventDefault();
 
-    heartId = this.id.match(/[^star-]+/)[0];
+    heartId = this.id.match(/[^heart-]+/)[0];
     userid = getCookie('userid')
 
-    if ($('#'+this.id).hasClass('fa-star-o')) {
+    if ($('#'+this.id).hasClass('fa-heart-o')) {
       $.ajax({
         type: "PUT",
         url:  "/hearts/" + heartId + ".json",
@@ -58,8 +58,8 @@ function starPiece() {
         dataType: "json"})
     };
 
-    $('#'+this.id).toggleClass('fa-star-o');
-    $('#'+this.id).toggleClass('fa-star');
+    $('#'+this.id).toggleClass('fa-heart-o');
+    $('#'+this.id).toggleClass('fa-heart');
 
   });
 
