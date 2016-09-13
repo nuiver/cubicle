@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160913071247) do
+ActiveRecord::Schema.define(version: 20160913083351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20160913071247) do
   create_table "hearts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "piece_id"
+    t.index ["piece_id"], name: "index_hearts_on_piece_id", using: :btree
   end
 
   create_table "hearts_users", id: false, force: :cascade do |t|
@@ -112,6 +114,7 @@ ActiveRecord::Schema.define(version: 20160913071247) do
 
   add_foreign_key "deals", "pieces"
   add_foreign_key "deals", "users"
+  add_foreign_key "hearts", "pieces"
   add_foreign_key "periods", "pieces"
   add_foreign_key "pieces", "users"
   add_foreign_key "profiles", "users"
