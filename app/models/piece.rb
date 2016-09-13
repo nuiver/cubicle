@@ -4,6 +4,7 @@ class Piece < ApplicationRecord
   belongs_to :user
   has_many :periods
   has_many :deals
+  has_one :heart
 
   validates :name, presence: true
   validates :size, presence: true
