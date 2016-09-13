@@ -24,6 +24,11 @@ class User < ApplicationRecord
     self.pieces.empty? ? false : true
   end
 
+  def has_hearted?
+    hearted = Heart.all.select{|i| i.users.ids.include? self.id }
+    hearted.empty? ? false : true
+  end
+
 
   private
     def set_default_role

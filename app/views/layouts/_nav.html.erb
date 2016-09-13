@@ -9,6 +9,9 @@
           <li><%= link_to "MY PIECES", pieces_owned_path, method: :get %></li>
         <% end %>
         <li><%= link_to "MY DEALS", deals_path %></li>
+        <% if current_user.has_hearted? %>
+          <li><%= link_to "HEARTED PIECES", pieces_hearted_path, method: :get %></li>
+        <% end %>
       <% end %>
 
     </ul>

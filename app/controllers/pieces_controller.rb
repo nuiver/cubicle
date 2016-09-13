@@ -1,6 +1,10 @@
 class PiecesController < ApplicationController
 
+  helper_method :sort_colours_in_array
+
   load_and_authorize_resource
+
+  COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink', 'brown', 'grey', 'silver', 'black', 'white']
 
   def index
     if user_signed_in?
@@ -26,9 +30,18 @@ class PiecesController < ApplicationController
     render 'index'
   end
 
-  # def hearted
-  #   @pieces = Piece.all.
-  # end
+  def hearted
+    @pieces = Piece.select{|i| i.heart.users.ids.include? current_user.id }
+
+    colours = @pieces.map{ |i| i[:colour] }.uniq
+    sorted_colourlist = []
+    COLOURS.map { |col|   (sorted_colourlist << col) if colours.include? col }
+    @colours_in_unfiltered_pieces = sorted_colourlist
+
+    @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
+    authorize! :read, @pieces
+    render 'index'
+  end
 
   def new
     @piece = Piece.new
@@ -84,6 +97,13 @@ class PiecesController < ApplicationController
 
 
 private
+
+  def sort_colours_in_array(pieces)
+    colours = pieces.map{ |i| i[:colour] }.uniq
+    sorted_colourlist = []
+    COLOURS.map { |col|   (sorted_colourlist << col) if colours.include? col }
+    sorted_colourlist
+  end
 
   def piece_params
     params.require( :piece ).permit( :name, :brand, :image, :image_b, :size, :colour, :product_type, :price_cat, :image_cache, :image_b_cache, :available, colour: [])
