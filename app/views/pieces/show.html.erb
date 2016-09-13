@@ -48,7 +48,7 @@
             <%= link_to "", new_deal_path(@piece.id), class: " fa fa-shopping-bag" %>
             <%= link_to "  Book this piece", new_deal_path(@piece.id)  %>
         </div>
-      <% else %>
+      <% elsif !user_signed_in? %>
       <div class="item_button btn">
           <%= link_to "", new_deal_path(@piece.id), class: " fa fa-arrow-circle-o-right" %>
           <%= link_to "   Log in to book", new_user_session_path  %>

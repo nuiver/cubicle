@@ -18,7 +18,7 @@
   </div>
   <div class="namebar">
     <div class="nametag">
-      <%= piece.user.profile.first_name %> <%= piece.user.profile.surname %><br/>
+      <%= link_to (piece.user.profile.first_name+" "+ piece.user.profile.surname), profile_path(piece.user.profile.id), method: :get %><br/>
     </div>
     <div class="towntag">
       <%= piece.user.profile.addr_town %>
