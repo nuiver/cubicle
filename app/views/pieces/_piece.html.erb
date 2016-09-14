@@ -8,9 +8,9 @@
     </div>
   <div class="infotag">
     <% if user_signed_in? && current_user.hearts.ids.include?(piece.heart.id) %>
-      <a id="heart-<%= piece.heart.id %>" href="#" class="fa fa-heart"></a>
+      <a id="heart-<%= piece.heart.id %>" href="#" class="fa fa-heart" data-remote="true"></a>
     <% elsif user_signed_in? %>
-      <a id="heart-<%= piece.heart.id %>" href="#" class="fa fa-heart-o"></a>
+      <a id="heart-<%= piece.heart.id %>" href="#" class="fa fa-heart-o" data-remote="true"></a>
     <% end %>
     <div class="name_item"><%= link_to "#{piece.name}", piece_path( piece.id ) %></div>
     <div class="brand_item"><%= piece.brand %></div><br/>

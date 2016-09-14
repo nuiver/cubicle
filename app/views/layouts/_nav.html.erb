@@ -1,6 +1,10 @@
 <nav class="navbar">
   <div class="container">
+    <div class="dropdown_box hidden">
+      <%= render "layouts/menu_product_types" %>
+    </div>
     <ul class="nav">
+      <li><%= link_to 'LOOK BY PRODUCT', "#", id: 'nav_product', remote: true %></li>
       <% unless cannot?(:create, Piece) %>
         <li><%= link_to "ADD NEW PIECE", new_piece_path, id: 'add_piece' %></li>
       <% end %>

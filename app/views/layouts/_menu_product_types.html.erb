@@ -1,0 +1,5 @@
+<% Piece::TYPES.each do |type| %>
+<div class="dropdown_item">
+  <%= link_to type.upcase, pieces_type_path(type), class: "dropdown_text" %>
+</div>
+<% end %>

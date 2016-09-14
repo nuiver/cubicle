@@ -43,6 +43,15 @@ class PiecesController < ApplicationController
     render 'index'
   end
 
+  def type
+    @pieces = Piece.where(params[:type])
+    @colours_in_unfiltered_pieces = @pieces.sort_colours_in_collection(@pieces)
+    @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
+    @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
+    @pieces = @pieces.sort_by { |item| item[:id] }.reverse
+    render 'index'
+  end
+
   def new
     @piece = Piece.new
   end
