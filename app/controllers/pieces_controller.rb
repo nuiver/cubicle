@@ -7,11 +7,13 @@ class PiecesController < ApplicationController
   COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink', 'brown', 'grey', 'silver', 'black', 'white']
 
   def index
+
     if user_signed_in?
-      @pieces = Piece.not_owned_by(current_user.id).order_by_new
+      @pieces = Piece.where("end_date >= '#{Time.zone.now.beginning_of_day}'").not_owned_by(current_user.id).order_by_new
     else
-      @pieces = Piece.all.order_by_new
+      @pieces = Piece.all.where("end_date >= '#{Time.zone.now.beginning_of_day}'").order_by_new
     end
+    # @pieces = @pieces.where("end_date >= #{Time.zone.now.beginning_of_day}")
     @colours_in_unfiltered_pieces = @pieces.sort_colours_in_collection(@pieces)
     @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
 
@@ -23,7 +25,7 @@ class PiecesController < ApplicationController
   end
 
   def owned
-    @pieces = current_user.pieces
+    @pieces = current_user.pieces.where("end_date >= '#{Time.zone.now.beginning_of_day}'")
     @colours_in_unfiltered_pieces = @pieces.sort_colours_in_collection(@pieces)
     @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
     authorize! :read, @pieces
@@ -31,7 +33,8 @@ class PiecesController < ApplicationController
   end
 
   def hearted
-    @pieces = Piece.select{|i| i.heart.users.ids.include? current_user.id }
+    @pieces = Piece.where("end_date >= '#{Time.zone.now.beginning_of_day}'")
+    @pieces = @pieces.select{|i| i.heart.users.ids.include? current_user.id }
 
     colours = @pieces.map{ |i| i[:colour] }.uniq
     sorted_colourlist = []
@@ -47,6 +50,7 @@ class PiecesController < ApplicationController
     authorize! :read, @pieces
 
     @pieces = Piece.where(product_type: params[:product_type])
+    @pieces = @pieces.where("end_date >= '#{Time.zone.now.beginning_of_day}'")
 
     colours = @pieces.map{ |i| i[:colour] }.uniq
     sorted_colourlist = []

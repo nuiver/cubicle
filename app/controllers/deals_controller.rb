@@ -11,8 +11,9 @@ class DealsController < ApplicationController
     @deal.piece_id = params[:piece_id]
       respond_to do |format|
           if @deal.save
-            format.html { redirect_to deal_path(@deal.id), notice: 'The deal was successfully proposed to the owner of the piece.' }
+            format.html { render deal_path(@deal.id), notice: 'The deal was successfully proposed to the owner of the piece.' }
             format.json { render :show, status: :created, location: @deal }
+            format.js
           else
             format.html { render new_deal_path(deal_params[:id]) }
             format.json { render json: @deal.errors, status: :unprocessable_entity }

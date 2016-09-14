@@ -2,7 +2,6 @@ class Piece < ApplicationRecord
   mount_uploader :image, ImageUploader
   mount_uploader :image_b, ImageBUploader
   belongs_to :user
-  has_many :periods
   has_many :deals
   has_one :heart
 
@@ -34,14 +33,7 @@ class Piece < ApplicationRecord
   end
 
   def is_available_now?
-    status = false
-    self.periods.each do |period|
-      if period.begin_date <= Time.zone.now.beginning_of_day && period.end_date > Time.zone.now.beginning_of_day
-        status = true
-        break
-      end
-    end
-    status
+    self.begin_date <= Time.zone.now.beginning_of_day && self.end_date > Time.zone.now.beginning_of_day ? true : false
   end
 
   def self.are_available_now?
@@ -53,10 +45,6 @@ class Piece < ApplicationRecord
   end
 
 
-  def first_dates_available
-    begin_dates = self.periods.map{|x| x[:begin_date]}
-    begin_dates.sort.first
-  end
 
   def self.coloursearch(clr)
     where(colour: clr[:colour])

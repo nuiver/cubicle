@@ -43,10 +43,20 @@
       <div class="item_description">
         <p><%= @piece.description %></p>
       </div>
+      <div class="item_availability">
+        <% if @piece.is_available_now? %>
+          <h4>Immediately available!</h4>
+        <% else %>
+          <p>Available from:</p>
+          <h4><%= @piece.begin_date.strftime("%d %B %Y") %></h4>
+        <% end %>
+        <p>Available until:</p>
+        <h4><%= @piece.end_date.strftime("%d %B %Y") %></h4>
+      </div>
       <% if user_signed_in? && current_user != @piece.user %>
         <div class="item_button btn">
             <%= link_to "", new_deal_path(@piece.id), class: " fa fa-shopping-bag" %>
-            <%= link_to "  Book this piece", new_deal_path(@piece.id)  %>
+            <%= link_to "  Book this piece", new_deal_path(@piece.id), remote: true %>
         </div>
       <% elsif !user_signed_in? %>
       <div class="item_button btn">
@@ -56,10 +66,9 @@
       <% end %>
     </div>
   </div>
-
-
-  <% if user_signed_in? && current_user != @piece.user %>
-    <%= link_to "[Book this]", new_deal_path(@piece.id) %>
-  <% end %>
-
+  <div id="checkout_screen" class="hidden">
+    <div class="fullscreen_overlay"></div>
+    <div class='keepcentered'>
+    </div>
+  </div>
 </div>
