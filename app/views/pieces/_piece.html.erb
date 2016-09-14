@@ -12,7 +12,7 @@
     <% elsif user_signed_in? %>
       <a id="heart-<%= piece.heart.id %>" href="#" class="fa fa-heart-o" data-remote="true"></a>
     <% end %>
-    <div class="name_item"><%= link_to "#{piece.name}", piece_path( piece.id ) %></div>
+    <div class="name_item"><%= link_to "#{piece.name}", piece_path( piece.id ), method: :get %></div>
     <div class="brand_item"><%= piece.brand %></div><br/>
     <%= piece.colour %><br/>
   </div>

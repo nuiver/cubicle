@@ -2,7 +2,7 @@ class PiecesController < ApplicationController
 
   helper_method :sort_colours_in_array
 
-  load_and_authorize_resource
+  # load_and_authorize_resource
 
   COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink', 'brown', 'grey', 'silver', 'black', 'white']
 
@@ -44,8 +44,15 @@ class PiecesController < ApplicationController
   end
 
   def type
-    @pieces = Piece.where(params[:type])
-    @colours_in_unfiltered_pieces = @pieces.sort_colours_in_collection(@pieces)
+    authorize! :read, @pieces
+
+    @pieces = Piece.where(product_type: params[:product_type])
+
+    colours = @pieces.map{ |i| i[:colour] }.uniq
+    sorted_colourlist = []
+    COLOURS.map { |col|   (sorted_colourlist << col) if colours.include? col }
+    @colours_in_unfiltered_pieces = sorted_colourlist
+
     @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
     @pieces = @pieces.sort_by { |item| item[:id] }.reverse
