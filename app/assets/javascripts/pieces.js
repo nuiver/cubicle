@@ -1,6 +1,7 @@
 $(document).ready(function() {
   viewFilter();
   heartPiece();
+  darkBackgroundClick();
 });
 
 
@@ -78,6 +79,15 @@ function getDistance(x){
       var dist = response.rows["0"].elements["0"].distance.text;
       $("."+x).text( dist );
       }
+  });
+
+};
+
+function darkBackgroundClick() {
+
+  $('.fullscreen_overlay').click(function() {
+    $('#checkout_screen').addClass('hidden');
+    console.log('Hello darkBackgroundClick');
   });
 
 };

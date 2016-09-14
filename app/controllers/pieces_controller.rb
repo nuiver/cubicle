@@ -4,8 +4,6 @@ class PiecesController < ApplicationController
 
   # load_and_authorize_resource
 
-  # COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink', 'brown', 'grey', 'silver', 'black', 'white']
-
   def index
 
     if user_signed_in?
@@ -121,7 +119,7 @@ private
   def sort_colours_in_array(pieces)
     colours = pieces.map{ |i| i[:colour] }.uniq
     sorted_colourlist = []
-    COLOURS.map { |col|   (sorted_colourlist << col) if colours.include? col }
+    Piece::COLOURS.map { |col|   (sorted_colourlist << col) if colours.include? col }
     sorted_colourlist
   end
 

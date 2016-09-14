@@ -2,6 +2,6 @@
   <%= image_tag @deal.piece.image.to_s %>
 </div>
 
-<h3>Lets continue with </h3>
+<h3>Lets continue with deal no. <%= @deal.id %></h3>
 
-<h1><%= @deal.id %></h1>
+<%= render 'shippingform' %>

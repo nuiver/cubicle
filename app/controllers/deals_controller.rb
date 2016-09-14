@@ -21,6 +21,20 @@ class DealsController < ApplicationController
         end
   end
 
+  def update
+    @deal = Deal.find(params[:id])
+    respond_to do |format|
+      if @deal.update(deal_params)
+        format.html { redirect_to @deal, notice: 'Deal was successfully updated.' }
+        format.json { render :show, status: :ok, location: @deal }
+        format.js { redirect_to @deal, notice: 'Deal was successfully updated.'}
+      else
+        format.html { render :edit }
+        format.json { render json: @deal.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def show
     @deal = Deal.find_by id: params[:id]
     # @piece = Piece.find_by(id: @deal.piece_id)
@@ -34,7 +48,7 @@ class DealsController < ApplicationController
   private
 
   def deal_params
-      params.require(:deal).permit(:begin_res, :end_res, :piece_id, :piece, del_str)
+      params.require(:deal).permit(:begin_res, :end_res, :piece_id, :piece, :pay_method, :shipping)
   end
 
 end

@@ -1,16 +1,14 @@
 <%= form_for @deal, remote: true do |f| %>
 
 <div class="field">
-  <%= f.label 'Begin date of your reservation:' %>
-  <%= f.date_field :begin_res %>
+  <%= f.label 'Choose your shipping method:' %>
+  <%= f.select :shipping, Deal::SHIPPING_METHODS.collect { |method| [ method, method ] } %></div>
 </div>
 
 <div class="field">
-  <%= f.label 'End date of your reservation:' %>
-  <%= f.date_field :end_res %>
+  <%= f.label 'Choose your payment method:' %>
+  <%= f.select :pay_method, Deal::PAYMENT_METHODS.collect { |method| [ method, method ] } %></div>
 </div>
-
-<%= hidden_field_tag :piece_id, @piece.id %>
 
 <div class="actions">
 <%= f.button :submit %>
