@@ -74,16 +74,24 @@
   top: -400px;
   margin: 0 15px;
   padding:5px;
-  height: 200px;
+  height: 120px;
   overflow: auto;
 }
 .item_description p {
-font-size: 13px;
-line-height: 18px;
+  margin: 4px 0;
+  font-size: 13px;
+  line-height: 18px;
 }
 .img_front img, .img_back img {
   width: 100%;
 }
+.item_button {
+  position: relative;
+  top: -305px;
+  margin: 0 15px;
+}
+
+
 // styling of the pieces#index
 .leftheader {
   position: relative;;
@@ -128,12 +136,21 @@ line-height: 18px;
   color: #ffffff;
   font-weight: 600;
 }
+.nametag a{
+  color: #ffffff;
+}
 .towntag {
   margin-left: 210px;
   color: #ffffff;
   font-size: 12px;
   font-weight: 200;
   margin-top: 3px;
+}
+.distancebar {
+  margin-left: 210px;
+  color: #cccccc;
+  font-size: 11px;
+
 }
 .profile_picture_bar {
   position: absolute;
@@ -156,7 +173,7 @@ line-height: 18px;
 }
 .sizeoval p, .item_size p {
   text-align: center;
-  padding-top: 7px;
+  padding-top: 6px;
   font-size: 18px;
   font-weight: 700;
   color: #ffffff;

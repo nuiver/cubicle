@@ -43,6 +43,17 @@
       <div class="item_description">
         <p><%= @piece.description %></p>
       </div>
+      <% if user_signed_in? && current_user != @piece.user %>
+        <div class="item_button btn">
+            <%= link_to "", new_deal_path(@piece.id), class: " fa fa-shopping-bag" %>
+            <%= link_to "  Book this piece", new_deal_path(@piece.id)  %>
+        </div>
+      <% elsif !user_signed_in? %>
+      <div class="item_button btn">
+          <%= link_to "", new_deal_path(@piece.id), class: " fa fa-arrow-circle-o-right" %>
+          <%= link_to "   Log in to book", new_user_session_path  %>
+      </div>
+      <% end %>
     </div>
   </div>
 
@@ -51,7 +62,4 @@
     <%= link_to "[Book this]", new_deal_path(@piece.id) %>
   <% end %>
 
-  <%= link_to "[Edit]", edit_piece_path( @piece.id ) %>
-  <%= link_to "[Delete]", piece_path( @piece.id ), method: :delete, data: { confirm: "Are you sure?" } %>
-  <%= link_to "[Show all]", pieces_path %>
 </div>
