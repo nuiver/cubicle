@@ -4,7 +4,7 @@ class PiecesController < ApplicationController
 
   # load_and_authorize_resource
 
-  COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink', 'brown', 'grey', 'silver', 'black', 'white']
+  # COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink', 'brown', 'grey', 'silver', 'black', 'white']
 
   def index
 
@@ -38,7 +38,7 @@ class PiecesController < ApplicationController
 
     colours = @pieces.map{ |i| i[:colour] }.uniq
     sorted_colourlist = []
-    COLOURS.map { |col|   (sorted_colourlist << col) if colours.include? col }
+    Piece::COLOURS.map { |col|   (sorted_colourlist << col) if colours.include? col }
     @colours_in_unfiltered_pieces = sorted_colourlist
 
     @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
@@ -54,7 +54,7 @@ class PiecesController < ApplicationController
 
     colours = @pieces.map{ |i| i[:colour] }.uniq
     sorted_colourlist = []
-    COLOURS.map { |col|   (sorted_colourlist << col) if colours.include? col }
+    Piece::COLOURS.map { |col|   (sorted_colourlist << col) if colours.include? col }
     @colours_in_unfiltered_pieces = sorted_colourlist
 
     @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort

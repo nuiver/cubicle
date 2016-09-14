@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20160914145446) do
     t.datetime "updated_at",    null: false
     t.integer  "user_id"
     t.string   "avatar"
+    t.string   "del_country"
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 
