@@ -14,3 +14,20 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(document).ready(function() {
+  navProduct();
+});
+
+
+function navProduct() {
+
+  $('#nav_product').click(function(e) {
+    e.preventDefault();
+    $('.dropdown_box').toggleClass('hidden');
+  });
+
+  $('.dropdown_box').mouseleave(function(e) {
+    e.preventDefault();
+    $('.dropdown_box').addClass('hidden');
+  });
+};

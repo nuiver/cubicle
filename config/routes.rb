@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'pieces/owned' => 'pieces#owned', as: :pieces_owned
   get 'pieces/hearted' => 'pieces#hearted', as: :pieces_hearted
+  get 'pieces/type/:product_type' => 'pieces#type', as: :pieces_type
 
   get 'pieces/:id/own' => 'pieces#own', as: :piece_own
   get 'pieces' => 'pieces#index', as: :pieces_all
