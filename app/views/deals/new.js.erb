@@ -1,6 +1,16 @@
 $('#checkout_screen').toggleClass('hidden');
 $('.keepcentered').html("<%= j (render 'newdeal') %>");
 $(function() {
-  $('.datepicker').datepicker({ minDate: 0, maxDate: "+1M +10D" });
-  console.log('loaded datepicker');
+
+  beginDate = '<%= j ( @piece.begin_date < Time.zone.now.beginning_of_day ? @piece.begin_date.strftime("%Y-%B-%d") : Time.zone.now.beginning_of_day.strftime("%Y-%B-%d") ) %>';
+  endDate = '<%= j ( @piece.end_date.strftime("%Y-%B-%d") ) %>';
+
+
+  $('.datepicker').datepicker({
+    dateFormat: "yy-mm-dd",
+    // changeMonth: true,
+    // changeYear: true,
+    minDate: new Date(beginDate),
+    maxDate: new Date(endDate)
+  });
 });
