@@ -1,0 +1,17 @@
+<%= form_for @deal, remote: true do |f| %>
+
+<div class="field">
+  <%= f.label 'Choose your shipping method:' %>
+  <%= f.select :shipping, Deal::SHIPPING_METHODS.collect { |method| [ method, method ] } %></div>
+</div>
+
+<div class="field">
+  <%= f.label 'Choose your payment method:' %>
+  <%= f.select :pay_method, Deal::PAYMENT_METHODS.collect { |method| [ method, method ] } %></div>
+</div>
+
+<div class="actions">
+<%= f.button :submit %>
+</div>
+
+<% end %>

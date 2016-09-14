@@ -1,4 +1,4 @@
-<%= form_for(@deal) do |f| %>
+<%= form_for @deal, remote: true do |f| %>
 
 <div class="field">
   <%= f.label 'Begin date of your reservation:' %>
@@ -13,7 +13,7 @@
 <%= hidden_field_tag :piece_id, @piece.id %>
 
 <div class="actions">
-  <%= f.submit "Let's make a deal"%>
+<%= f.button :submit %>
 </div>
 
 <% end %>

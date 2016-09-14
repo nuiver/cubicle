@@ -20,14 +20,10 @@ Rails.application.routes.draw do
   post 'pieces' => 'pieces#create'
   patch 'pieces/:id' => 'pieces#update'
   delete 'pieces/:id' => 'pieces#destroy'
-  resources :pieces do
-    member do
-      get 'search'
-    end
-  end
 
   get 'deals/new/:piece_id' => 'deals#new', as: :new_deal
   get 'deals' => 'deals#index', as: :deals
+
   post 'deals' => 'deals#create'
   get 'deals/:id' => 'deals#show', as: :deal
   patch 'deals/:id' => 'deals#update'
