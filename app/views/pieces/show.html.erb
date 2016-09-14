@@ -19,7 +19,7 @@
       <%= image_tag @piece.image_b.to_s %>
     </div>
     <div class="item_info">
-      <div style="background-color:<%= @piece.colour %>;">
+      <div style="background-color:<%= @piece.colour %>; height:400px;">
         <%= cl_image_tag @piece.image, transformation: [ {effect: 'colorize:80'}] %>
       </div>
       <% if user_signed_in? && @piece.size == current_user.profile.size %>
