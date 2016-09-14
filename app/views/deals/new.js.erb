@@ -1,2 +1,6 @@
 $('#checkout_screen').toggleClass('hidden');
 $('.keepcentered').html("<%= j (render 'newdeal') %>");
+$(function() {
+  $('.datepicker').datepicker({ minDate: 0, maxDate: "+1M +10D" });
+  console.log('loaded datepicker');
+});
