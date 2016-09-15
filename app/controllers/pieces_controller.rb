@@ -19,7 +19,9 @@ class PiecesController < ApplicationController
     # @pieces = @pieces.where("end_date >= #{Time.zone.now.beginning_of_day}")
     @colours_in_unfiltered_pieces = @pieces.sort_colours_in_collection(@pieces)
     @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
+    @product_types_in_unfiltered_pieces = @pieces.sort_types_in_collection(@pieces)
 
+    @pieces = @pieces.typesearch(params[:type]) if params[:type].present?
     @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
@@ -37,6 +39,9 @@ class PiecesController < ApplicationController
 
   def hearted
     @pieces = Piece.where("end_date >= '#{Time.zone.now.beginning_of_day}'")
+    @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
+    @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
+    @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
     @pieces = @pieces.select{|i| i.heart.users.ids.include? current_user.id }
 
     colours = @pieces.map{ |i| i[:colour] }.uniq
@@ -45,6 +50,8 @@ class PiecesController < ApplicationController
     @colours_in_unfiltered_pieces = sorted_colourlist
 
     @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
+
+
     authorize! :read, @pieces
     render 'index'
   end

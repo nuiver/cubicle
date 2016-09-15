@@ -1,0 +1,902 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.4
+-- Dumped by pg_dump version 9.5.4
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: nuiver
+--
+
+CREATE TABLE ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE ar_internal_metadata OWNER TO nuiver;
+
+--
+-- Name: deals; Type: TABLE; Schema: public; Owner: nuiver
+--
+
+CREATE TABLE deals (
+    id integer NOT NULL,
+    begin_res date,
+    end_res date,
+    complete boolean,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    user_id integer,
+    piece_id integer,
+    shipping character varying,
+    pay_method character varying,
+    del_street character varying,
+    del_number character varying,
+    del_postcode character varying,
+    del_town character varying,
+    del_country character varying,
+    proposal boolean DEFAULT false,
+    accepted boolean DEFAULT false
+);
+
+
+ALTER TABLE deals OWNER TO nuiver;
+
+--
+-- Name: deals_id_seq; Type: SEQUENCE; Schema: public; Owner: nuiver
+--
+
+CREATE SEQUENCE deals_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE deals_id_seq OWNER TO nuiver;
+
+--
+-- Name: deals_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: nuiver
+--
+
+ALTER SEQUENCE deals_id_seq OWNED BY deals.id;
+
+
+--
+-- Name: hearts; Type: TABLE; Schema: public; Owner: nuiver
+--
+
+CREATE TABLE hearts (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    piece_id integer
+);
+
+
+ALTER TABLE hearts OWNER TO nuiver;
+
+--
+-- Name: hearts_id_seq; Type: SEQUENCE; Schema: public; Owner: nuiver
+--
+
+CREATE SEQUENCE hearts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE hearts_id_seq OWNER TO nuiver;
+
+--
+-- Name: hearts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: nuiver
+--
+
+ALTER SEQUENCE hearts_id_seq OWNED BY hearts.id;
+
+
+--
+-- Name: hearts_users; Type: TABLE; Schema: public; Owner: nuiver
+--
+
+CREATE TABLE hearts_users (
+    heart_id integer NOT NULL,
+    user_id integer NOT NULL
+);
+
+
+ALTER TABLE hearts_users OWNER TO nuiver;
+
+--
+-- Name: periods; Type: TABLE; Schema: public; Owner: nuiver
+--
+
+CREATE TABLE periods (
+    id integer NOT NULL,
+    begin_date timestamp without time zone,
+    end_date timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    piece_id integer
+);
+
+
+ALTER TABLE periods OWNER TO nuiver;
+
+--
+-- Name: periods_id_seq; Type: SEQUENCE; Schema: public; Owner: nuiver
+--
+
+CREATE SEQUENCE periods_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE periods_id_seq OWNER TO nuiver;
+
+--
+-- Name: periods_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: nuiver
+--
+
+ALTER SEQUENCE periods_id_seq OWNED BY periods.id;
+
+
+--
+-- Name: pieces; Type: TABLE; Schema: public; Owner: nuiver
+--
+
+CREATE TABLE pieces (
+    id integer NOT NULL,
+    name character varying,
+    brand character varying,
+    description text,
+    image character varying,
+    image_b character varying,
+    size integer,
+    colour character varying,
+    type character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    begin_date date,
+    end_date date,
+    price_cat integer,
+    user_id integer,
+    product_type character varying
+);
+
+
+ALTER TABLE pieces OWNER TO nuiver;
+
+--
+-- Name: pieces_id_seq; Type: SEQUENCE; Schema: public; Owner: nuiver
+--
+
+CREATE SEQUENCE pieces_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE pieces_id_seq OWNER TO nuiver;
+
+--
+-- Name: pieces_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: nuiver
+--
+
+ALTER SEQUENCE pieces_id_seq OWNED BY pieces.id;
+
+
+--
+-- Name: profiles; Type: TABLE; Schema: public; Owner: nuiver
+--
+
+CREATE TABLE profiles (
+    id integer NOT NULL,
+    first_name character varying,
+    surname character varying,
+    date_of_birth date,
+    addr_street character varying,
+    addr_number character varying,
+    postcode character varying,
+    addr_town character varying,
+    fav_color character varying,
+    phone character varying,
+    gender character varying,
+    size integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    user_id integer,
+    avatar character varying,
+    del_country character varying
+);
+
+
+ALTER TABLE profiles OWNER TO nuiver;
+
+--
+-- Name: profiles_id_seq; Type: SEQUENCE; Schema: public; Owner: nuiver
+--
+
+CREATE SEQUENCE profiles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE profiles_id_seq OWNER TO nuiver;
+
+--
+-- Name: profiles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: nuiver
+--
+
+ALTER SEQUENCE profiles_id_seq OWNED BY profiles.id;
+
+
+--
+-- Name: roles; Type: TABLE; Schema: public; Owner: nuiver
+--
+
+CREATE TABLE roles (
+    id integer NOT NULL,
+    name character varying,
+    description character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE roles OWNER TO nuiver;
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE; Schema: public; Owner: nuiver
+--
+
+CREATE SEQUENCE roles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE roles_id_seq OWNER TO nuiver;
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: nuiver
+--
+
+ALTER SEQUENCE roles_id_seq OWNED BY roles.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: nuiver
+--
+
+CREATE TABLE schema_migrations (
+    version character varying NOT NULL
+);
+
+
+ALTER TABLE schema_migrations OWNER TO nuiver;
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: nuiver
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip inet,
+    last_sign_in_ip inet,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    role_id integer
+);
+
+
+ALTER TABLE users OWNER TO nuiver;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: nuiver
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE users_id_seq OWNER TO nuiver;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: nuiver
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY deals ALTER COLUMN id SET DEFAULT nextval('deals_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY hearts ALTER COLUMN id SET DEFAULT nextval('hearts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY periods ALTER COLUMN id SET DEFAULT nextval('periods_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY pieces ALTER COLUMN id SET DEFAULT nextval('pieces_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY profiles ALTER COLUMN id SET DEFAULT nextval('profiles_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Data for Name: ar_internal_metadata; Type: TABLE DATA; Schema: public; Owner: nuiver
+--
+
+COPY ar_internal_metadata (key, value, created_at, updated_at) FROM stdin;
+environment	development	2016-08-23 17:35:33.945454	2016-08-23 17:35:33.945454
+\.
+
+
+--
+-- Data for Name: deals; Type: TABLE DATA; Schema: public; Owner: nuiver
+--
+
+COPY deals (id, begin_res, end_res, complete, created_at, updated_at, user_id, piece_id, shipping, pay_method, del_street, del_number, del_postcode, del_town, del_country, proposal, accepted) FROM stdin;
+111	2016-09-16	2016-09-20	\N	2016-09-15 18:22:16.563551	2016-09-15 18:23:41.43228	113	170	I come collect it	Cash (when collected)	\N	\N	\N	\N	\N	t	t
+113	2016-10-20	2016-10-22	\N	2016-09-15 18:34:21.003379	2016-09-15 18:35:33.863561	113	174	priority delivery	Creditcard	\N	\N	\N	\N	\N	t	t
+112	2016-10-23	2016-10-29	\N	2016-09-15 18:33:20.404362	2016-09-15 18:35:59.746472	112	174	regular postal delivery	iDEAL	\N	\N	\N	\N	\N	t	t
+114	2016-10-19	2016-10-27	\N	2016-09-15 18:44:37.241895	2016-09-15 19:24:25.701911	125	173	regular postal delivery	iDEAL	\N	\N	\N	\N	\N	t	t
+115	2016-10-05	2016-10-20	\N	2016-09-15 19:25:04.988666	2016-09-15 19:25:10.447338	124	175	priority delivery	Skrill	\N	\N	\N	\N	\N	t	f
+116	2016-09-26	2016-09-29	\N	2016-09-15 20:49:06.489492	2016-09-15 20:50:46.438946	124	165	I come collect it	PayPal	\N	\N	\N	\N	\N	t	t
+\.
+
+
+--
+-- Name: deals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: nuiver
+--
+
+SELECT pg_catalog.setval('deals_id_seq', 116, true);
+
+
+--
+-- Data for Name: hearts; Type: TABLE DATA; Schema: public; Owner: nuiver
+--
+
+COPY hearts (id, created_at, updated_at, piece_id) FROM stdin;
+4	2016-09-13 23:33:06.721776	2016-09-13 23:33:06.721776	173
+5	2016-09-14 21:02:15.639898	2016-09-14 21:02:15.639898	174
+6	2016-09-15 07:58:04.794761	2016-09-15 07:58:04.794761	175
+1	2016-09-13 10:58:12.186539	2016-09-13 10:58:12.186539	165
+1115	2016-09-01 00:00:00	2016-09-01 00:00:00	145
+1117	2016-09-01 00:00:00	2016-09-01 00:00:00	147
+1119	2016-09-01 00:00:00	2016-09-01 00:00:00	149
+11126	2016-09-01 00:00:00	2016-09-01 00:00:00	167
+11127	2016-09-01 00:00:00	2016-09-01 00:00:00	168
+11129	2016-09-01 00:00:00	2016-09-01 00:00:00	163
+11130	2016-09-01 00:00:00	2016-09-01 00:00:00	169
+11131	2016-09-01 00:00:00	2016-09-01 00:00:00	170
+1003	2016-09-01 00:00:00	2016-09-01 00:00:00	143
+1116	2016-09-01 00:00:00	2016-09-01 00:00:00	146
+1118	2016-09-01 00:00:00	2016-09-01 00:00:00	148
+11119	2016-09-01 00:00:00	2016-09-01 00:00:00	159
+11114	2016-09-01 00:00:00	2016-09-01 00:00:00	154
+11116	2016-09-01 00:00:00	2016-09-01 00:00:00	156
+11120	2016-09-01 00:00:00	2016-09-01 00:00:00	160
+11123	2016-09-01 00:00:00	2016-09-01 00:00:00	164
+11125	2016-09-01 00:00:00	2016-09-01 00:00:00	166
+11111	2016-09-01 00:00:00	2016-09-01 00:00:00	151
+11113	2016-09-01 00:00:00	2016-09-01 00:00:00	153
+1004	2016-09-01 00:00:00	2016-09-01 00:00:00	144
+1002	2016-09-01 00:00:00	2016-09-01 00:00:00	142
+11110	2016-09-01 00:00:00	2016-09-01 00:00:00	150
+11117	2016-09-01 00:00:00	2016-09-01 00:00:00	157
+11112	2016-09-01 00:00:00	2016-09-01 00:00:00	152
+3	2016-09-13 13:34:36.678489	2016-09-13 13:34:36.678489	172
+\.
+
+
+--
+-- Name: hearts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: nuiver
+--
+
+SELECT pg_catalog.setval('hearts_id_seq', 6, true);
+
+
+--
+-- Data for Name: hearts_users; Type: TABLE DATA; Schema: public; Owner: nuiver
+--
+
+COPY hearts_users (heart_id, user_id) FROM stdin;
+2	118
+20	111
+30	112
+26	112
+29	112
+16	112
+11131	113
+1002	113
+1116	113
+1115	113
+1119	112
+11121	112
+11112	111
+1	111
+3	120
+11126	111
+11119	111
+11125	125
+5	113
+4	112
+11130	112
+11123	112
+11129	112
+11114	112
+\.
+
+
+--
+-- Data for Name: periods; Type: TABLE DATA; Schema: public; Owner: nuiver
+--
+
+COPY periods (id, begin_date, end_date, created_at, updated_at, piece_id) FROM stdin;
+\.
+
+
+--
+-- Name: periods_id_seq; Type: SEQUENCE SET; Schema: public; Owner: nuiver
+--
+
+SELECT pg_catalog.setval('periods_id_seq', 136, true);
+
+
+--
+-- Data for Name: pieces; Type: TABLE DATA; Schema: public; Owner: nuiver
+--
+
+COPY pieces (id, name, brand, description, image, image_b, size, colour, type, created_at, updated_at, begin_date, end_date, price_cat, user_id, product_type) FROM stdin;
+147	Double Layer Dress	b.Young	Respondent extrema primis, media utrisque, omnia omnibus. Honesta oratio, Socratica, Platonis etiam. Istam voluptatem perpetuam quis potest praestare sapienti? Sint ista Graecorum; Quod quidem iam fit etiam in Academia.	image/upload/v1473670976/lxm3gt4h0l81uq35incr.png	image/upload/v1473670984/sdg5gkcdarhcd5vq7crc.png	8	grey	\N	2016-09-12 09:02:55.155481	2016-09-12 09:02:55.155481	2016-10-01	2016-11-01	1	112	dress
+151	Stripe Midi Dress	Levi's	Quid ergo aliud intellegetur nisi uti ne quae pars naturae neglegatur? Quam si explicavisset, non tam haesitaret. Id enim natura desiderat. Si enim ita est, vide ne facinus facias, cum mori suadeas. Non potes, nisi retexueris illa. Si verbum sequimur, primum longius verbum praepositum quam bonum. Itaque ad tempus ad Pisonem omnes. Et non ex maxima parte de tota iudicabis? Et harum quidem rerum facilis est et expedita distinctio. Sic enim censent, oportunitatis esse beate vivere.	image/upload/v1473671056/cleylxctzvdjhh1ufwhs.png	image/upload/v1473671067/ij6xzmnxrspfzl8nt3ju.png	16	red	\N	2016-09-12 09:04:16.127891	2016-09-12 09:04:16.127891	2016-10-15	2016-11-01	2	116	dress
+172	Drapey Jacket	Minimum	Readymade chillwave 8-bit before they sold out. Microdosing before they sold out synth whatever, hella semiotics 8-bit vape hammock helvetica kickstarter cliche af. Church-key offal hashtag prism tousled, taxidermy mixtape unicorn poke aesthetic. Slow-carb normcore live-edge, artisan salvia PBR&B fashion axe tilde fam. Cornhole chambray aesthetic disrupt, godard glossier pabst.	image/upload/v1473773677/ghslnkqvvokh06i1uamm.png	image/upload/v1473773687/gedkztd1crgvgrp2fxqb.png	10	teal	\N	2016-09-13 13:34:36.674967	2016-09-13 13:34:36.674967	2016-09-02	2016-11-01	5	112	jacket
+169	Pleated Midi Skirt	React	Intelligentsia meggings normcore, lyft actually waistcoat wayfarers fingerstache. Lumbersexual meh migas, pug raw denim tilde mustache microdosing twee fam. Narwhal slow-carb mustache, vape +1 put a bird on it offal cred poke brunch letterpress hella listicle meditation migas. Yuccie deep v pok pok, tumblr man braid chicharrones meh portland mumblecore. Salvia ramps lyft selfies man braid, marfa freegan lo-fi health goth wayfarers pok pok. Sustainable gochujang distillery asymmetrical. You probably haven't heard of them hashtag flexitarian irony XOXO fashion axe.	image/upload/v1473671405/s4kdvi9qlztwzkjad8nt.png	image/upload/v1473671874/jou4htm3vxmmo7hs1gtb.png	8	yellow	\N	2016-09-12 09:10:04.794043	2016-09-12 09:18:26.008873	2016-09-01	2016-11-01	3	113	skirt
+156	Sleeveless Sweat Dress	Twin Sister	Sin tantum modo ad indicia veteris memoriae cognoscenda, curiosorum. Non ego tecum iam ita iocabor, ut isdem his de rebus, cum L. Non igitur potestis voluptate omnia dirigentes aut tueri aut retinere virtutem. Satis est ad hoc responsum.	image/upload/v1473671152/tnud6pf6b9frytyjwgno.png	image/upload/v1473671161/kbi3dtgowfliepxizbqw.png	12	blue	\N	2016-09-12 09:05:51.188738	2016-09-12 09:05:51.188738	2016-10-15	2016-11-01	1	120	dress
+167	Ribbed Jumper	React	Single-origin coffee stumptown offal, seitan hell of wayfarers godard hella shabby chic freegan messenger bag flexitarian raw denim organic. Neutra hoodie street art williamsburg pork belly celiac. Schlitz hashtag tbh, slow-carb organic selvage snackwave 90's health goth. Shabby chic leggings fap vaporware. Deep v unicorn keffiyeh organic retro glossier. Activated charcoal ennui pork belly kinfolk la croix, food truck deep v cred DIY quinoa gastropub YOLO gluten-free.	image/upload/v1473671362/keaqixptxbuz0ubbtwjj.png	image/upload/v1473671372/itdgcjmtrmoezlh3zuxs.png	8	green	\N	2016-09-12 09:09:21.114736	2016-09-12 09:09:21.114736	2016-09-01	2016-11-01	3	113	jumper
+157	Long Sleeve Tea Dress	Emma/Anna	Sartorial franzen banh mi typewriter yr lumbersexual, authentic heirloom pug affogato everyday carry kombucha VHS wayfarers. Pinterest kitsch direct trade leggings kombucha, quinoa biodiesel farm-to-table bicycle rights lomo occupy humblebrag cronut williamsburg. Before they sold out fingerstache typewriter, sriracha drinking vinegar umami pickled kickstarter mlkshk polaroid austin readymade slow-carb.	image/upload/v1473671172/bavzprptd336qy7odp8x.png	image/upload/v1473671180/qu1yf5cdesa0qyqepv7o.png	12	black	\N	2016-09-12 09:06:11.580605	2016-09-12 09:06:11.580605	2016-08-10	2016-09-13	1	120	dress
+175	Overlap Tee Dress	FlipFlap	Quid Zeno? Traditur, inquit, ab Epicuro ratio neglegendi doloris. Atqui iste locus est, Piso, tibi etiam atque etiam confirmandus, inquam; Summum a vobis bonum voluptas dicitur. Age, inquies, ista parva sunt. Negare non possum. Mene ergo et Triarium dignos existimas, apud quos turpiter loquare? Restatis igitur vos; Quod autem satis est, eo quicquid accessit, nimium est; Sed vos squalidius, illorum vides quam niteat oratio.	image/upload/v1473926285/b1bvom04fvvkgtioefxt.png	image/upload/v1473926287/dttmkqexevpqcrqqjain.png	10	grey	\N	2016-09-15 07:58:04.739065	2016-09-15 07:58:04.739065	2016-10-01	2016-10-31	4	121	dress
+174	High Neck Jumper	River Island	Sed ego in hoc resisto; A primo, ut opinor, animantium ortu petitur origo summi boni. Nihil opus est exemplis hoc facere longius. Quorum sine causa fieri nihil putandum est. Sin laboramus, quis est, qui alienae modum statuat industriae? Ex eorum enim scriptis et institutis cum omnis doctrina liberalis, omnis historia. Ait enim se, si uratur, Quam hoc suave! dicturum.	image/upload/v1473886936/n9zzbl8okkeapq7bglfk.png	image/upload/v1473886946/r9lnbz8nsb6bvepkn4am.png	12	yellow	\N	2016-09-14 21:02:15.599131	2016-09-14 21:02:15.599131	2016-10-14	2017-01-27	3	125	jumper
+154	Lace Top Scuba Skater Midi Dress	Loak	Quod autem meum munus dicis non equidem recuso, sed te adiungo socium. Tollenda est atque extrahenda radicitus. Quae sunt igitur communia vobis cum antiquis, iis sic utamur quasi concessis; Beatus sibi videtur esse moriens. Aliter enim nosmet ipsos nosse non possumus. Non semper, inquam; Nam Pyrrho, Aristo, Erillus iam diu abiecti. Nunc ita separantur, ut disiuncta sint, quo nihil potest esse perversius.	image/upload/v1473671120/owsefjdmf5tjsolnw0s9.png	image/upload/v1473671128/sva2osquof1zrnimid3t.png	8	blue	\N	2016-09-12 09:05:19.481655	2016-09-12 09:05:19.481655	2016-09-01	2016-12-24	2	118	dress
+146	Knitted Midi Dress	French Connection	Ille vero, si insipiens-quo certe, quoniam tyrannus -, numquam beatus; Si est nihil nisi corpus, summa erunt illa: valitudo, vacuitas doloris, pulchritudo, cetera. Quod ea non occurrentia fingunt, vincunt Aristonem; Primum in nostrane potestate est, quid meminerimus? Quia nec honesto quic quam honestius nec turpi turpius. Nec mihi illud dixeris: Haec enim ipsa mihi sunt voluptati, et erant illa Torquatis. Quod si ita se habeat, non possit beatam praestare vitam sapientia. Aliter enim explicari, quod quaeritur, non potest.	image/upload/v1473670955/jbevtxkkh5uarvglbzxg.png	image/upload/v1473670965/grkrghumrwawtgwhzdci.png	10	grey	\N	2016-09-12 09:02:34.906234	2016-09-12 09:02:34.906234	2016-07-15	2016-09-13	1	112	dress
+143	V neck Dress	W.I.T.	Vitae autem degendae ratio maxime quidem illis placuit quieta. Duo Reges: constructio interrete. Aliter enim nosmet ipsos nosse non possumus. Quae cum magnifice primo dici viderentur, considerata minus probabantur.	image/upload/v1473670898/fv7zz7jt6y5rzj24wofe.png	image/upload/v1473670908/equob0wiahzaj1o9ty3u.png	10	black	\N	2016-09-12 09:01:37.507452	2016-09-12 09:01:37.507452	2016-10-01	2016-12-24	1	111	dress
+170	Denim Dress	Klem	Small batch yr leggings flexitarian keffiyeh. Art party skateboard keffiyeh godard fingerstache. Occupy hexagon celiac microdosing, tousled forage seitan fashion axe helvetica 8-bit truffaut food truck. Blue bottle cronut health goth, locavore neutra tousled wayfarers snackwave tacos pinterest. Ennui banh mi aesthetic, forage occupy taxidermy humblebrag bicycle rights bespoke venmo vice brooklyn. Stumptown flannel narwhal dreamcatcher.	image/upload/v1473772817/kjjet7vyz27a5oegrk2a.png	image/upload/v1473772826/r23jxknkwasorx70vsex.png	8	blue	\N	2016-09-13 13:20:15.404672	2016-09-13 13:20:15.404672	2016-09-01	2016-12-24	2	112	dress
+163	Chunky Sweater	Brandy	Chicharrones salvia kinfolk, scenester blog lyft bicycle rights tote bag cliche 3 wolf moon disrupt fingerstache ugh blue bottle. YOLO taxidermy authentic fap la croix, meh direct trade selfies lyft tacos hella mustache crucifix. Direct trade blue bottle austin, jean shorts la croix hell of banh mi synth af sustainable literally.	image/upload/v1473671278/zjrctc5mpukoe0kwhxfm.png	image/upload/v1473671286/rdr8jymww33ypdtvkih5.png	8	grey	\N	2016-09-12 09:07:57.266013	2016-09-12 19:18:27.437061	2016-09-15	2016-12-24	3	113	jumper
+149	Maxi Dress	Adidas	Illis videtur, qui illud non dubitant bonum dicere -; Hanc quoque iucunditatem, si vis, transfer in animum; Inde sermone vario sex illa a Dipylo stadia confecimus. Naturales divitias dixit parabiles esse, quod parvo esset natura contenta. Vitae autem degendae ratio maxime quidem illis placuit quieta. Sed quid ages tandem, si utilitas ab amicitia, ut fit saepe, defecerit? Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem; Prave, nequiter, turpiter cenabat; Estne, quaeso, inquam, sitienti in bibendo voluptas?	image/upload/v1473671015/daotxy7ekpwnjmsmxjex.png	image/upload/v1473671026/katc3fvfqpathjlu4umo.png	8	black	\N	2016-09-12 09:03:33.308729	2016-09-12 09:19:43.970603	2016-10-01	2016-12-24	3	113	dress
+153	Scuba Skater Dress	Yoke	Nemo nostrum istius generis asotos iucunde putat vivere. Scaevola tribunus plebis ferret ad plebem vellentne de ea re quaeri. Hoc loco tenere se Triarius non potuit. At enim hic etiam dolore.	image/upload/v1473671100/f4a0xlbxravpmcmfldxr.png	image/upload/v1473671110/s465mzudazekrjgavoiz.png	6	white	\N	2016-09-12 09:04:59.985344	2016-09-12 12:04:05.658705	2016-10-01	2016-12-24	2	117	dress
+166	Chinos	Cake	Flannel tacos everyday carry hammock keffiyeh. Typewriter gluten-free pour-over, sustainable venmo selfies edison bulb chambray forage whatever banh mi you probably haven't heard of them. Aesthetic readymade gastropub +1 blog, marfa plaid synth. Tilde fashion axe squid, typewriter art party thundercats hammock tousled pok pok knausgaard. Asymmetrical semiotics food truck, fixie narwhal umami woke cray listicle small batch brunch.	image/upload/v1473671339/hv27yqvg5dthahkn5gxa.png	image/upload/v1473671350/svuns2iyht4djxheo6gz.png	12	black	\N	2016-09-12 09:08:57.806089	2016-09-12 09:08:57.806089	2016-10-01	2016-12-24	3	120	trousers
+159	Knit Midi Dress	React	Microdosing air plant direct trade chambray yr, offal man braid tacos tumblr fashion axe cardigan. Truffaut tacos letterpress vinyl, unicorn distillery fam tattooed you probably haven't heard of them bespoke narwhal. Cliche pickled chia 90's trust fund, thundercats wayfarers gochujang quinoa bicycle rights narwhal. Tilde polaroid raw denim gentrify deep v venmo occupy cornhole YOLO scenester meggings post-ironic franzen actually.	image/upload/v1473671200/eokrrrborvbzabr49sp4.png	image/upload/v1473671210/gcc0jwvb6iw2l7kqqefn.png	6	taupe	\N	2016-09-12 09:06:39.635301	2016-09-12 09:06:39.635301	2016-10-15	2016-12-24	5	121	dress
+152	High Neck Oversized Dress	W.I.T.	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Utilitatis causa amicitia est quaesita. Ut aliquid scire se gaudeant? Cur igitur, inquam, res tam dissimiles eodem nomine appellas? Duo Reges: constructio interrete. Istic sum, inquit. Si quidem, inquit, tollerem, sed relinquo. Neminem videbis ita laudatum, ut artifex callidus comparandarum voluptatum diceretur.	image/upload/v1473671079/kjlvmrtrgozbtheegsbo.png	image/upload/v1473671091/wu1yiroo8tmbrqa6u2we.png	14	red	\N	2016-09-12 09:04:39.157557	2016-09-12 09:04:39.157557	2016-09-15	2017-03-21	1	117	dress
+150	Lace Skater Dress	American Apperal	Sed eum qui audiebant, quoad poterant, defendebant sententiam suam. Si enim ad populum me vocas, eum. Isto modo ne improbos quidem, si essent boni viri. Gloriosa ostentatio in constituendo summo bono. Videsne, ut haec concinant? Non igitur bene. Quis negat? Quantum Aristoxeni ingenium consumptum videmus in musicis? Ampulla enim sit necne sit, quis non iure optimo irrideatur, si laboret?	image/upload/v1473671038/iqnxunjxok5d7hon3slo.png	image/upload/v1473671047/rw5kxrxs2deiraan45n9.png	14	black	\N	2016-09-12 09:03:57.630234	2016-09-12 09:03:57.630234	2016-09-15	2017-03-21	1	116	dress
+148	Stripe Shift Dress	Rarcel	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Deprehensus omnem poenam contemnet. Cum id quoque, ut cupiebat, audivisset, evelli iussit eam, qua erat transfixus, hastam. Quae quo sunt excelsiores, eo dant clariora indicia naturae. Duo Reges: constructio interrete. Sed ea mala virtuti magnitudine obruebantur. Neutrum vero, inquit ille.	image/upload/v1473670994/yd3quhhlhxh6iedlhdua.png	image/upload/v1473671003/p8mc59ruoyhcsz1aegqf.png	6	grey	\N	2016-09-12 09:03:12.855775	2016-09-12 09:03:12.855775	2016-09-15	2017-03-21	4	113	dress
+168	Belted Jumpsuit	AA Collection	Disrupt stumptown raclette etsy pour-over waistcoat. Butcher hell of snackwave, YOLO cold-pressed tousled brooklyn. Waistcoat shabby chic freegan retro. Normcore fashion axe wolf, blue bottle mlkshk flannel kinfolk synth skateboard disrupt gluten-free authentic. Thundercats mustache pork belly, vinyl hell of authentic hoodie tousled. Vinyl fixie next level forage. Polaroid scenester single-origin coffee sartorial synth ethical, readymade narwhal drinking vinegar.	image/upload/v1473671382/wnrtjcxk75qoyzgsbjsl.png	image/upload/v1473671803/tqtoa0pafxtodzorwmk8.png	8	orange	\N	2016-09-12 09:09:41.710797	2016-09-12 09:16:43.017292	2016-10-01	2017-03-21	3	111	jumpsuit
+145	Knit Tunic Dress	C&A	Quo studio Aristophanem putamus aetatem in litteris duxisse? Re mihi non aeque satisfacit, et quidem locis pluribus. Idem iste, inquam, de voluptate quid sentit? Ita graviter et severe voluptatem secrevit a bono. Ne in odium veniam, si amicum destitero tueri.	image/upload/v1473670936/m0gzezfwukn5bkbp4nd2.png	image/upload/v1473670945/j5v7p4sgtmbakkwban5m.png	8	taupe	\N	2016-09-12 09:02:16.046865	2016-09-12 09:02:16.046865	2016-10-15	2017-03-21	2	111	dress
+164	Stitch Trousers	ALL MADE	Hammock cornhole seitan lyft, food truck irony neutra poke actually hot chicken 3 wolf moon. Wayfarers ethical DIY, gluten-free af heirloom whatever fam. Schlitz bespoke fingerstache, selfies pok pok keffiyeh godard helvetica kitsch. Listicle four loko organic pug narwhal. Typewriter craft beer helvetica, messenger bag bushwick listicle viral copper mug pop-up yuccie enamel pin.	image/upload/v1473671293/iu3ajcpxktjef7vkfw3l.png	image/upload/v1473671304/af0bbldhucot69efs0ye.png	8	blue	\N	2016-09-12 09:08:12.634925	2016-09-12 09:08:12.634925	2016-10-15	2017-03-21	3	113	trousers
+144	Knitted Dress with Roll Neck	DKNY	Quo modo autem philosophus loquitur? Non quaeritur autem quid naturae tuae consentaneum sit, sed quid disciplinae. Te ipsum, dignissimum maioribus tuis, voluptasne induxit, ut adolescentulus eriperes P. Quia, si mala sunt, is, qui erit in iis, beatus non erit. At certe gravius. De quibus cupio scire quid sentias. Non enim quaero quid verum, sed quid cuique dicendum sit.	image/upload/v1473670919/tu2hc9z9h9gdrxz3r23t.png	image/upload/v1473670928/fihncgkgczniblrlcxur.png	10	grey	\N	2016-09-12 09:01:58.900102	2016-09-12 09:01:58.900102	2016-09-15	2016-11-01	5	111	dress
+142	Long Sleeve Knit Dress	YAS	Pudebit te, inquam, illius tabulae, quam Cleanthes sane commode verbis depingere solebat. In quibus doctissimi illi veteres inesse quiddam caeleste et divinum putaverunt. Tria genera bonorum; Qua tu etiam inprudens utebare non numquam. Ita enim vivunt quidam, ut eorum vita refellatur oratio.	image/upload/v1473670887/uqdidil0h90owy6knf4l.png	image/upload/v1473670896/iwqhjw3re1ezxazlyq6g.png	6	grey	\N	2016-09-12 09:01:26.780023	2016-09-12 09:01:26.780023	2016-09-15	2016-11-01	4	112	dress
+165	Wide Leg Trousers	LeMoco	Farm-to-table roof party listicle twee DIY woke hell of, normcore tumeric mustache master cleanse venmo tattooed brooklyn cronut. +1 forage copper mug air plant, wolf photo booth heirloom aesthetic glossier yr hexagon salvia dreamcatcher chicharrones plaid. Yuccie keffiyeh etsy, retro chia umami waistcoat banh mi. Direct trade craft beer ennui, actually fam everyday carry keytar farm-to-table fanny pack gastropub aesthetic post-ironic four dollar toast.	image/upload/v1473671316/qdzmmni2jcn1n3fxumie.png	image/upload/v1473671327/thhaf1eusvrxobwigfde.png	10	brown	\N	2016-09-12 09:08:35.658024	2016-09-12 09:08:35.658024	2016-09-15	2016-11-01	3	112	trousers
+160	Frill Maxi Dress	YAS	Before they sold out fingerstache typewriter, sriracha drinking vinegar umami pickled kickstarter mlkshk polaroid austin readymade slow-carb. Tattooed put a bird on it scenester meh, ethical activated charcoal echo park. 3 wolf moon chillwave godard blue bottle, skateboard lumbersexual banjo beard hella pour-over church-key health goth.	image/upload/v1473671221/ybwkazqfwgupprs8tmfv.png	image/upload/v1473671228/p1ubvwmcr1gvcoccor2n.png	6	pink	\N	2016-09-12 09:07:01.113802	2016-09-12 09:07:01.113802	2016-09-01	2016-11-01	4	121	dress
+173	Long Pleated Skirt	Diesel	Etsi qui potest intellegi aut cogitari esse aliquod animal, quod se oderit? Claudii libidini, qui tum erat summo ne imperio, dederetur. Levatio igitur vitiorum magna fit in iis, qui habent ad virtutem progressionis aliquantum. A villa enim, credo, et: Si ibi te esse scissem, ad te ipse venissem. Quae cum magnifice primo dici viderentur, considerata minus probabantur. Nobis aliter videtur, recte secusne.	image/upload/v1473809588/jad8i8ycjfhvqqbnhwty.png	image/upload/v1473809600/lr11wfkyxmhjbespw6bm.png	8	orange	\N	2016-09-13 23:33:06.701203	2016-09-13 23:33:06.701203	2016-09-01	2017-03-21	3	124	skirt
+\.
+
+
+--
+-- Name: pieces_id_seq; Type: SEQUENCE SET; Schema: public; Owner: nuiver
+--
+
+SELECT pg_catalog.setval('pieces_id_seq', 175, true);
+
+
+--
+-- Data for Name: profiles; Type: TABLE DATA; Schema: public; Owner: nuiver
+--
+
+COPY profiles (id, first_name, surname, date_of_birth, addr_street, addr_number, postcode, addr_town, fav_color, phone, gender, size, created_at, updated_at, user_id, avatar, del_country) FROM stdin;
+98	Emma	Spaarland	1992-03-19	Terheijdenseweg	56	4815HA	Utrecht	grey	06498387388	female	6	2016-09-12 09:01:06.22019	2016-09-14 21:06:26.7689	113	image/upload/v1473887188/i1rlubnohpiyyzdjjflj.jpg	The Netherlands
+96	Julia	Bouwmeester	1980-04-24	Gen. Maczekstraat	88	4444WS	Breda	black	0681542376	female	10	2016-09-12 09:01:06.194921	2016-09-14 21:10:11.964267	111	image/upload/v1473887412/cwg4qvr83zojbzhvgs7q.jpg	The Netherlands
+101	Louisa	Veldakker	1979-03-30	Poolseweg	2B	6533AD	Breda	white	0631319400	female	12	2016-09-12 09:01:06.230604	2016-09-12 19:44:14.731445	117	image/upload/v1473709455/vqhh0zcf258mypewliii.jpg	The Netherlands
+107	Erica	Amsterdam	1995-01-02	Wegisweg	73	2393 AA	Zuidwolde	orange	076-5700000	female	12	2016-09-12 09:52:31.065741	2016-09-12 09:52:31.065741	122	#<ActionDispatch::Http::UploadedFile:0x007ff747f0bbf8>	The Netherlands
+108	Ayça	Cucaya	1987-02-12	Braamstraat	52	5665AA	Workum	taupe	071-2299278	female	10	2016-09-12 10:05:02.478451	2016-09-12 10:05:02.478451	123	image/upload/v1473674703/utzieon9f6nj8p2mmbeg.jpg	The Netherlands
+109	Lana	Ylloh	1981-09-29	Slekstraat	1	2000 BB	Zwijndrecht	black	073209382	female	8	2016-09-13 23:30:24.603236	2016-09-13 23:30:24.603236	124	image/upload/v1473809426/nvqnfwcbpbaucrphbfor.jpg	The Netherlands
+102	Hilda	Akkermans	1992-12-02	Hazelaarstraat	34	5383WK	Alkmaar	red	0681449329	female	10	2016-09-12 09:01:06.233148	2016-09-12 19:25:43.071604	118	image/upload/v1473708343/ymdpk228stjwxhzhsrnd.jpg	The Netherlands
+99	Elisa	Landman	1990-04-16	Bisonstraat	6	4891DD	Amsterdam	blue	0699223453	female	18	2016-09-12 09:01:06.224125	2016-09-12 09:01:06.224125	115	\N	The Netherlands
+103	Janna	Man	1985-10-09	Dijklaan	82	5344GT	Bussum	red	0675891196	female	8	2016-09-12 09:01:06.235454	2016-09-12 18:52:25.453525	119	image/upload/v1473706345/rurjss2ubyqnhplhcqoq.jpg	The Netherlands
+106	Eva	Peer	1993-10-23	Wilhelminasingel	116	9722RW	Rotterdam	black	0649375103	female	12	2016-09-12 09:01:06.243596	2016-09-12 09:01:06.243596	114	\N	The Netherlands
+104	Pamina	Ijssel	1998-08-22	Rembrandtstraat	1	9287WW	Veendam	black	0683654453	female	14	2016-09-12 09:01:06.237984	2016-09-12 18:49:21.786372	120	image/upload/v1473706162/nwjiiec1cysfh2cpbuod.jpg	The Netherlands
+95	Ella	Jansen	1986-08-09	Kerkweg	23	8763AA	Groningen	red	0687541234	female	10	2016-09-12 09:01:06.143675	2016-09-12 09:01:06.143675	110	\N	The Netherlands
+97	Stella	Valk	1992-01-19	Groote Markt	23	4833AA	Durgerdam	black	0648939812	female	8	2016-09-12 09:01:06.215337	2016-09-12 18:46:23.515109	112	image/upload/v1473705984/ssy2ri491bxvlhxtnlbq.jpg	The Netherlands
+105	Ezra	Cohen	1984-05-22	Visserstraat	14	9257OW	Zierikzee	pink	0643344453	female	10	2016-09-12 09:01:06.240387	2016-09-12 17:44:46.370722	121	image/upload/v1473702289/lffhjqf2igtrrl85pxnc.jpg	The Netherlands
+100	Leda	Manveld	1982-05-23	Rozenlaan	87	5333TY	Leiden	blue	0384154632	female	16	2016-09-12 09:01:06.227474	2016-09-12 19:45:57.404168	116	image/upload/v1473709558/svxya1wz0gcmfeghf57h.jpg	The Netherlands
+110	Britta	Doow	1977-09-27	Kerveltuin	\N	2353 PN	Leiderdorp	silver	0981209801	female	12	2016-09-14 20:26:52.016173	2016-09-14 20:26:52.016173	125	image/upload/v1473884813/cunt9thkwvgjyem0zdi4.jpg	\N
+\.
+
+
+--
+-- Name: profiles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: nuiver
+--
+
+SELECT pg_catalog.setval('profiles_id_seq', 110, true);
+
+
+--
+-- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: nuiver
+--
+
+COPY roles (id, name, description, created_at, updated_at) FROM stdin;
+41	Admin	Administrator that can update pieces and manage members	2016-09-12 09:01:03.578209	2016-09-12 09:01:03.578209
+42	Member	Member that can trade	2016-09-12 09:01:03.63547	2016-09-12 09:01:03.63547
+43	Guest	User is not logged in	2016-09-12 09:01:03.63895	2016-09-12 09:01:03.63895
+\.
+
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: nuiver
+--
+
+SELECT pg_catalog.setval('roles_id_seq', 43, true);
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: nuiver
+--
+
+COPY schema_migrations (version) FROM stdin;
+20160823052651
+20160812172758
+20160812173221
+20160812173618
+20160812174008
+20160812174252
+20160815164339
+20160816192948
+20160816193953
+20160817170340
+20160817170755
+20160821182451
+20160825181848
+20160825201455
+20160827133451
+20160827135108
+20160912064058
+20160912092958
+20160913070725
+20160913071247
+20160913083351
+20160914144446
+20160914144615
+20160914145446
+20160915121437
+20160915142838
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: nuiver
+--
+
+COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, created_at, updated_at, role_id) FROM stdin;
+122	erica@dress.com	$2a$11$Yc0jwWu56As3sjIwwltKMO2yxS0kUvmIBlnfXaYGChKx6TWCyF4Qy	\N	\N	\N	1	2016-09-12 09:52:31.099632	2016-09-12 09:52:31.099632	::1	::1	2016-09-12 09:52:31.03397	2016-09-12 09:52:31.100783	\N
+120	pamina@dress.com	$2a$11$bMs9oMf/woIl3avtX4c1lOlbjzNCo4ip1xgcGZ/ehHG39MEkosSne	\N	\N	\N	2	2016-09-14 07:05:25.465997	2016-09-12 18:47:07.115235	::1	::1	2016-09-12 09:01:05.903	2016-09-14 07:05:25.469341	42
+123	ayca@dress.com	$2a$11$rZHf7GixG2dDu3Bou0LnieIKJc/fGLHqYI5QebrPPS/IcQGKqFGpm	\N	\N	\N	4	2016-09-14 09:50:47.09672	2016-09-12 17:07:35.723599	::1	::1	2016-09-12 10:05:02.461427	2016-09-14 09:50:47.099321	\N
+119	janna@dress.com	$2a$11$q5CSSey7jzGx5lKes5fiPe2rJEA/kLcX/4RFnXaFhdYU82p09WYBK	\N	\N	\N	1	2016-09-12 18:49:52.326541	2016-09-12 18:49:52.326541	::1	::1	2016-09-12 09:01:05.724962	2016-09-12 18:49:52.327481	42
+118	hilda@dress.com	$2a$11$DErMPztz62XmQw4xMFB/m.r7as0Hhe.rF53Ft8LwhOJ5DcNcgk9i.	\N	\N	\N	1	2016-09-12 19:22:59.457538	2016-09-12 19:22:59.457538	::1	::1	2016-09-12 09:01:05.565922	2016-09-12 19:22:59.458508	42
+117	louisa@dress.com	$2a$11$j5gY3O51GxyNw4G61A2o/.ZWuDsMaWTjhCyPhsY/2721m4DglR05q	\N	\N	\N	3	2016-09-14 09:51:23.664574	2016-09-12 19:43:40.371846	::1	::1	2016-09-12 09:01:05.395532	2016-09-14 09:51:23.668438	42
+116	leda@dress.com	$2a$11$wx9d57yF3g1TVDUIijj8MOFgx6mhnsYhGnkoJ2z49ed3K.mGHpBwK	\N	\N	\N	1	2016-09-12 19:45:45.035518	2016-09-12 19:45:45.035518	::1	::1	2016-09-12 09:01:05.234178	2016-09-12 19:45:45.036507	42
+111	julia@dress.com	$2a$11$tRGh.YvPrOvlHYY/RzvOx.PdzZq33So8qh9HsYbPbg4udFHl4XlWy	\N	\N	\N	12	2016-09-14 21:09:48.784239	2016-09-14 11:18:26.102595	::1	::1	2016-09-12 09:01:04.314756	2016-09-14 21:09:48.801575	42
+121	ezra@dress.com	$2a$11$MnjZSFP1G9SiLvNDQipxi.DZLA96QVO9UisFAKsvj8Y8i3tiUHMHS	\N	\N	\N	2	2016-09-15 07:45:38.067442	2016-09-12 17:43:16.29459	::1	::1	2016-09-12 09:01:06.104713	2016-09-15 07:45:38.070314	42
+113	emma@dress.com	$2a$11$LQRQft.Wp6XONHHYx8kaO.W1pBTabWTsHfSZWtusG.7GHd1o4kLjS	\N	\N	\N	7	2016-09-15 18:33:48.649181	2016-09-15 17:36:15.415058	::1	::1	2016-09-12 09:01:04.710498	2016-09-15 18:33:48.653815	42
+125	britta@dress.com	$2a$11$s28iEbRAO1HzMwsgYiU/Nu3qvPtRDQsNI1gHpi2YAcgujWP5bhRX6	\N	\N	\N	2	2016-09-15 18:35:12.634999	2016-09-14 20:26:53.739834	::1	::1	2016-09-14 20:26:52.002947	2016-09-15 18:35:12.637374	\N
+124	lana@dress.com	$2a$11$ryH1wDSk3v2K7HwBQW98veMcTlmfWfoniEitsxqIiO.0FEgMaHNgC	\N	\N	\N	3	2016-09-15 18:44:54.162482	2016-09-15 12:48:36.357644	::1	::1	2016-09-13 23:30:24.554565	2016-09-15 18:44:54.165662	\N
+112	stella@dress.com	$2a$11$fx1sHMjAJLL5xWNSx./3c.KBXFw9TXNAir0Lv4KaCvqCvgELTrzSu	\N	\N	\N	7	2016-09-15 20:49:39.358689	2016-09-15 18:23:23.007365	::1	::1	2016-09-12 09:01:04.504209	2016-09-15 20:49:39.368546	42
+109	admin@cubicle.com	$2a$11$Cr7Tu/PbbHsZVZ1MbJz0we77wwgM2..ViUelCeDHb0UQf2GkSLfvS	\N	\N	\N	0	\N	\N	\N	\N	2016-09-12 09:01:03.915224	2016-09-12 09:01:03.915224	41
+110	ella@dress.com	$2a$11$cduNbZhEl4UkNuueX1PhwedfsrCfL.Jj0mqaHLqoC8NS8f1rXR9BK	\N	\N	\N	0	\N	\N	\N	\N	2016-09-12 09:01:04.136059	2016-09-12 09:01:04.136059	42
+114	eva@dress.com	$2a$11$Uhppf88jvwV0U.and3ZieO3IkFN5k83KdPqU7h1rTaNyH4o2RtIim	\N	\N	\N	0	\N	\N	\N	\N	2016-09-12 09:01:04.883058	2016-09-12 09:01:04.883058	42
+115	elisa@dress.com	$2a$11$T2b0fjPMOiV27z7kANrZ1Oag./zechKQrA87rZ23/ym3iAGhdxmeG	\N	\N	\N	0	\N	\N	\N	\N	2016-09-12 09:01:05.075483	2016-09-12 09:01:05.075483	42
+\.
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: nuiver
+--
+
+SELECT pg_catalog.setval('users_id_seq', 125, true);
+
+
+--
+-- Name: ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: deals_pkey; Type: CONSTRAINT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY deals
+    ADD CONSTRAINT deals_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: hearts_pkey; Type: CONSTRAINT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY hearts
+    ADD CONSTRAINT hearts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: periods_pkey; Type: CONSTRAINT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY periods
+    ADD CONSTRAINT periods_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pieces_pkey; Type: CONSTRAINT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY pieces
+    ADD CONSTRAINT pieces_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: profiles_pkey; Type: CONSTRAINT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY profiles
+    ADD CONSTRAINT profiles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: roles_pkey; Type: CONSTRAINT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY roles
+    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_deals_on_piece_id; Type: INDEX; Schema: public; Owner: nuiver
+--
+
+CREATE INDEX index_deals_on_piece_id ON deals USING btree (piece_id);
+
+
+--
+-- Name: index_deals_on_user_id; Type: INDEX; Schema: public; Owner: nuiver
+--
+
+CREATE INDEX index_deals_on_user_id ON deals USING btree (user_id);
+
+
+--
+-- Name: index_hearts_on_piece_id; Type: INDEX; Schema: public; Owner: nuiver
+--
+
+CREATE INDEX index_hearts_on_piece_id ON hearts USING btree (piece_id);
+
+
+--
+-- Name: index_periods_on_piece_id; Type: INDEX; Schema: public; Owner: nuiver
+--
+
+CREATE INDEX index_periods_on_piece_id ON periods USING btree (piece_id);
+
+
+--
+-- Name: index_pieces_on_user_id; Type: INDEX; Schema: public; Owner: nuiver
+--
+
+CREATE INDEX index_pieces_on_user_id ON pieces USING btree (user_id);
+
+
+--
+-- Name: index_profiles_on_user_id; Type: INDEX; Schema: public; Owner: nuiver
+--
+
+CREATE INDEX index_profiles_on_user_id ON profiles USING btree (user_id);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: nuiver
+--
+
+CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
+
+
+--
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: nuiver
+--
+
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
+
+
+--
+-- Name: index_users_on_role_id; Type: INDEX; Schema: public; Owner: nuiver
+--
+
+CREATE INDEX index_users_on_role_id ON users USING btree (role_id);
+
+
+--
+-- Name: fk_rails_0cf5dbe553; Type: FK CONSTRAINT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY pieces
+    ADD CONSTRAINT fk_rails_0cf5dbe553 FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_47b4e8ea31; Type: FK CONSTRAINT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY deals
+    ADD CONSTRAINT fk_rails_47b4e8ea31 FOREIGN KEY (piece_id) REFERENCES pieces(id);
+
+
+--
+-- Name: fk_rails_642f17018b; Type: FK CONSTRAINT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT fk_rails_642f17018b FOREIGN KEY (role_id) REFERENCES roles(id);
+
+
+--
+-- Name: fk_rails_8e0df53a9e; Type: FK CONSTRAINT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY hearts
+    ADD CONSTRAINT fk_rails_8e0df53a9e FOREIGN KEY (piece_id) REFERENCES pieces(id);
+
+
+--
+-- Name: fk_rails_db4bda896e; Type: FK CONSTRAINT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY periods
+    ADD CONSTRAINT fk_rails_db4bda896e FOREIGN KEY (piece_id) REFERENCES pieces(id);
+
+
+--
+-- Name: fk_rails_e424190865; Type: FK CONSTRAINT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY profiles
+    ADD CONSTRAINT fk_rails_e424190865 FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_rails_f64a19bbd9; Type: FK CONSTRAINT; Schema: public; Owner: nuiver
+--
+
+ALTER TABLE ONLY deals
+    ADD CONSTRAINT fk_rails_f64a19bbd9 FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: nuiver
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM nuiver;
+GRANT ALL ON SCHEMA public TO nuiver;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

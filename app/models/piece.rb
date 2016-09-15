@@ -44,7 +44,9 @@ class Piece < ApplicationRecord
     user_size != self.size ? true : false
   end
 
-
+  def self.typesearch(type)
+    where(product_type: type[:product_type])
+  end
 
   def self.coloursearch(clr)
     where(colour: clr[:colour])
@@ -59,6 +61,13 @@ class Piece < ApplicationRecord
     sorted_colourlist = []
     COLOURS.map { |col|   (sorted_colourlist << col) if colours.include? col }
     sorted_colourlist
+  end
+
+  def self.sort_types_in_collection(pieces)
+    types = pieces.map{ |i| i[:product_type] }.uniq
+    sorted_typelist = []
+    TYPES.map { |tp|   (sorted_typelist << tp) if types.include? tp }
+    sorted_typelist
   end
 
   def self.search(search)

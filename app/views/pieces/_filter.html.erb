@@ -3,8 +3,10 @@
   <% else %>
     <div id="filterbox" class="container filter hidden">
   <% end %>
-    <%= form_tag(pieces_all_path, method: "get", name: "list", id: "colour-form", remote: true ) do %>
-      <!-- Method for available colours in the @pieces-->
+
+  <% if current_page?(pieces_hearted_path) %>
+    <%= form_tag(pieces_hearted_path, method: "get", name: "list", id: "colour-form", remote: true ) do %>
+    <!-- Method for available colours in the @pieces-->
       <% @colours_in_unfiltered_pieces.each do |colour| %>
       <% colours = params[:colour] %>
         <% if  colours && (colours[:colour].include? colour) %>
@@ -25,16 +27,58 @@
         <%= label_tag(:size, size) %>
       <% end %>
       <br />
-        <% if  params.key?('available') && params[:available] == true.to_s %>
-          <%= check_box_tag("available", true, true, :onclick => "javascript: document.list.submit();") %>
-        <% else %>
-          <%= check_box_tag("available", true, false, :onclick => "javascript: document.list.submit();") %>
-        <% end %>
-        <%= label_tag('Available now') %>
+      <% if  params.key?('available') && params[:available] == true.to_s %>
+        <%= check_box_tag("available", true, true, :onclick => "javascript: document.list.submit();") %>
+      <% else %>
+        <%= check_box_tag("available", true, false, :onclick => "javascript: document.list.submit();") %>
+      <% end %>
+      <%= label_tag('Available now') %>
 
-        <%= hidden_field_tag :search, params[:search] %>
-
+      <%= hidden_field_tag :search, params[:search] %>
     <% end %>
+  <% else %>
+    <%= form_tag(pieces_all_path, method: "get", name: "list", id: "colour-form", remote: true ) do %>
+      <!-- Method for available colours in the @pieces-->
+      <% @product_types_in_unfiltered_pieces.each do |product_type| %>
+      <% types = params[:product_type] %>
+        <% if  types && (types[:product_type].include? product_type) %>
+          <%= check_box_tag("product_type[product_type][]", product_type, true, :onclick => "javascript: document.list.submit();") %>
+        <% else %>
+          <%= check_box_tag("product_type[product_type][]", product_type, false, :onclick => "javascript: document.list.submit();") %>
+        <% end %>
+        <%= label_tag(:product_type, product_type) %>
+      <% end %>
+      <br />
+      <% @colours_in_unfiltered_pieces.each do |colour| %>
+      <% colours = params[:colour] %>
+        <% if  colours && (colours[:colour].include? colour) %>
+          <%= check_box_tag("colour[colour][]", colour, true, :onclick => "javascript: document.list.submit();") %>
+        <% else %>
+          <%= check_box_tag("colour[colour][]", colour, false, :onclick => "javascript: document.list.submit();") %>
+        <% end %>
+        <%= label_tag(:colour, colour) %>
+      <% end %>
+      <br />
+      <% @sizes_in_unfiltered_pieces.each do |size| %>
+        <% sizes = params[:size] %>
+        <% if  sizes && (sizes[:size].include? size.to_s) %>
+          <%= check_box_tag("size[size][]", size, true, :onclick => "javascript: document.list.submit();") %>
+        <% else %>
+          <%= check_box_tag("size[size][]", size, false, :onclick => "javascript: document.list.submit();") %>
+        <% end %>
+        <%= label_tag(:size, size) %>
+      <% end %>
+      <br />
+      <% if  params.key?('available') && params[:available] == true.to_s %>
+        <%= check_box_tag("available", true, true, :onclick => "javascript: document.list.submit();") %>
+      <% else %>
+        <%= check_box_tag("available", true, false, :onclick => "javascript: document.list.submit();") %>
+      <% end %>
+      <%= label_tag('Available now') %>
+
+      <%= hidden_field_tag :search, params[:search] %>
+    <% end %>
+  <% end %>
   </div>
   <div class="container">
     <div class="filter_button">
