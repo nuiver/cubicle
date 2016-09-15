@@ -21,7 +21,7 @@ class PiecesController < ApplicationController
     @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
     @product_types_in_unfiltered_pieces = @pieces.sort_types_in_collection(@pieces)
 
-    @pieces = @pieces.typesearch(params[:type]) if params[:type].present?
+    @pieces = @pieces.typesearch(params[:product_type]) if params[:product_type].present?
     @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
@@ -39,10 +39,17 @@ class PiecesController < ApplicationController
 
   def hearted
     @pieces = Piece.where("end_date >= '#{Time.zone.now.beginning_of_day}'")
+    @pieces = @pieces.typesearch(params[:product_type]) if params[:product_type].present?
     @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
     @pieces = @pieces.select{|i| i.heart.users.ids.include? current_user.id }
+
+
+    product_types = @pieces.map{ |i| i[:product_type] }.uniq
+    sorted_typelist = []
+    Piece::TYPES.map { |typ|   (sorted_typelist << typ) if product_types.include? typ }
+    @product_types_in_unfiltered_pieces = sorted_typelist
 
     colours = @pieces.map{ |i| i[:colour] }.uniq
     sorted_colourlist = []
@@ -60,15 +67,19 @@ class PiecesController < ApplicationController
     authorize! :read, @pieces
 
     @pieces = Piece.where(product_type: params[:product_type])
-    @pieces = @pieces.where("end_date >= '#{Time.zone.now.beginning_of_day}'")
 
     colours = @pieces.map{ |i| i[:colour] }.uniq
     sorted_colourlist = []
     Piece::COLOURS.map { |col|   (sorted_colourlist << col) if colours.include? col }
     @colours_in_unfiltered_pieces = sorted_colourlist
-
     @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
+
+    @pieces = @pieces.where("end_date >= '#{Time.zone.now.beginning_of_day}'")
+
+    @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
+    @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
+
     @pieces = @pieces.sort_by { |item| item[:id] }.reverse
     render 'index'
   end

@@ -1,8 +1,16 @@
 <%= render 'filter' %>
+
 <div class="main container">
+
+  <% if current_page?(controller: 'pieces', action: 'type') %>
+    <h2><%= params[:product_type].pluralize.capitalize %></h2>
+  <% end %>
+
   <% if @pieces.present? %>
     <%= render @pieces %>
   <% else %>
     <h1>Sorry, no pieces found</h1>
     <p>There are no items with these term(s) <%= params[:search] %> on Cubicle today.</p>
-  <% end %></div>
+  <% end %>
+
+</div>
