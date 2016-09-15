@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: cubicle_production
-  username: cubicle
-  password: <%= ENV['CUBICLE_DATABASE_PASSWORD'] %>
+  # username: cubicle
+  # password: <%= ENV['CUBICLE_DATABASE_PASSWORD'] %>

@@ -82,9 +82,16 @@ header {
   flex:2;
 }
 .header_search {
+  margin: 7px 4px;
   flex: 2;
 }
-
+.header_search input {
+  border: 1px dotted #333333;
+  height: 18px;
+}
+.header_search .inputfield {
+  margin: 4px;
+}
 .header_pic {
   width: 40px;
   display: inline-block;

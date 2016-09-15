@@ -11,10 +11,17 @@ class PiecesController < ApplicationController
     else
       @pieces = Piece.all.where("end_date >= '#{Time.zone.now.beginning_of_day}'").order_by_new
     end
+    if params[:search]
+      @pieces = @pieces.search(params[:search])
+    end
+    @searchparams = params[:search]
+
     # @pieces = @pieces.where("end_date >= #{Time.zone.now.beginning_of_day}")
     @colours_in_unfiltered_pieces = @pieces.sort_colours_in_collection(@pieces)
     @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
+    @product_types_in_unfiltered_pieces = @pieces.sort_types_in_collection(@pieces)
 
+    @pieces = @pieces.typesearch(params[:type]) if params[:type].present?
     @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
@@ -32,6 +39,9 @@ class PiecesController < ApplicationController
 
   def hearted
     @pieces = Piece.where("end_date >= '#{Time.zone.now.beginning_of_day}'")
+    @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
+    @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
+    @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
     @pieces = @pieces.select{|i| i.heart.users.ids.include? current_user.id }
 
     colours = @pieces.map{ |i| i[:colour] }.uniq
@@ -40,6 +50,8 @@ class PiecesController < ApplicationController
     @colours_in_unfiltered_pieces = sorted_colourlist
 
     @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
+
+
     authorize! :read, @pieces
     render 'index'
   end
@@ -124,6 +136,6 @@ private
   end
 
   def piece_params
-    params.require( :piece ).permit( :name, :brand, :description, :image, :image_b, :size, :colour, :product_type, :price_cat, :image_cache, :image_b_cache, :available, :begin_date, :end_date, colour: [])
+    params.require( :piece ).permit( :name, :brand, :description, :image, :image_b, :size, :colour, :product_type, :price_cat, :image_cache, :image_b_cache, :available, :begin_date, :end_date, :search, colour: [])
   end
 end
