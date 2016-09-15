@@ -35,6 +35,7 @@ for(var i=0; i<(rangeInt+1); i++) {
 
 $(function() {
   $(".datepicker").datepicker({
+    dateFormat: "yy-mm-dd",
     numberOfMonths: 2,
     beforeShowDay: function(date) {
         for(var i=0; i<ranges.length; i++) {
