@@ -55,8 +55,8 @@
       </div>
       <% if user_signed_in? && current_user != @piece.user %>
         <div class="item_button btn">
-            <%= link_to "", new_deal_path(@piece.id), class: " fa fa-shopping-bag" %>
-            <%= link_to "  Book this piece", new_deal_path(@piece.id), remote: true %>
+            <%= link_to "", new_deal_path(@piece.id), remote: true, class: " fa fa-shopping-bag" %>
+            <%= link_to "  I want this piece", new_deal_path(@piece.id), remote: true %>
         </div>
       <% elsif !user_signed_in? %>
       <div class="item_button btn">
