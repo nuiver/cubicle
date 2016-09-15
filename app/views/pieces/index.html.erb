@@ -1,4 +1,8 @@
 <%= render 'filter' %>
 <div class="main container">
-<%= render @pieces %>
-</div>
+  <% if @pieces.present? %>
+    <%= render @pieces %>
+  <% else %>
+    <h1>Sorry, no pieces found</h1>
+    <p>There are no items with these term(s) <%= params[:search] %> on Cubicle today.</p>
+  <% end %></div>

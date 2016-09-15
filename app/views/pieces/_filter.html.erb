@@ -3,7 +3,7 @@
   <% else %>
     <div id="filterbox" class="container filter hidden">
   <% end %>
-    <%= form_tag(pieces_path, method: "get", name: "list", id: "colour-form", remote: true ) do %>
+    <%= form_tag(pieces_all_path, method: "get", name: "list", id: "colour-form", remote: true ) do %>
       <!-- Method for available colours in the @pieces-->
       <% @colours_in_unfiltered_pieces.each do |colour| %>
       <% colours = params[:colour] %>
@@ -31,6 +31,9 @@
           <%= check_box_tag("available", true, false, :onclick => "javascript: document.list.submit();") %>
         <% end %>
         <%= label_tag('Available now') %>
+
+        <%= hidden_field_tag :search, params[:search] %>
+
     <% end %>
   </div>
   <div class="container">

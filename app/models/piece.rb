@@ -61,5 +61,9 @@ class Piece < ApplicationRecord
     sorted_colourlist
   end
 
+  def self.search(search)
+    where("name ILIKE ?", "%#{search}%")
+  end
+
 
 end

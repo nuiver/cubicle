@@ -6,9 +6,15 @@
     <div class='tabs'>
     </div>
     <div class='header_search'>
-      <form>
-        <input type="text"><div class="fa fa-search"></div>
-      </form>
+
+      <%= form_tag(pieces_all_path, method: "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search pieces" %>
+        <div class="fa fa-search"></div>
+      <% end %>
+
+
+
+
     </div>
     <div class='userlogin'>
       <% if user_signed_in? %>

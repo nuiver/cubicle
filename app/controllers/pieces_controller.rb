@@ -11,6 +11,11 @@ class PiecesController < ApplicationController
     else
       @pieces = Piece.all.where("end_date >= '#{Time.zone.now.beginning_of_day}'").order_by_new
     end
+    if params[:search]
+      @pieces = @pieces.search(params[:search])
+    end
+    @searchparams = params[:search]
+
     # @pieces = @pieces.where("end_date >= #{Time.zone.now.beginning_of_day}")
     @colours_in_unfiltered_pieces = @pieces.sort_colours_in_collection(@pieces)
     @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
@@ -124,6 +129,6 @@ private
   end
 
   def piece_params
-    params.require( :piece ).permit( :name, :brand, :description, :image, :image_b, :size, :colour, :product_type, :price_cat, :image_cache, :image_b_cache, :available, :begin_date, :end_date, colour: [])
+    params.require( :piece ).permit( :name, :brand, :description, :image, :image_b, :size, :colour, :product_type, :price_cat, :image_cache, :image_b_cache, :available, :begin_date, :end_date, :search, colour: [])
   end
 end
