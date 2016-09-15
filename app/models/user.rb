@@ -37,7 +37,7 @@ class User < ApplicationRecord
   end
 
   def has_open_proposals?
-      self.open_proposals.nil? ? false : true
+      self.open_proposals.empty? ? false : true
   end
 
 

@@ -2,15 +2,15 @@
 
 <div class="field">
   <%= f.label 'Choose your shipping method:' %>
-  <%= f.select :shipping, Deal::SHIPPING_METHODS.collect { |method| [ method, method ] } %></div>
+  <%= f.select :shipping, Deal::SHIPPING_METHODS.collect { |method| [ method, method ] } %>
 </div>
 
 <div class="field">
   <%= f.label 'Choose your payment method:' %>
-  <%= f.select :pay_method, Deal::PAYMENT_METHODS.collect { |method| [ method, method ] } %></div>
+  <%= f.select :pay_method, Deal::PAYMENT_METHODS.collect { |method| [ method, method ] } %>
 </div>
 
-<%= hidden_field_tag :proposal, true %>
+<%= f.hidden_field :proposal, value: 'true' %>
 
 <div class="actions">
 <%= f.button :submit %>
