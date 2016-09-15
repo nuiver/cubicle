@@ -1,0 +1,34 @@
+<div class="main container">
+  <h1>Rental page of <%= current_user.profile.first_name %> </h1>
+
+  <h2 class="warning">Proposals for hire out awaiting your review</h2>
+
+  <div class="rent_overview">
+    <% @owneddeals.select{ |i| i[:proposal] == true }.each do |deal| %>
+      <table class="warning">
+        <tr>
+          <td><%= deal.id %></td>
+          <td><strong><%= link_to deal.piece.name, edit_owned_deal_path(deal.id) %></strong></td>
+          <td><%= deal.user.full_name %></td>
+          <td><%= deal.begin_res %></td>
+          <td><%= deal.begin_res %></td>
+          <td><%= deal.proposal %></td>
+        </tr>
+      </table>
+    <% end %>
+    <br />
+    <h2>Deals hired out</h2>
+    <% @owneddeals.select{ |i| i[:proposal] == false }.each do |deal| %>
+      <table>
+        <tr>
+          <td><%= deal.id %></td>
+          <td><strong><%= link_to deal.piece.name, deal_path(deal.id) %></strong></td>
+          <td><%= deal.user.full_name %></td>
+          <td><%= deal.begin_res %></td>
+          <td><%= deal.begin_res %></td>
+          <td><%= deal.proposal %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>

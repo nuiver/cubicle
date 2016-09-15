@@ -1,0 +1,12 @@
+<%= form_for @deal do |f| %>
+
+<div class="field">
+  <%= f.label 'Choose your shipping method:' %>
+  <%= f.select :shipping, Deal::SHIPPING_METHODS.collect { |method| [ method, method ] } %></div>
+</div>
+
+<div class="actions">
+<%= f.button :submit %>
+</div>
+
+<% end %>
