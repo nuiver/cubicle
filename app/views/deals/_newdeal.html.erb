@@ -2,7 +2,7 @@
   <%= image_tag @piece.image.to_s %>
 </div>
 
-<h3>Book this item</h3>
+<h4>Book this item</h4>
 
 <h1><%= @piece.name %></h1>
 
@@ -11,8 +11,8 @@
 <% end %>
 
 <% if @piece.is_available_now? %>
-  <h3><%= @piece.name %> is available at the moment</h3>
-  <%= render 'deals/form', locals: { deal: Deal.new } %>
+  <h4><%= @piece.name %> is immediately available.</h4>
 <% else %>
-  <p>Sorry, this piece is not available until <%= @piece.begin_date.strftime("%d %B %Y") %></p>
+  <p>This piece is available from <%= @piece.begin_date.strftime("%d %B %Y") %></p>
 <% end %>
+<%= render 'deals/form', locals: { deal: Deal.new } %>

@@ -1,2 +1,49 @@
 $('#checkout_screen').toggleClass('hidden');
 $('.keepcentered').html("<%= j (render 'newdeal') %>");
+
+var rubyRanges = '<%= j get_range(@piece) %>';
+var rangesJs = JSON.parse(rubyRanges);
+var rangeLength = '<%= j get_range_length(@piece) %>';
+var rangeInt = parseInt(rangeLength);
+
+beginDate = '<%= j ( @piece.begin_date < Time.zone.now.beginning_of_day ? Time.zone.now.beginning_of_day.strftime("%Y-%B-%d") : @piece.begin_date.strftime("%Y-%B-%d") ) %>';
+endDate = '<%= j ( @piece.end_date.strftime("%Y-%B-%d") ) %>';
+
+var ranges = [];
+
+
+for(var i=0; i<(rangeInt+1); i++) {
+
+
+  if (i == 0 ) {
+    var startdate = new Date(beginDate)
+  } else {
+    var startdate = new Date(rangesJs[(i-1)]["end"])
+  };
+
+  if (i == (rangeInt)) {
+    var enddate = new Date(endDate)
+  } else {
+    var enddate = new Date(rangesJs[i]["beg"])
+  };
+
+  var newDatePair = {};
+  newDatePair['start'] = startdate;
+  newDatePair['end'] = enddate;
+  ranges.push(newDatePair);
+};
+
+$(function() {
+  $(".datepicker").datepicker({
+    dateFormat: "yy-mm-dd",
+    numberOfMonths: 2,
+    beforeShowDay: function(date) {
+        for(var i=0; i<ranges.length; i++) {
+          if(date >= ranges[i].start && date <= ranges[i].end) return [true, ''];
+        }
+        return [false, ''];
+    },
+    minDate: ranges[0].start,
+    maxDate: ranges[ranges.length -1].end
+  });
+});

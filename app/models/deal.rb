@@ -2,6 +2,9 @@ class Deal < ApplicationRecord
   belongs_to :user
   belongs_to :piece
 
+  validates :begin_res, presence: true
+  validates :end_res, presence: true
+
   SHIPPING_METHODS = ['regular postal delivery','priority delivery','I come collect it']
   PAYMENT_METHODS = ['iDEAL','Creditcard','PayPal','Skrill','Bank transfer','Cash (when collected)']
 

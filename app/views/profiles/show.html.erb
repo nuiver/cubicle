@@ -6,15 +6,16 @@
   <div class="profile_val"><h2><%= @profile.first_name %> <%= @profile.surname %></h2></div>
 </div>
 <div class='profile_item'>
-  <div class="profile_val"><%= @profile.size %></div>
+  <div class="profile_val">Favourite colour: <%= @profile.fav_color %></div>
 </div>
+<% if user_signed_in? %>
 <div class='profile_item'>
-  <div class="profile_val"><%= @profile.fav_color %></div>
+  <div class="profile_val">Size: <%= @profile.size %></div>
 </div>
-
-<%= link_to "Edit your profile", edit_profile_path( current_user.profile.id ) %><br />
-<%= link_to "Change your password", edit_user_registration_path %><br />
-<%= link_to "Delete your user account", edit_user_registration_path %><br />
+  <%= link_to "Edit your profile", edit_profile_path( current_user.profile.id ) %><br />
+  <%= link_to "Change your password", edit_user_registration_path %><br />
+  <%= link_to "Delete your user account", edit_user_registration_path %><br />
+<% end %>
 </div>
 
 </div>

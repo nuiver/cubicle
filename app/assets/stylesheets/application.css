@@ -13,7 +13,9 @@
  *= require_tree .
  *= require_self
  *= require font-awesome
+ *= require jquery-ui
  */
+
 body {
   font-family: Raleway, sans-serif;
   font-size: 14px;

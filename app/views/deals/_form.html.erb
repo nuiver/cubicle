@@ -2,12 +2,12 @@
 
 <div class="field">
   <%= f.label 'Begin date of your reservation:' %>
-  <%= f.date_field :begin_res %>
+  <%= f.text_field :begin_res, class: 'datepicker' %>
 </div>
 
 <div class="field">
   <%= f.label 'End date of your reservation:' %>
-  <%= f.date_field :end_res %>
+  <%= f.text_field :end_res, class: 'datepicker' %>
 </div>
 
 <%= hidden_field_tag :piece_id, @piece.id %>

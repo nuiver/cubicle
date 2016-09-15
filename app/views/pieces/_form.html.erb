@@ -48,6 +48,17 @@
     </div>
 
     <div class="inputfield">
+      <div class="label"><%= f.label 'Start date' %></div>
+      <div class="field"><%= f.date_field :begin_date  %></div>
+    </div>
+
+    <div class="inputfield">
+      <div class="label"><%= f.label 'End date' %></div>
+      <div class="field"><%= f.date_field :end_date  %></div>
+    </div>
+
+
+    <div class="inputfield">
       <div class="label"><%= f.label :price_cat %></div>
       <div class="field"><%= f.select :price_cat, [['1','1'],['2','2'],['3','3'],['4','4'],['5','5']] %></div>
     </div>
