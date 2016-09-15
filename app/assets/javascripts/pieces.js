@@ -87,7 +87,6 @@ function darkBackgroundClick() {
 
   $('.fullscreen_overlay').click(function() {
     $('#checkout_screen').addClass('hidden');
-    console.log('Hello darkBackgroundClick');
   });
 
 };

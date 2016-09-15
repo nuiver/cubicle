@@ -11,7 +11,7 @@
 <% end %>
 
 <% if @piece.is_available_now? %>
-  <h4><%= @piece.name %> is available at the moment</h4>
+  <h4><%= @piece.name %> is immediately available.</h4>
 <% else %>
   <p>This piece is available from <%= @piece.begin_date.strftime("%d %B %Y") %></p>
 <% end %>
