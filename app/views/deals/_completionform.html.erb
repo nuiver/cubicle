@@ -1,12 +1,14 @@
-<%= form_for @deal do |f| %>
+<div class="container">
+  <%= form_for(@deal) do |f| %>
 
-<div class="field">
-  <%= f.label 'Choose your shipping method:' %>
-  <%= f.select :shipping, Deal::SHIPPING_METHODS.collect { |method| [ method, method ] } %></div>
+    <div class="field">
+      <%= f.label 'Are you accepting this proposal?' %>
+      <%= f.select :accepted, [[ 'yes', true ],[ 'no', false ]] %>      
+    </div>
+
+    <div class="actions">
+      <%= f.button :submit %>
+    </div>
+
+  <% end %>
 </div>
-
-<div class="actions">
-<%= f.button :submit %>
-</div>
-
-<% end %>

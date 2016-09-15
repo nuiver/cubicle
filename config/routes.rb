@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   get 'deals/owner/:id/edit' => 'deals#owneredit', as: :edit_owned_deal
 
   post 'deals' => 'deals#create'
+  post 'deals/owner/' => 'deals#create'
+
   get 'deals/:id' => 'deals#show', as: :deal
   patch 'deals/:id' => 'deals#update'
   delete 'deals/:id' => 'deals#destroy'

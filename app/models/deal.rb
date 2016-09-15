@@ -11,4 +11,9 @@ class Deal < ApplicationRecord
   def self.get_current
     find{ |deal| deal[:begin_res] <= Time.zone.now.beginning_of_day && deal[:end_res] > Time.zone.now.beginning_of_day}
   end
+
+  def accepted?
+    self[:accepted] == true ? true : false
+  end
+  
 end
