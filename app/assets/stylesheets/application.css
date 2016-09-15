@@ -133,6 +133,14 @@ width: 250px;
   display: inline-block;;
   margin-right: 50px;
 }
+.rightnav {
+  float: right;
+  margin: 0px;
+}
+.rightnav a {
+  color: #cc1212;
+
+}
 
 /*flash bar*/
 .flashbar {

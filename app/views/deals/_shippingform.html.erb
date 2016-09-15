@@ -10,6 +10,8 @@
   <%= f.select :pay_method, Deal::PAYMENT_METHODS.collect { |method| [ method, method ] } %></div>
 </div>
 
+<%= hidden_field_tag :proposal, true %>
+
 <div class="actions">
 <%= f.button :submit %>
 </div>
