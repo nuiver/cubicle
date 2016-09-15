@@ -2,7 +2,7 @@ $('#checkout_screen').toggleClass('hidden');
 $('.keepcentered').html("<%= j (render 'newdeal') %>");
 $(function() {
 
-  beginDate = '<%= j ( @piece.begin_date < Time.zone.now.beginning_of_day ? @piece.begin_date.strftime("%Y-%B-%d") : Time.zone.now.beginning_of_day.strftime("%Y-%B-%d") ) %>';
+  beginDate = '<%= j ( @piece.begin_date < Time.zone.now.beginning_of_day ? Time.zone.now.beginning_of_day.strftime("%Y-%B-%d") : @piece.begin_date.strftime("%Y-%B-%d") ) %>';
   endDate = '<%= j ( @piece.end_date.strftime("%Y-%B-%d") ) %>';
 
 

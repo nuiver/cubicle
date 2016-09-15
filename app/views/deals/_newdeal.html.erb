@@ -13,6 +13,6 @@
 <% if @piece.is_available_now? %>
   <h4><%= @piece.name %> is available at the moment</h4>
 <% else %>
-  <p>Sorry, this piece is not available until <%= @piece.begin_date.strftime("%d %B %Y") %></p>
+  <p>This piece is available from <%= @piece.begin_date.strftime("%d %B %Y") %></p>
 <% end %>
 <%= render 'deals/form', locals: { deal: Deal.new } %>
