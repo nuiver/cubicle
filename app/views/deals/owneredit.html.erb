@@ -1,5 +1,91 @@
 <div class="container">
+  <div class="img_showpage">
+    <%= image_tag @deal.piece.image.to_s %>
+  </div>
 
-<%= render 'completionform', locals: { deal: @deal } %>
+  <h1><%= @deal.piece.name %></h1>
+  <div class=datarow>
+    <div class="tablekey">
+      Brand:
+    </div>
+    <div class="tablevalue">
+      <%= @deal.piece.brand %>
+    </div>
+  </div>
+  <div class=datarow>
+    <div class="tablekey">
+      Size:
+    </div>
+    <div class="tablevalue">
+      <%= @deal.piece.size %>
+    </div>
+  </div>
+  <div class=datarow>
+    <div class="tablekey">
+      Size:
+    </div>
+    <div class="tablevalue">
+      <%= @deal.piece.colour %>
+    </div>
+  </div>
+
+  <h1>Period</h1>
+
+  <div class=datarow>
+    <div class="tablekey">
+      Start reservation:
+    </div>
+    <div class="tablevalue">
+      <%= @deal.begin_res.strftime("%d %B %Y") %>
+    </div>
+  </div>
+  <div class=datarow>
+    <div class="tablekey">
+      End reservation:
+    </div>
+    <div class="tablevalue">
+      <%= @deal.end_res.strftime("%d %B %Y") %>
+    </div>
+  </div>
+
+  <h1>Hirer</h1>
+
+  <div class=datarow>
+    <div class="tablekey">
+      Name:
+    </div>
+    <div class="tablevalue">
+      <%= @deal.user.full_name %>
+    </div>
+  </div>
+  <div class=datarow>
+    <div class="tablekey">
+      Address:
+    </div>
+    <div class="tablevalue">
+      <%= @deal.user.profile.addr_street %> <%= @deal.user.profile.addr_number %> <%= @deal.user.profile.postcode %> <%= @deal.user.profile.addr_town %>
+    </div>
+  </div>
+  <br />
+  <div class=datarow>
+    <div class="tablekey">
+      Payment method:
+    </div>
+    <div class="tablevalue">
+      <%= @deal.pay_method %>
+    </div>
+  </div>
+  <div class=datarow>
+    <div class="tablekey">
+      Shipping method:
+    </div>
+    <div class="tablevalue">
+      <%= @deal.shipping %>
+    </div>
+  </div>
+
+  <h1>Acceptance</h1>
+
+  <%= render 'completionform', locals: { deal: @deal } %>
 
 </div>

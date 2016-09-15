@@ -2,7 +2,7 @@
 <div class="main container">
 <h1> Deals of <%= current_user.profile.first_name %> </h1>
 
-<% @.each do |deal| %>
+<% @deals.each do |deal| %>
   <table>
     <tr>
       <td><%= deal.id %></td>

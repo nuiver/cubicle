@@ -37,7 +37,7 @@ class User < ApplicationRecord
   end
 
   def has_open_proposals?
-      self.open_proposals.nil? ? false : true
+      self.open_proposals.empty? ? false : true
   end
 
 
@@ -47,7 +47,7 @@ class User < ApplicationRecord
     all_deals = []
     pieces_with_deals.each {|piece| all_deals << piece.deals}
     deals_flattened = all_deals.flatten
-    proposals = deals_flattened.select{ |d| d[:proposal] == true }
+    proposals = deals_flattened.select{ |d| ( d[:proposal] == true && d[:accepted] == false )}
   end
 
 
