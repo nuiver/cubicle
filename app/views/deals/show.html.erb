@@ -1,5 +1,9 @@
 <div class="container">
-  <h1>proposed deal <%= @deal.id %> for <%= @deal.piece.name %></h1>
+  <% if @deal.accepted? %>
+  <h1>Deal <%= @deal.id %> for <%= @deal.piece.name %> is accepted! Happy sharing!</h1>
+  <% else %>
+  <h1>Deal <%= @deal.id %> for <%= @deal.piece.name %> is proposed to <%= @deal.piece.user.profile.first_name %></h1>
+  <% end %>
 
   <div class="img_showpage">
     <%= image_tag @deal.piece.image.to_s %>

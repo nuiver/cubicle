@@ -29,6 +29,27 @@ class User < ApplicationRecord
     hearted.empty? ? false : true
   end
 
+  def owned_deals
+    pieces_with_deals = self.pieces.select{ |i| i.deals.exists? }
+    all_deals = []
+    pieces_with_deals.each {|piece| all_deals << piece.deals}
+    all_deals = all_deals.flatten
+  end
+
+  def has_open_proposals?
+      self.open_proposals.nil? ? false : true
+  end
+
+
+  def open_proposals
+    pieces_with_deals = self.pieces.select{ |i| i.deals.exists? }
+    return false if pieces_with_deals.nil?
+    all_deals = []
+    pieces_with_deals.each {|piece| all_deals << piece.deals}
+    deals_flattened = all_deals.flatten
+    proposals = deals_flattened.select{ |d| d[:proposal] == true }
+  end
+
 
   private
     def set_default_role

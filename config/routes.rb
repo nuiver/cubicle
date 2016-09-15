@@ -23,8 +23,13 @@ Rails.application.routes.draw do
 
   get 'deals/new/:piece_id' => 'deals#new', as: :new_deal
   get 'deals' => 'deals#index', as: :deals
+  get "deals/owner/" => 'deals#ownerindex', as: :owned_deals
+  get 'deals/owner/:id' => 'deals#ownershow', as: :owned_deal
+  get 'deals/owner/:id/edit' => 'deals#owneredit', as: :edit_owned_deal
 
   post 'deals' => 'deals#create'
+  post 'deals/owner/' => 'deals#create'
+
   get 'deals/:id' => 'deals#show', as: :deal
   patch 'deals/:id' => 'deals#update'
   delete 'deals/:id' => 'deals#destroy'

@@ -45,10 +45,19 @@ class DealsController < ApplicationController
     authorize! :read, @pieces
   end
 
+  def ownerindex
+    @owneddeals = current_user.owned_deals
+    @open_proposals = current_user.open_proposals if current_user.has_open_proposals?
+  end
+
+  def owneredit
+      @deal = Deal.find(params[:id])
+  end
+
   private
 
   def deal_params
-      params.require(:deal).permit(:begin_res, :end_res, :piece_id, :piece, :pay_method, :shipping)
+      params.require(:deal).permit(:begin_res, :end_res, :piece_id, :piece, :pay_method, :shipping, :proposal, :accepted )
   end
 
 end

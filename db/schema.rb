@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914145446) do
+ActiveRecord::Schema.define(version: 20160915142838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20160914145446) do
     t.date     "begin_res"
     t.date     "end_res"
     t.boolean  "complete"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "user_id"
     t.integer  "piece_id"
     t.string   "shipping"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20160914145446) do
     t.string   "del_postcode"
     t.string   "del_town"
     t.string   "del_country"
+    t.boolean  "proposal",     default: false
+    t.boolean  "accepted",     default: false
     t.index ["piece_id"], name: "index_deals_on_piece_id", using: :btree
     t.index ["user_id"], name: "index_deals_on_user_id", using: :btree
   end
