@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
     cookies[:usertown] = (current_user.profile.addr_town if user_signed_in?)  || 'Breda'
   end
 
+
   protected
 
   def configure_permitted_parameters
