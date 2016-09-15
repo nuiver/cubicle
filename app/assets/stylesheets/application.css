@@ -164,6 +164,15 @@ width: 250px;
   width: 400px;
   margin: 2px 0;
 }
+.submitbutton {
+  width: 200px;
+  height: 25px;
+  background-color:  #8F2A67;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+}
 
 /*divise forms*/
 .devise_container {
@@ -183,4 +192,25 @@ width: 250px;
   padding-top: 2px;
 }
 .dropdown_item a {
+}
+/*datatable*/
+.datatable {
+
+}
+.datarow {
+  width: 600px;
+  display: flex;
+  padding: 2px;
+  height: 12px;
+  margin: 2px 0;
+}
+.tablekey {
+  flex: 2;
+  color: #8F2A67;
+  font-weight: 300;
+}
+.tablevalue {
+  flex: 8;
+  font-weight: 500;
+  color: #333333;
 }

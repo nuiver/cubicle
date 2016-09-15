@@ -1,29 +1,60 @@
 <div class="container">
+
+  <div class="img_showpage">
+    <%= image_tag @deal.piece.image.to_s %>
+  </div>
+  
   <% if @deal.accepted? %>
   <h1>Deal <%= @deal.id %> for <%= @deal.piece.name %> is accepted! Happy sharing!</h1>
   <% else %>
   <h1>Deal <%= @deal.id %> for <%= @deal.piece.name %> is proposed to <%= @deal.piece.user.profile.first_name %></h1>
   <% end %>
 
-  <div class="img_showpage">
-    <%= image_tag @deal.piece.image.to_s %>
+
+  <h1><%= @deal.piece.name %></h1>
+  <div class=datarow>
+    <div class="tablekey">
+      Brand:
+    </div>
+    <div class="tablevalue">
+      <%= @deal.piece.brand %>
+    </div>
   </div>
-  Piece: <%= @deal.piece.name %><br />
-  Brand: <%= @deal.piece.brand %><br />
-  Colour: <%= @deal.piece.colour %><br />
-  Size: <%= @deal.piece.size %><br />
-  Price category: <%= @deal.piece.price_cat %><br />
+  <div class=datarow>
+    <div class="tablekey">
+      Size:
+    </div>
+    <div class="tablevalue">
+      <%= @deal.piece.size %>
+    </div>
+  </div>
+  <div class=datarow>
+    <div class="tablekey">
+      Size:
+    </div>
+    <div class="tablevalue">
+      <%= @deal.piece.colour %>
+    </div>
+  </div>
+
+  <h1>Period</h1>
+
+  <div class=datarow>
+    <div class="tablekey">
+      Start reservation:
+    </div>
+    <div class="tablevalue">
+      <%= @deal.begin_res.strftime("%d %B %Y") %>
+    </div>
+  </div>
+  <div class=datarow>
+    <div class="tablekey">
+      End reservation:
+    </div>
+    <div class="tablevalue">
+      <%= @deal.end_res.strftime("%d %B %Y") %>
+    </div>
+  </div>
   <br />
 
-  <br />
-  <table>
-    <tr>
-      <th>Start date</th>
-      <th>End date</th>
-    </tr>
-    <tr>
-      <td><%= @deal.begin_res.strftime("%d %B %Y") %></td>
-      <td><%= @deal.end_res.strftime("%d %B %Y") %></td>
-    </tr>
-  </table>
 </div>

@@ -4,7 +4,7 @@
   <h2 class="warning">Proposals for hire out awaiting your review</h2>
 
   <div class="rent_overview">
-    <% @owneddeals.select{ |i| i[:proposal] == true }.each do |deal| %>
+    <% @owneddeals.select{ |i| ( i[:proposal] == true && i[:accepted] == false) }.each do |deal| %>
       <table class="warning">
         <tr>
           <td><%= deal.id %></td>
@@ -18,7 +18,7 @@
     <% end %>
     <br />
     <h2>Deals hired out</h2>
-    <% @owneddeals.select{ |i| i[:proposal] == false }.each do |deal| %>
+    <% @owneddeals.select{ |i| ( i[:proposal] == true && i[:accepted] == true) }.each do |deal| %>
       <table>
         <tr>
           <td><%= deal.id %></td>

@@ -3,11 +3,12 @@
 
     <div class="field">
       <%= f.label 'Are you accepting this proposal?' %>
-      <%= f.select :accepted, [[ 'yes', true ],[ 'no', false ]] %>      
+      <%= f.select :accepted, [[ 'yes', true ],[ 'no', false ]] %>
     </div>
-
+    <br />
+    
     <div class="actions">
-      <%= f.button :submit %>
+      <%= f.submit "Finalize", class: 'submitbutton' %>
     </div>
 
   <% end %>
