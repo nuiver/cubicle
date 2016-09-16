@@ -1,11 +1,11 @@
 <div class="img_showpage">
   <%= image_tag @piece.image.to_s %>
 </div>
-
+<div id="book-header">
 <h4>Book this item</h4>
 
 <h1><%= @piece.name %></h1>
-
+</div>
 <% if @piece.sizewarning(current_user.profile.size) %>
 <div class="warning"><h3>Are you aware that this piece is a size <%= @piece.size %>, not <%= current_user.profile.size %>?</h3></div>
 <% end %>
