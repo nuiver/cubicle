@@ -64,12 +64,12 @@ class PiecesController < ApplicationController
     Piece::TYPES.map { |typ|   (sorted_typelist << typ) if product_types.include? typ }
     @product_types_in_unfiltered_pieces = sorted_typelist
 
-    colours = @pieces.map{ |i| i[:colour] }.uniq
+    colours = @pieces_before.map{ |i| i[:colour] }.uniq
     sorted_colourlist = []
     Piece::COLOURS.map { |col|   (sorted_colourlist << col) if colours.include? col }
     @colours_in_unfiltered_pieces = sorted_colourlist
 
-    @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
+    @sizes_in_unfiltered_pieces = @pieces_before.map{ |i| i[:size] }.uniq.sort
 
 
     authorize! :read, @pieces
