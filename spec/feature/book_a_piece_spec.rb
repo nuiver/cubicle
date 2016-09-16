@@ -44,6 +44,17 @@ feature 'Book a piece', js: true do
 
     click_link('book-button')
 
-    expect(page).to have_content('Book this item')
+    fill_in('deal[begin_res]', with: '2016-01-01')
+    fill_in('deal[end_res]', with: '2016-01-05')
+
+    page.execute_script("$('.new_deal').submit()")
+
+    select('priority delivery', :from => 'deal[shipping]')
+    select('Skrill', :from => 'deal[pay_method]')
+
+    page.execute_script("$('.edit_deal').submit()")
+
+    expect(page).to have_content('for Mini Dress is proposed to Ella')
+
   end
 end
