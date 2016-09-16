@@ -2,7 +2,7 @@
 
 <div class="main container">
 
-  <% if current_page?(controller: 'pieces', action: 'type') %>
+  <% if params[:product_type] %>
     <h2><%= params[:product_type].pluralize.capitalize %></h2>
   <% end %>
 

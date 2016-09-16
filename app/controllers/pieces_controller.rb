@@ -21,7 +21,7 @@ class PiecesController < ApplicationController
     @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
     @product_types_in_unfiltered_pieces = @pieces.sort_types_in_collection(@pieces)
 
-    @pieces = @pieces.typesearch(params[:product_type]) if params[:product_type].present?
+    @pieces = @pieces.typesearch(params[:type]) if params[:type].present?
     @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
@@ -33,20 +33,33 @@ class PiecesController < ApplicationController
     @pieces = current_user.pieces.where("end_date >= '#{Time.zone.now.beginning_of_day}'")
     @colours_in_unfiltered_pieces = @pieces.sort_colours_in_collection(@pieces)
     @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
+
+    product_types = @pieces.map{ |i| i[:product_type] }.uniq
+    sorted_typelist = []
+    Piece::TYPES.map { |typ|   (sorted_typelist << typ) if product_types.include? typ }
+    @product_types_in_unfiltered_pieces = sorted_typelist
+
+    @pieces = @pieces.typesearch(params[:type]) if params[:type].present?
+    @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
+    @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
+    @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
+
     authorize! :read, @pieces
     render 'index'
   end
 
   def hearted
     @pieces = Piece.where("end_date >= '#{Time.zone.now.beginning_of_day}'")
-    @pieces = @pieces.typesearch(params[:product_type]) if params[:product_type].present?
+
+    @pieces_before = @pieces.select{|i| i.heart.users.ids.include? current_user.id }
+
+    @pieces = @pieces.typesearch(params[:type]) if params[:type].present?
     @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
     @pieces = @pieces.select{|i| i.heart.users.ids.include? current_user.id }
 
-
-    product_types = @pieces.map{ |i| i[:product_type] }.uniq
+    product_types = @pieces_before.map{ |i| i[:product_type] }.uniq
     sorted_typelist = []
     Piece::TYPES.map { |typ|   (sorted_typelist << typ) if product_types.include? typ }
     @product_types_in_unfiltered_pieces = sorted_typelist
@@ -147,6 +160,6 @@ private
   end
 
   def piece_params
-    params.require( :piece ).permit( :name, :brand, :description, :image, :image_b, :size, :colour, :product_type, :price_cat, :image_cache, :image_b_cache, :available, :begin_date, :end_date, :search, colour: [])
+    params.require( :piece ).permit( :name, :brand, :description, :image, :image_b, :size, :colour, :product_type, :price_cat, :image_cache, :image_b_cache, :available, :begin_date, :end_date, :search,  colour: [])
   end
 end
