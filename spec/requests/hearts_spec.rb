@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe "Hearts", type: :request do
-  describe "GET /hearts" do
-    it "works! (now write some real specs)" do
-      get hearts_path
-      expect(response).to have_http_status(200)
-    end
-  end
-end
+# RSpec.describe "Hearts", type: :request do
+#   describe "GET /hearts" do
+#     it "works! (now write some real specs)" do
+#       get hearts_path
+#       expect(response).to have_http_status(200)
+#     end
+#   end
+# end

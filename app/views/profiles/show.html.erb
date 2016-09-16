@@ -3,7 +3,7 @@
   <%= cl_image_tag(@profile.avatar, width: 250, height: 250, crop: :fill, gravity: :face, radius: :max) %></h1>
 </div>
 <div class='profile_item'>
-  <div class="profile_val"><h2><%= @profile.first_name %> <%= @profile.surname %></h2></div>
+  <div class="profile_val"><h2>Profile page of <%= @profile.first_name %> <%= @profile.surname %></h2></div>
 </div>
 <div class='profile_item'>
   <div class="profile_val">Favourite colour: <%= @profile.fav_color %></div>
