@@ -17,14 +17,18 @@ feature 'Check handling of pieces by user', js: true do
 
     fill_in('piece_name', with: 'Dress name')
     fill_in('piece_brand', with: 'Brand name')
-    attach_file('piece_image', './spec/feature/images/reddress2_f.jpg')
-    attach_file('piece_image_b', './spec/feature/images/reddress2_b.jpg')
+    # attach_file('piece_image', './spec/feature/images/reddress2_f.jpg')
+    # attach_file('piece_image_b', './spec/feature/images/reddress2_b.jpg')
+    fill_in('piece_begin_date', with: '2016-01-01')
+    fill_in('piece_end_date', with: '2016-01-05')
     select('6', :from => 'piece_size')
     select('black', :from => 'piece_colour')
     select('1', :from => 'piece_price_cat')
 
     page.execute_script("$('form').submit()")
 
-    expect(page).to have_content('Dress name')
+    # visit pieces_owned_path
+
+    expect(page).to have_content('DRESS NAME')
   end
 end

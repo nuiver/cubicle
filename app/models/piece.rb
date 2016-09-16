@@ -10,6 +10,8 @@ class Piece < ApplicationRecord
   validates :name, presence: true
   validates :size, presence: true
   validates :colour, presence: true
+  validates :begin_date, presence: true
+  validates :end_date, presence: true
 
   COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink', 'brown', 'grey', 'silver', 'black', 'white']
   UK_SIZES = [6, 8, 10, 12, 14, 16, 18]
