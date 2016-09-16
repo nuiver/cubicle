@@ -13,7 +13,7 @@ class Piece < ApplicationRecord
 
   COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink', 'brown', 'grey', 'silver', 'black', 'white']
   UK_SIZES = [6, 8, 10, 12, 14, 16, 18]
-  TYPES = ['dress', 'jacket', 'jeans', 'jumper', 'cardigan', 'jumpsuit', 'lingerie', 'shirt', 'shoes', 'shorts', 'skirt', 'swimwear', 'top', 'trousers', 'accessiories']
+  TYPES = ['dress', 'jacket', 'jeans', 'jumper', 'cardigan', 'jumpsuit', 'lingerie', 'shirt', 'shoes', 'shorts', 'skirt', 'swimwear', 'top', 'trousers', 'accessories']
 
   def self.order_by_new
     order(updated_at: :desc)
@@ -45,7 +45,7 @@ class Piece < ApplicationRecord
   end
 
   def self.typesearch(type)
-    where(product_type: type[:product_type])
+    where(product_type: type[:type])
   end
 
   def self.coloursearch(clr)
