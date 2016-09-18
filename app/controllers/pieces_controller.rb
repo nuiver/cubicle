@@ -141,6 +141,8 @@ class PiecesController < ApplicationController
 
   def destroy
     @piece = Piece.find(params[:id])
+    heart = Heart.where(piece_id: @piece.id)
+    heart.destroy_all
     piece = @piece.destroy
     redirect_to pieces_path
   end
