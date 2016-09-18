@@ -8,8 +8,15 @@
   <div class="item_show">
     <% if user_signed_in? && @piece.user.id == current_user.id %>
       <div class="user_dash">
-
-
+      <div class="dash-pauze">
+        <%= link_to "", piece_path(@piece.id), remote: true, class: "fa fa-pause" %>
+      </div>
+      <div class="dash-edit">
+        <%= link_to "", edit_piece_path(@piece.id), class: "fa fa-pencil" %>
+      </div>
+      <div class="dash-delete">
+        <%= link_to "", piece_path(@piece.id), method: 'delete', class: "fa fa-trash-o" %>
+      </div>
       </div>
     <% end %>
     <div class="img_front">
