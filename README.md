@@ -5,14 +5,14 @@ Final assignment for the two months training at Codaisseur
 september 2016
 
 ---
-Check out the the app running at Heroku:  [https://secure-plains-87033.herokuapp.com]()
+Check out the the app running at Heroku:  [https://secure-plains-87033.herokuapp.com](https://secure-plains-87033.herokuapp.com)
 
 
 ![](preview/thumbnail.jpg)
 
 **Concept**
 
-In week two of our training we were asked to build an AirBnB-like platform. The idea of a website were you could exchange cq. rent out clothing did not land with my team mates. We build another cool platform (see [https://github.com/nuiver/help-for-hire]()). After we finished the week project I decided to build it anyway and I started to use this side project as a sandbox.
+In week two of our training we were asked to build an AirBnB-like platform. The idea of a website were you could exchange cq. rent out clothing did not land with my team mates. We build another cool platform (see [https://github.com/nuiver/help-for-hire](https://github.com/nuiver/help-for-hire)). After we finished the week project I decided to build it anyway and I started to use this side project as a sandbox.
 
 
 **Used technologies**
