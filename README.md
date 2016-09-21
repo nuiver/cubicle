@@ -11,6 +11,7 @@ Check out the the app running at Heroku:  [https://secure-plains-87033.herokuapp
 ![](preview/thumbnail.jpg)
 
 **Concept**
+
 In week two of our training we were asked to build an AirBnB-like platform. The idea of a website were you could exchange cq. rent out clothing did not land with my team mates. We build another cool platform (see [https://github.com/nuiver/help-for-hire]()). After we finished the week project I decided to build it anyway and I started to use this side project as a sandbox.
 
 
@@ -20,8 +21,6 @@ In week two of our training we were asked to build an AirBnB-like platform. The 
 * Javascript
 * jQuery
 * AJAX
-
-Devise / cancancan
 
 **Aspects I am proud of**
 
