@@ -19,3 +19,6 @@
 # Ignore carrierwave uploads
 /public/uploads/
 /design/
+
+.DS_Store
+*/.DS_Store
