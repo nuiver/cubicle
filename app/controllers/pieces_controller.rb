@@ -152,6 +152,16 @@ class PiecesController < ApplicationController
   end
 
 
+  def get_subtype
+    type = params[:productType]
+    subtypes = Object.const_get( "Piece::" + "SUB_" + type.upcase )
+    x = subtypes.map.with_index { |x, i| [i, x] }.to_h
+    puts x
+    respond_to do |format|
+       format.json{ render json:  x.to_json }
+    end
+  end
+
 private
 
   def sort_colours_in_array(pieces)
@@ -162,6 +172,6 @@ private
   end
 
   def piece_params
-    params.require( :piece ).permit( :name, :brand, :description, :image, :image_b, :size, :colour, :product_type, :price_cat, :image_cache, :image_b_cache, :available, :begin_date, :end_date, :search,  colour: [])
+    params.require( :piece ).permit( :name, :brand, :description, :image, :image_b, :size, :colour, :product_type, :sub_type, :price_cat, :image_cache, :image_b_cache, :available, :begin_date, :end_date, :search,  colour: [])
   end
 end
