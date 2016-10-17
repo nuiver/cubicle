@@ -1,0 +1,27 @@
+$(document).ready(function() {
+  formhelper();
+});
+
+function formhelper() {
+  console.log('Form helper');
+  $("#piece_product_type").change(function() {
+    var productType = $("#piece_product_type").val();
+    // console.log(productType);
+    $.ajax({
+      url: '/pieces/get_subtype',
+      data: { productType },
+      dataType: 'JSON',
+      success: function(data) {
+        var values = $.map(data, function(v) { return v; });
+        $("#piece_sub_type").children().remove();
+        var $newOptions = values.map(function(val){
+          return '<option value="'+ val + '">' + val + '</option>';
+        });
+        console.log($newOptions);
+        $("#piece_sub_type").append($newOptions);
+      }
+    });
+  }
+
+  );
+}

@@ -9,7 +9,14 @@
 
     <div class="inputfield">
       <div class="label"><%= f.label :product_type %></div>
-      <div class="field"><%= f.select :product_type, Piece::TYPES.collect { |type| [ type, type ] } %></div>
+      <div class="field typefield"><%= f.select :product_type, Piece::TYPES.collect { |type| [ type, type ] } %></div>
+    </div>
+
+    <% subtypes = Object.const_get( "Piece::" + "SUB_" + f.object.product_type.upcase ) %>
+
+    <div class="inputfield">
+      <div class="label"><%= f.label :sub_type %></div>
+      <div class="field subfield"><%= f.select :sub_type, subtypes.collect { |type| [ type, type ] } %></div>
     </div>
 
     <div class="inputfield">

@@ -20,7 +20,23 @@ class Piece < ApplicationRecord
   LING_SIZES = BUST_SIZES.map do |b|
     CUP_SIZES.map { |cup| b + cup}
   end.flatten
-  TYPES = ['dress', 'jacket', 'jeans', 'jumper', 'cardigan', 'jumpsuit', 'lingerie', 'shirt', 'shoes', 'shorts', 'skirt', 'swimwear', 'top', 'trousers', 'accessories']
+  TYPES = ['dress', 'jacket', 'jeans', 'jumper', 'cardigan', 'jumpsuit', 'legwear','lingerie', 'shirt', 'shoes', 'shorts', 'skirt', 'swimwear', 'top', 'trousers', 'accessories']
+  SUB_DRESS = ['maxi dress', 'midi dress', 'mini dress', 'party dress', 'bodycon dress', 'work dress', 'printed dress', 'lace dress']
+  SUB_JACKET = ['biker jacket', 'bomber jacket', 'jacket', 'coat', 'parka', 'trench coat', 'leather jacket', 'fur jacket']
+  SUB_JEANS = ['cropped & ankle-length', 'regular jeans', 'flared jeans', 'jegging', 'high waisted jeans', 'skinny jeans', 'ripped jeans', ]
+  SUB_JUMPER = ['jumpers', 'knitted tops']
+  SUB_CARDIGAN = ['cardigans']
+  SUB_JUMPSUIT = ['jumpsuit', 'playsuit', 'unitard', 'dungarees']
+  SUB_LEGWEAR = ['socks', 'thights', 'knee high socks', 'over the knee socks', 'stay-ups']
+  SUB_LINGERIE = ['bra', 'body', 'lingerie set', 'slip', 'brief', 'thong', 'nightwear', 'shapewear']
+  SUB_SHIRT = ['blouse', 'shirt']
+  SUB_SHOES = ['ankle boots', 'flat shoes', 'flat sandals', 'heeled sandals', 'high heels', 'knee boots', 'over the keen boots', 'pumps', 'slippers', 'trainers' ]
+  SUB_SHORTS = ['casual shorts', 'denim shorts', 'tailored shorts', 'leather shorts']
+  SUB_SKIRT = ['maxi skirt', 'midi skirt', 'mini skirt', 'A-line skirt', 'Pencil skirt', 'Pleated skirt', 'Skater skirt', 'Tulle skirt', 'Leather skirt']
+  SUB_SWIMWEAR = ['bikini', 'swimsuit', 'beachwear']
+  SUB_TOP = ['cami top', 'long sleeve top', 'bandeau top', 'body', 'cold shoulder top', 'crop top', 'knitted top', 't-shirt', 'off shoulder top', 'roll neck top', 'tunic top']
+  SUB_TROUSERS = ['skinny trousers', 'tapered trousers', 'wide-leg trousers', 'legging', 'culotte', 'cigarette trousers', 'jogger' ]
+  SUB_ACCESSORIES = ['hat', 'cap', 'belt', 'scarve', 'sunglasses']
 
   def self.order_by_new
     order(updated_at: :desc)
