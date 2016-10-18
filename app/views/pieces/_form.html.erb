@@ -12,7 +12,11 @@
       <div class="field typefield"><%= f.select :product_type, Piece::TYPES.collect { |type| [ type, type ] } %></div>
     </div>
 
-    <% subtypes = Object.const_get( "Piece::" + "SUB_" + f.object.product_type.upcase ) %>
+    <% if f.object.product_type %>
+      <% subtypes = Object.const_get( "Piece::" + "SUB_" + f.object.product_type.upcase ) %>
+    <% else %>
+      <% subtypes = Piece::SUB_DRESS %>
+    <% end %>
 
     <div class="inputfield">
       <div class="label"><%= f.label :sub_type %></div>
@@ -44,11 +48,14 @@
       <div class="field"><%= f.file_field :image_b %></div>
     </div>
 
-    
-
     <div class="inputfield">
       <div class="label"><%= f.label :size %></div>
-      <div class="field"><%= f.select :size, Piece::UK_SIZES.collect { |size| [ size, size ] } %></div>
+      <div class="field">
+      <% if user_signed_in? %>
+        <%= f.select :size, Piece::UK_SIZES.collect { |size| [ size, size ] }, selected: current_user.profile.size %></div>
+      <% else %>
+        <%= f.select :size, Piece::UK_SIZES.collect { |size| [ size, size ] }, selected: 12 %></div>
+      <% end %>
     </div>
 
     <div class="inputfield">
@@ -58,7 +65,7 @@
 
     <div class="inputfield">
       <div class="label"><%= f.label 'Start date' %></div>
-      <div class="field"><%= f.date_field :begin_date  %></div>
+      <div class="field"><%= f.date_field :begin_date, value: Time.now.strftime('%Y-%m-%d')  %></div>
     </div>
 
     <div class="inputfield">

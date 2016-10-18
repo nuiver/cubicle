@@ -14,7 +14,7 @@ class Piece < ApplicationRecord
   validates :end_date, presence: true
 
   COLOURS = ['red', 'orange', 'yellow', 'taupe', 'lime', 'green', 'teal', 'blue', 'navy', 'purple', 'pink', 'brown', 'grey', 'silver', 'black', 'white', 'multi']
-  UK_SIZES = [6, 8, 10, 12, 14, 16, 18, 'One size']
+  UK_SIZES = [4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 'One size']
   BUST_SIZES = ["28", "30", "32", "34", "36", "38", "40", "42", "44", "46"]
   CUP_SIZES = ["AA","A","B","C","D","DD","E","F", "FF", "G"]
   LING_SIZES = BUST_SIZES.map do |b|
