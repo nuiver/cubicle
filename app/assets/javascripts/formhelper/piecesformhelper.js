@@ -11,7 +11,7 @@ function formhelper() {
       var subType = 'LING'
       $.ajax({
         url: '/pieces/get_sizelist',
-        data: { subType },
+        data: { 'subtype': subType },
         dataType: 'JSON',
         success: function(data) {
           var sizes = $.map(data, function(v) { return v; });
@@ -26,7 +26,7 @@ function formhelper() {
       var subType = 'UK'
       $.ajax({
         url: '/pieces/get_sizelist',
-        data: { subType },
+        data: { 'subtype':subType },
         dataType: 'JSON',
         success: function(data) {
           var sizes = $.map(data, function(v) { return v; });
@@ -45,7 +45,7 @@ function formhelper() {
     // console.log(productType);
     $.ajax({
       url: '/pieces/get_subtype',
-      data: { productType },
+      data: { 'productType':productType },
       dataType: 'JSON',
       success: function(data) {
         var values = $.map(data, function(v) { return v; });

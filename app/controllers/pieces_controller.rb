@@ -163,7 +163,7 @@ class PiecesController < ApplicationController
   end
 
   def get_sizelist
-    subtype = params[:subType]
+    subtype = params[:subtype]
     sizes = Object.const_get( "Piece::" + subtype.upcase + "_SIZES").map.with_index { |x, i| [i, x] }.to_h
     puts sizes
     respond_to do |format|
