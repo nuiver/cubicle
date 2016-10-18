@@ -3,7 +3,6 @@ $(document).ready(function() {
 });
 
 function formhelper() {
-  console.log('Form helper');
 
   function subtypeBra() {
     console.log('subtypeBra called');
