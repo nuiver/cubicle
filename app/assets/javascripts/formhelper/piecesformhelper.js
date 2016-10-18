@@ -5,7 +5,6 @@ $(document).ready(function() {
 function formhelper() {
 
   function subtypeBra() {
-    console.log('subtypeBra called');
     if ( $('#piece_sub_type').val() == 'bra' ) {
       var subType = 'LING'
       $.ajax({
@@ -52,7 +51,6 @@ function formhelper() {
         var $newOptions = values.map(function(val){
           return '<option value="'+ val + '">' + val + '</option>';
         });
-        console.log($newOptions);
         $("#piece_sub_type").append($newOptions);
         subtypeBra();
       }

@@ -21,7 +21,7 @@ class Piece < ApplicationRecord
     CUP_SIZES.map { |cup| b + cup}
   end.flatten
   TYPES = ['dress', 'jacket', 'jeans', 'jumper', 'cardigan', 'jumpsuit', 'legwear','lingerie', 'shirt', 'shoes', 'shorts', 'skirt', 'swimwear', 'top', 'trousers', 'accessories']
-  SUB_DRESS = ['maxi dress', 'midi dress', 'mini dress', 'party dress', 'bodycon dress', 'work dress', 'printed dress', 'lace dress']
+  SUB_DRESS = ['maxi dress', 'midi dress', 'mini dress', 'party dress', 'bodycon dress', 'knitted dress', 'work dress', 'printed dress', 'lace dress']
   SUB_JACKET = ['biker jacket', 'bomber jacket', 'jacket', 'coat', 'parka', 'trench coat', 'leather jacket', 'fur jacket']
   SUB_JEANS = ['cropped & ankle-length', 'regular jeans', 'flared jeans', 'jegging', 'high waisted jeans', 'skinny jeans', 'ripped jeans', ]
   SUB_JUMPER = ['jumpers', 'knitted tops']
