@@ -4,6 +4,42 @@ $(document).ready(function() {
 
 function formhelper() {
   console.log('Form helper');
+
+  function subtypeBra() {
+    console.log('subtypeBra called');
+    if ( $('#piece_sub_type').val() == 'bra' ) {
+      var subType = 'LING'
+      $.ajax({
+        url: '/pieces/get_sizelist',
+        data: { subType },
+        dataType: 'JSON',
+        success: function(data) {
+          var sizes = $.map(data, function(v) { return v; });
+          $("#piece_size").children().remove();
+          var $newSizes = sizes.map(function(val){
+            return '<option value="'+ val + '">' + val + '</option>';
+          });
+          $("#piece_size").append($newSizes);
+        }
+      });
+    } else  {
+      var subType = 'UK'
+      $.ajax({
+        url: '/pieces/get_sizelist',
+        data: { subType },
+        dataType: 'JSON',
+        success: function(data) {
+          var sizes = $.map(data, function(v) { return v; });
+          $("#piece_size").children().remove();
+          var $newSizes = sizes.map(function(val){
+            return '<option value="'+ val + '">' + val + '</option>';
+          });
+          $("#piece_size").append($newSizes);
+        }
+      });
+    }
+  };
+
   $("#piece_product_type").change(function() {
     var productType = $("#piece_product_type").val();
     // console.log(productType);
@@ -19,9 +55,11 @@ function formhelper() {
         });
         console.log($newOptions);
         $("#piece_sub_type").append($newOptions);
+        subtypeBra();
       }
     });
   }
-
   );
+
+  $("#piece_sub_type").change( subtypeBra );
 }
