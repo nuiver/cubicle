@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'pieces/owned' => 'pieces#owned', as: :pieces_owned
   get 'pieces/hearted' => 'pieces#hearted', as: :pieces_hearted
   get 'pieces/get_subtype' => 'pieces#get_subtype'
+  get 'pieces/get_sizelist' => 'pieces#get_sizelist'
   get 'pieces/type/:product_type' => 'pieces#type', as: :pieces_type
 
   get 'pieces/:id/own' => 'pieces#own', as: :piece_own

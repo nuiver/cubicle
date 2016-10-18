@@ -162,6 +162,15 @@ class PiecesController < ApplicationController
     end
   end
 
+  def get_sizelist
+    subtype = params[:subType]
+    sizes = Object.const_get( "Piece::" + subtype.upcase + "_SIZES").map.with_index { |x, i| [i, x] }.to_h
+    puts sizes
+    respond_to do |format|
+       format.json{ render json:  sizes.to_json }
+    end
+  end
+
 private
 
   def sort_colours_in_array(pieces)

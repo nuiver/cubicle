@@ -44,6 +44,8 @@
       <div class="field"><%= f.file_field :image_b %></div>
     </div>
 
+    
+
     <div class="inputfield">
       <div class="label"><%= f.label :size %></div>
       <div class="field"><%= f.select :size, Piece::UK_SIZES.collect { |size| [ size, size ] } %></div>
