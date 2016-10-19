@@ -14,6 +14,7 @@
     <% end %>
     <div class="name_item"><%= link_to "#{piece.name}", piece_path( piece.id ), method: :get %></div>
     <div class="brand_item"><%= piece.brand %></div><br/>
+    <%= piece.sub_type %><br/>
     <%= piece.colour %><br/>
   </div>
   <div class="namebar">
