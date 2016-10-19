@@ -9,16 +9,17 @@ feature 'Check handling of pieces by user', js: true do
 
     visit root_path
     click_link('LOG IN')
-    fill_in('Email', :with => 'ella@dress.com')
-    fill_in('Password', :with => 'abcd1234')
+    fill_in('user_email', :with => 'ella@dress.com')
+    fill_in('user_password', :with => 'abcd1234')
     page.execute_script("$('form').submit()")
 
     click_link('add_piece')
 
     fill_in('piece_name', with: 'Dress name')
     fill_in('piece_brand', with: 'Brand name')
-    attach_file('piece_image', './spec/feature/images/reddress2_f.jpg')
-    attach_file('piece_image_b', './spec/feature/images/reddress2_b.jpg')
+
+    attach_file('piece_image', File.join(Rails.root, '/spec/feature/images/reddress2_f.jpg'))
+    attach_file('piece_image_b', File.join(Rails.root, '/spec/feature/images/reddress2_b.jpg'))
     fill_in('piece_begin_date', with: '2016-01-01')
     fill_in('piece_end_date', with: '2016-01-05')
     select('6', :from => 'piece_size')
@@ -28,6 +29,8 @@ feature 'Check handling of pieces by user', js: true do
     page.execute_script("$('form').submit()")
 
     # visit pieces_owned_path
+    sleep(30)
+
 
     expect(page).to have_content('DRESS NAME')
   end

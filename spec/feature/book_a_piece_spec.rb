@@ -54,6 +54,7 @@ feature 'Book a piece', js: true do
 
     page.execute_script("$('.edit_deal').submit()")
 
+
     expect(page).to have_content('for Mini Dress is proposed to Ella')
 
   end
