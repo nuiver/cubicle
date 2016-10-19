@@ -155,19 +155,17 @@ class PiecesController < ApplicationController
   def get_subtype
     type = params[:productType]
     subtypes = Object.const_get( "Piece::" + "SUB_" + type.upcase )
-    x = subtypes.map.with_index { |x, i| [i, x] }.to_h
-    puts x
     respond_to do |format|
-       format.json{ render json:  x.to_json }
+       format.json{ render json: { "subtypes": subtypes } }
     end
   end
 
   def get_sizelist
     subtype = params[:subtype]
-    sizes = Object.const_get( "Piece::" + subtype.upcase + "_SIZES").map.with_index { |x, i| [i, x] }.to_h
-    puts sizes
+    sizes = Object.const_get( "Piece::" + subtype.upcase + "_SIZES")
+    puts sizes.class
     respond_to do |format|
-       format.json{ render json:  sizes.to_json }
+       format.json{ render json:  { "sizes": sizes } }
     end
   end
 

@@ -51,10 +51,10 @@
     <div class="inputfield">
       <div class="label"><%= f.label :size %></div>
       <div class="field">
-      <% if user_signed_in? %>
+      <% if user_signed_in? && !f.object.size %>
         <%= f.select :size, Piece::UK_SIZES.collect { |size| [ size, size ] }, selected: current_user.profile.size %></div>
       <% else %>
-        <%= f.select :size, Piece::UK_SIZES.collect { |size| [ size, size ] }, selected: 12 %></div>
+        <%= f.select :size, Piece::UK_SIZES.collect { |size| [ size, size ] } %></div>
       <% end %>
     </div>
 
@@ -65,7 +65,7 @@
 
     <div class="inputfield">
       <div class="label"><%= f.label 'Start date' %></div>
-      <div class="field"><%= f.date_field :begin_date, value: Time.now.strftime('%Y-%m-%d')  %></div>
+      <div class="field"><%= f.date_field :begin_date  %></div>
     </div>
 
     <div class="inputfield">

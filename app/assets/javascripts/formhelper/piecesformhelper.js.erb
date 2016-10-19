@@ -4,33 +4,40 @@ $(document).ready(function() {
 
 function formhelper() {
 
+  var initSize = $('#piece_size').val();
+
   function subtypeBra() {
     if ( $('#piece_sub_type').val() == 'bra' ) {
-      var subType = 'LING'
+      var subType = 'LING';
       $.ajax({
         url: '/pieces/get_sizelist',
         data: { 'subtype': subType },
         dataType: 'JSON',
         success: function(data) {
-          var sizes = $.map(data, function(v) { return v; });
+          var sizes = data.sizes;
+          // $.map(data, function(v) { return v; });
           $("#piece_size").children().remove();
           var $newSizes = sizes.map(function(val){
-            return '<option value="'+ val + '">' + val + '</option>';
+            var sameSize;
+            if (val == initSize) { sameSize = 'selected="selected"' } else { sameSize = ''};
+            return '<option ' + sameSize + ' value="'+ val + '">' + val + '</option>';
           });
           $("#piece_size").append($newSizes);
         }
       });
     } else  {
-      var subType = 'UK'
+      var subType = 'UK';
       $.ajax({
         url: '/pieces/get_sizelist',
         data: { 'subtype':subType },
         dataType: 'JSON',
         success: function(data) {
-          var sizes = $.map(data, function(v) { return v; });
+          var sizes = data.sizes;
           $("#piece_size").children().remove();
           var $newSizes = sizes.map(function(val){
-            return '<option value="'+ val + '">' + val + '</option>';
+            var sameSize;
+            if (val == initSize) { sameSize = 'selected="selected"' } else { sameSize = ''};
+            return '<option ' + sameSize + ' value="'+ val + '">' + val + '</option>';
           });
           $("#piece_size").append($newSizes);
         }
@@ -40,13 +47,12 @@ function formhelper() {
 
   $("#piece_product_type").change(function() {
     var productType = $("#piece_product_type").val();
-    // console.log(productType);
     $.ajax({
       url: '/pieces/get_subtype',
       data: { 'productType':productType },
       dataType: 'JSON',
       success: function(data) {
-        var values = $.map(data, function(v) { return v; });
+        var values = data.subtypes;
         $("#piece_sub_type").children().remove();
         var $newOptions = values.map(function(val){
           return '<option value="'+ val + '">' + val + '</option>';
