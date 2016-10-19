@@ -32,7 +32,7 @@ class Piece < ApplicationRecord
   SUB_SHIRT = ['blouse', 'shirt']
   SUB_SHOES = ['ankle boots', 'flat shoes', 'flat sandals', 'heeled sandals', 'high heels', 'knee boots', 'over the keen boots', 'pumps', 'slippers', 'trainers' ]
   SUB_SHORTS = ['casual shorts', 'denim shorts', 'tailored shorts', 'leather shorts']
-  SUB_SKIRT = ['maxi skirt', 'midi skirt', 'mini skirt', 'A-line skirt', 'Pencil skirt', 'Pleated skirt', 'Skater skirt', 'Tulle skirt', 'Leather skirt']
+  SUB_SKIRT = ['maxi skirt', 'midi skirt', 'mini skirt', 'A-line skirt', 'pencil skirt', 'pleated skirt', 'skater skirt', 'tulle skirt', 'leather skirt']
   SUB_SWIMWEAR = ['bikini', 'swimsuit', 'beachwear']
   SUB_TOP = ['cami top', 'long sleeve top', 'bandeau top', 'body', 'cold shoulder top', 'crop top', 'knitted top', 't-shirt', 'off shoulder top', 'roll neck top', 'tunic top']
   SUB_TROUSERS = ['skinny trousers', 'tapered trousers', 'wide-leg trousers', 'legging', 'culotte', 'cigarette trousers', 'jogger' ]
