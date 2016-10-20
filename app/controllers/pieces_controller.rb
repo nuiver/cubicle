@@ -25,7 +25,7 @@ class PiecesController < ApplicationController
     @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
-    @pieces = @pieces.sort_by { |item| item[:id] }.reverse
+    @pieces = @pieces.sort_by {|i| i[:updated_at] }.reverse
     authorize! :read, @pieces
   end
 
@@ -43,6 +43,7 @@ class PiecesController < ApplicationController
     @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
+    @pieces = @pieces.sort_by {|i| i[:updated_at] }.reverse
 
     authorize! :read, @pieces
     render 'index'
@@ -58,6 +59,7 @@ class PiecesController < ApplicationController
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
     @pieces = @pieces.select{|i| i.heart.users.ids.include? current_user.id }
+    @pieces = @pieces.sort_by {|i| i[:updated_at] }.reverse
 
     product_types = @pieces_before.map{ |i| i[:product_type] }.uniq
     sorted_typelist = []
@@ -93,7 +95,7 @@ class PiecesController < ApplicationController
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
 
-    @pieces = @pieces.sort_by { |item| item[:id] }.reverse
+    @pieces = @pieces.sort_by {|i| i[:updated_at] }.reverse
     render 'index'
   end
 
