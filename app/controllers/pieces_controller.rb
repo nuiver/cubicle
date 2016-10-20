@@ -18,7 +18,7 @@ class PiecesController < ApplicationController
 
     # @pieces = @pieces.where("end_date >= #{Time.zone.now.beginning_of_day}")
     @colours_in_unfiltered_pieces = @pieces.sort_colours_in_collection(@pieces)
-    @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
+    @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort { |a,b| a.to_i <=> b.to_i }
     @product_types_in_unfiltered_pieces = @pieces.sort_types_in_collection(@pieces)
 
     @pieces = @pieces.typesearch(params[:type]) if params[:type].present?
