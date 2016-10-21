@@ -42,8 +42,7 @@ feature 'Book a piece', js: true do
 
     click_link('Mini Dress')
 
-    click_link("I want this piece")
-    page.execute_script('$("#book-button").trigger("click")')
+    find('#book-button').click
 
     fill_in('deal_begin_res', with: '2016-01-01')
     fill_in('deal_end_res', with: '2016-01-05')
