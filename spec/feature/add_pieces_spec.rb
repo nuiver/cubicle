@@ -18,8 +18,8 @@ feature 'Check handling of pieces by user', js: true do
     fill_in('piece_name', with: 'Dress name')
     fill_in('piece_brand', with: 'Brand name')
 
-    attach_file('piece_image', File.join(Rails.root, '/spec/feature/images/reddress2_f.jpg'))
-    attach_file('piece_image_b', File.join(Rails.root, '/spec/feature/images/reddress2_b.jpg'))
+    attach_file('piece_image', File.join(Rails.root, '/spec/feature/images/testimage.jpg'))
+    attach_file('piece_image_b', File.join(Rails.root, '/spec/feature/images/testimage.jpg'))
     fill_in('piece_begin_date', with: '2016-01-01')
     fill_in('piece_end_date', with: '2016-01-05')
     select('6', :from => 'piece_size')
@@ -29,8 +29,7 @@ feature 'Check handling of pieces by user', js: true do
     page.execute_script("$('form').submit()")
 
     # visit pieces_owned_path
-    sleep(30)
-
+    sleep(5)
 
     expect(page).to have_content('DRESS NAME')
   end
