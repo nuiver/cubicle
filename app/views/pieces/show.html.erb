@@ -12,7 +12,7 @@
         <%= link_to "", piece_path(@piece.id), remote: true, class: "fa fa-pause" %>
       </div>
       <div class="dash-edit">
-        <%= link_to "", edit_piece_path(@piece.id), class: "fa fa-pencil", method: :get %>
+        <%= link_to "", edit_piece_path(@piece.id), class: "fa fa-pencil" %>
       </div>
       <div class="dash-delete">
         <%= link_to "", piece_path(@piece.id), method: 'delete', class: "fa fa-trash-o" %>
@@ -63,7 +63,7 @@
       <% if user_signed_in? && current_user != @piece.user %>
         <div class="item_button btn">
             <%= link_to "", new_deal_path(@piece.id), remote: true, class: " fa fa-shopping-bag" %>
-            <%= link_to "  I want this piece", new_deal_path(@piece.id), remote: true, id: "book-button" %>
+            <%= link_to "I want this piece", new_deal_path(@piece.id), remote: true, id: "book-button" %>
         </div>
       <% elsif !user_signed_in? %>
       <div class="item_button btn">
