@@ -4,7 +4,7 @@
       <%= render "layouts/menu_product_types" %>
     </div>
     <ul class="nav">
-      <li><%= link_to 'LOOK BY PRODUCT', "#", id: 'nav_product', remote: true %></li>
+      <li><%= link_to 'FIND BY STYLE', "#", id: 'nav_product', remote: true %></li>
       <% if user_signed_in? %>
         <% if current_user.has_hearted? %>
           <li><%= link_to "HEARTED PIECES", pieces_hearted_path, method: :get %></li>
