@@ -25,12 +25,13 @@ class PiecesController < ApplicationController
     @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
-    @pieces = @pieces.sort_by {|i| i[:updated_at] }.reverse
+    # @pieces = @pieces.sort_by {|i| i[:updated_at] }.reverse
+    @pieces = @pieces.paginate(:page => params[:page], :per_page => 8)
     authorize! :read, @pieces
   end
 
   def owned
-    @pieces = current_user.pieces.where("end_date >= '#{Time.zone.now.beginning_of_day}'")
+    @pieces = current_user.pieces.where("end_date >= '#{Time.zone.now.beginning_of_day}'").order_by_new
     @colours_in_unfiltered_pieces = @pieces.sort_colours_in_collection(@pieces)
     @sizes_in_unfiltered_pieces = @pieces.map{ |i| i[:size] }.uniq.sort
 
@@ -43,7 +44,7 @@ class PiecesController < ApplicationController
     @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
-    @pieces = @pieces.sort_by {|i| i[:updated_at] }.reverse
+    @pieces = @pieces.paginate(:page => params[:page], :per_page => 8)
 
     authorize! :read, @pieces
     render 'index'
@@ -59,7 +60,8 @@ class PiecesController < ApplicationController
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
     @pieces = @pieces.select{|i| i.heart.users.ids.include? current_user.id }
-    @pieces = @pieces.sort_by {|i| i[:updated_at] }.reverse
+    @pieces = Piece.where(id: @pieces.map(&:id)).order_by_new
+    @pieces = @pieces.paginate(:page => params[:page], :per_page => 8)
 
     product_types = @pieces_before.map{ |i| i[:product_type] }.uniq
     sorted_typelist = []
@@ -81,7 +83,7 @@ class PiecesController < ApplicationController
   def type
     authorize! :read, @pieces
 
-    @pieces = Piece.where(product_type: params[:product_type])
+    @pieces = Piece.where(product_type: params[:product_type]).order_by_new
 
     colours = @pieces.map{ |i| i[:colour] }.uniq
     sorted_colourlist = []
@@ -94,8 +96,8 @@ class PiecesController < ApplicationController
     @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
+    @pieces = @pieces.paginate(:page => params[:page], :per_page => 8)
 
-    @pieces = @pieces.sort_by {|i| i[:updated_at] }.reverse
     render 'index'
   end
 
