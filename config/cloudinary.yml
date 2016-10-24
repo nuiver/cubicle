@@ -2,13 +2,16 @@ development:
   cloud_name: "dqev3rwfk"
   api_key: "369884322226721"
   api_secret: "leCWC8dLDlDOXPisMNV6njsVU2E"
+  secure: true
 
 test:
   cloud_name: "dqev3rwfk"
   api_key: "369884322226721"
   api_secret: "leCWC8dLDlDOXPisMNV6njsVU2E"
+  secure: true
 
 production:
   cloud_name: "dqev3rwfk"
   api_key: "369884322226721"
   api_secret: "leCWC8dLDlDOXPisMNV6njsVU2E"
+  secure: true
