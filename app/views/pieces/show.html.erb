@@ -29,7 +29,7 @@
       <div style="background-color:<%= @piece.colour %>; height:400px;">
         <%= cl_image_tag @piece.image, transformation: [ {effect: 'colorize:80'}] %>
       </div>
-      <% if user_signed_in? && @piece.size == current_user.profile.size %>
+      <% if user_signed_in? && @piece.size == current_user.profile.size.to_s %>
         <div class="fit item_size">
       <% else %>
         <div class="item_size">
@@ -68,7 +68,7 @@
       <% elsif !user_signed_in? %>
       <div class="item_button btn">
           <%= link_to "", new_deal_path(@piece.id), class: " fa fa-arrow-circle-o-right" %>
-          <%= link_to "   Log in to book", new_user_session_path  %>
+          <%= link_to "   Log in first", new_user_session_path  %>
       </div>
       <% end %>
     </div>
