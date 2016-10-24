@@ -6,7 +6,7 @@
 
 <h1><%= @piece.name %></h1>
 </div>
-<% if @piece.sizewarning(current_user.profile.size) %>
+<% if @piece.sizewarning(current_user.profile.size.to_s) %>
 <div class="warning"><h3>Are you aware that this piece is a size <%= @piece.size %>, not <%= current_user.profile.size %>?</h3></div>
 <% end %>
 

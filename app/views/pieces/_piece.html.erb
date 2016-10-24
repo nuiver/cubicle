@@ -1,5 +1,5 @@
 <div class="item">
-  <% if user_signed_in? && piece.size == current_user.profile.size %>
+  <% if user_signed_in? && piece.size == current_user.profile.size.to_s %>
     <div class="sizeoval fit">
   <% else %>
     <div class="sizeoval">
