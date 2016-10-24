@@ -183,6 +183,6 @@ private
   end
 
   def piece_params
-    params.require( :piece ).permit( :name, :brand, :description, :image, :image_b, :size, :colour, :product_type, :sub_type, :price_cat, :image_cache, :image_b_cache, :available, :begin_date, :end_date, :search,  colour: [])
+    params.require( :piece ).permit( :name, :brand, :description, :image, :image_b, :size, :ling_size, :shoe_size, :letter_size, :colour, :product_type, :sub_type, :price_cat, :image_cache, :image_b_cache, :available, :begin_date, :end_date, :search,  colour: [])
   end
 end

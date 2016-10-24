@@ -68,8 +68,20 @@
         <%= profile.select :fav_color, Piece::COLOURS.collect { |col| [ col, col ] } %>
       </div>
       <div class="field">
-        <%= profile.label :size %><br />
+        <%= profile.label "UK size" %><br />
         <%= profile.select :size, Piece::UK_SIZES.collect { |sz| [ sz, sz ] } %>
+      </div>
+      <div class="field">
+        <%= profile.label "Size" %><br />
+        <%= profile.select :letter_size, Piece::LETTER_SIZES.collect { |sz| [ sz, sz ] } %>
+      </div>
+      <div class="field">
+        <%= profile.label "Bra size" %><br />
+        <%= profile.select :ling_size, Piece::LING_SIZES.collect { |sz| [ sz, sz ] } %>
+      </div>
+      <div class="field">
+        <%= profile.label "Shoe size" %><br />
+        <%= profile.select :shoe_size, Piece::SHOE_SIZES.collect { |sz| [ sz, sz ] } %>
       </div>
 
     <% end %>
