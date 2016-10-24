@@ -68,21 +68,28 @@ function heartPiece() {
 
 };
 
-function getDistance(x){
+function getDistance(origin){
 
-  var y = getCookie('usertown');
+  var destination = getCookie('usertown');
 
-  $.ajax({
-      url: "https://maps.googleapis.com/maps/api/distancematrix/json?origins="+x+"&destinations="+y+"&key=AIzaSyA8vWOJFz6zehCpsh8CIckrpjiF-DR-OVo",
-      type: "GET",
-      dataType: 'json',
-      cache: false,
-      success: function(response){
-      var dist = response.rows["0"].elements["0"].distance.text;
-      $("."+x).text( dist );
+  var service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix(
+      {
+        origins: [origin],
+        destinations: [destination],
+        travelMode: 'DRIVING',
+        unitSystem: google.maps.UnitSystem.METRIC,
+        avoidHighways: false,
+        avoidTolls: false,
+      }, callback);
+
+    function callback(response, status) {
+      if (status !== 'OK') {
+        console.log('Error was: ' + status);
+      } else {
+        $("."+origin).text(response.rows["0"].elements["0"].distance.text);
       }
-  });
-
+    };
 };
 
 function darkBackgroundClick() {
