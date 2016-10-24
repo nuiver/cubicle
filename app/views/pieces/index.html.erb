@@ -7,7 +7,23 @@
   <% end %>
 
   <% if @pieces.present? %>
-    <%= render @pieces %>
+
+    <div class="digg_pagination">
+      <div class="page_info">
+        <%= page_entries_info @pieces %>
+      </div>
+    </div>
+
+    <div class="piecesbox">
+      <%= render @pieces %>
+    </div>
+
+    <div class="paginationbox">
+      <div class="digg_pagination">
+        <%= will_paginate @pieces, :container => false %>
+      </div>
+    </div>
+
   <% else %>
     <h1>Sorry, no pieces found</h1>
     <p>There are no items with these term(s) <%= params[:search] %> on Cubicle today.</p>

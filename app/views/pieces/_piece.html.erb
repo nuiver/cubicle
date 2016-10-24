@@ -1,11 +1,10 @@
 <div class="item">
   <% if user_signed_in? && piece.size == current_user.profile.size.to_s %>
-    <div class="sizeoval fit">
+    <div class="sizeoval fit"><p><%= piece.size %></p></div>
   <% else %>
-    <div class="sizeoval">
+    <div class="sizeoval"><p><%= piece.size %></p></div>
   <% end %>
-      <p><%= piece.size %></p>
-    </div>
+
   <div class="infotag">
     <% if user_signed_in? && current_user.hearts.ids.include?(piece.heart.id) %>
       <a id="heart-<%= piece.heart.id %>" href="#" class="fa fa-heart" data-remote="true"></a>
