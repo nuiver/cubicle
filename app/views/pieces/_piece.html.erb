@@ -34,6 +34,10 @@
     </div>
   </div>
   <div class="img_preview">
-    <%= link_to image_tag(piece.image), piece_path( piece.id ), method: :get %>
+    <%= link_to piece_path( piece.id ) do %>
+       <%= image_tag piece.image.url,
+            onMouseover: "this.src='#{image_path(piece.image_b.url)}'",
+            onMouseout: "this.src='#{image_path(piece.image.url)}'" %>
+    <% end %>
   </div>
 </div>
