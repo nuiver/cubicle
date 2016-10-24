@@ -29,7 +29,7 @@
       <div style="background-color:<%= @piece.colour %>; height:400px;">
         <%= cl_image_tag @piece.image, transformation: [ {effect: 'colorize:80'}] %>
       </div>
-      <% if user_signed_in? && @piece.size == current_user.profile.size.to_s %>
+      <% if user_signed_in? && size_match( @piece.size, current_user.profile ) %>
         <div class="fit item_size">
       <% else %>
         <div class="item_size">

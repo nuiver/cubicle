@@ -20,6 +20,8 @@ class Piece < ApplicationRecord
   LING_SIZES = BUST_SIZES.map do |b|
     CUP_SIZES.map { |cup| b + cup}
   end.flatten
+  LETTER_SIZES = ["XXS", "XS", "S", "M", "L", "XL", "XXL"]
+  SHOE_SIZES = ["2","2.5","3","3.5","4","4.5","5","5.5","6","6.5","7","7.5","8","8.5","9","9.5","10"]
   TYPES = ['dress', 'jacket', 'jeans', 'jumper', 'cardigan', 'jumpsuit', 'legwear','lingerie', 'shirt', 'shoes', 'shorts', 'skirt', 'swimwear', 'top', 'trousers', 'accessories']
   SUB_DRESS = ['maxi dress', 'midi dress', 'mini dress', 'party dress', 'bodycon dress', 'knitted dress', 'work dress', 'printed dress', 'lace dress']
   SUB_JACKET = ['biker jacket', 'bomber jacket', 'jacket', 'coat', 'parka', 'trench coat', 'leather jacket', 'fur jacket']

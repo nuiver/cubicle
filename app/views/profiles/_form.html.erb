@@ -71,10 +71,21 @@
   </div>
 
   <div class="field">
-    <%= f.label :size %><br />
+    <%= f.label "UK Size" %><br />
     <%= f.select :size, Piece::UK_SIZES.collect { |sz| [ sz, sz ] } %>
   </div>
-  
+  <div class="field">
+    <%= f.label "Size" %><br />
+    <%= f.select :letter_size, Piece::LETTER_SIZES.collect { |sz| [ sz, sz ] } %>
+  </div>
+  <div class="field">
+    <%= f.label "Bra size" %><br />
+    <%= f.select :ling_size, Piece::LING_SIZES.collect { |sz| [ sz, sz ] } %>
+  </div>
+  <div class="field">
+    <%= f.label "Shoe size" %><br />
+    <%= f.select :shoe_size, Piece::SHOE_SIZES.collect { |sz| [ sz, sz ] } %>
+  </div>
   <div class="actions">
     <%= f.submit "Save your profile"%>
   </div>
