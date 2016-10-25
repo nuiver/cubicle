@@ -26,7 +26,7 @@ class PiecesController < ApplicationController
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
     # @pieces = @pieces.sort_by {|i| i[:updated_at] }.reverse
-    @pieces = @pieces.paginate(:page => params[:page], :per_page => 8)
+    @pieces = @pieces.paginate(:page => params[:page], :per_page => 10)
     authorize! :read, @pieces
   end
 
@@ -44,7 +44,7 @@ class PiecesController < ApplicationController
     @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
-    @pieces = @pieces.paginate(:page => params[:page], :per_page => 8)
+    @pieces = @pieces.paginate(:page => params[:page], :per_page => 10)
 
     authorize! :read, @pieces
     render 'index'
@@ -61,7 +61,7 @@ class PiecesController < ApplicationController
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
     @pieces = @pieces.select{|i| i.heart.users.ids.include? current_user.id }
     @pieces = Piece.where(id: @pieces.map(&:id)).order_by_new
-    @pieces = @pieces.paginate(:page => params[:page], :per_page => 8)
+    @pieces = @pieces.paginate(:page => params[:page], :per_page => 10)
 
     product_types = @pieces_before.map{ |i| i[:product_type] }.uniq
     sorted_typelist = []
@@ -96,7 +96,7 @@ class PiecesController < ApplicationController
     @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
-    @pieces = @pieces.paginate(:page => params[:page], :per_page => 8)
+    @pieces = @pieces.paginate(:page => params[:page], :per_page => 10)
 
     render 'index'
   end

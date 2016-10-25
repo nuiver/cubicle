@@ -1,6 +1,6 @@
 <%= render 'filter' %>
 
-<div class="main container">
+<div class="container main">
 
   <% if params[:product_type] %>
     <h2><%= params[:product_type].pluralize.capitalize %></h2>
@@ -8,15 +8,65 @@
 
   <% if @pieces.present? %>
 
-    <div class="digg_pagination">
+    <div class="digg_pagination six columns">
       <div class="page_info">
         <%= page_entries_info @pieces %>
       </div>
     </div>
+    <div class="offset-by-six columns"></div>
 
-    <div class="piecesbox">
-      <%= render @pieces %>
-    </div>
+
+    <% @pieces.in_groups_of(2, false).each do |group| %>
+      <div class="row">
+        <% group.each do |piece| %>
+          <div class="six columns item">
+            <div class="six columns">
+              <% if user_signed_in? && size_match( piece.size, current_user.profile ) %>
+                <div class="sizeoval fit"><p><%= piece.size %></p></div>
+              <% else %>
+                <div class="sizeoval"><p><%= piece.size %></p></div>
+              <% end %>
+              <div class="img_preview">
+                <%= link_to piece_path( piece.id ) do %>
+                   <%= image_tag piece.image.url,
+                        onMouseover: "this.src='#{image_path(piece.image_b.url)}'",
+                        onMouseout: "this.src='#{image_path(piece.image.url)}'" %>
+                <% end %>
+              </div>
+            </div>
+            <div class="six columns info">
+              <div class="infohead">
+                <% if user_signed_in? && current_user.hearts.ids.include?(piece.heart.id) %>
+                  <a id="heart-<%= piece.heart.id %>" href="#" class="fa fa-heart" data-remote="true"></a>
+                <% elsif user_signed_in? %>
+                  <a id="heart-<%= piece.heart.id %>" href="#" class="fa fa-heart-o" data-remote="true"></a>
+                <% end %>
+                <div class="name_item"><%= link_to "#{piece.name}", piece_path( piece.id ) %></div>
+                <div class="brand_item"><%= piece.brand %></div><br/>
+              </div>
+              <div class="infouser">
+                <div class="nametag">
+                  <%= link_to (piece.user.profile.first_name+" "+ piece.user.profile.surname), profile_path(piece.user.profile.id), method: :get %><br/>
+                </div>
+                <div class="towntag">
+                  <%= piece.user.profile.addr_town %>
+                </div>
+                <div class="distancebar">
+                  <div town="<%= piece.user.profile.addr_town %>" id="distance-<%= piece.id %>" class="<%= piece.user.profile.addr_town %>">
+                    <script type="text/javascript">
+                      getDistance( $('#distance-<%= j piece.id.to_s %>').attr('town') );
+                    </script>
+                  </div>
+                </div>
+                <div class="profile_picture_bar">
+                  <%= link_to cl_image_tag(piece.user.profile.avatar, width: 42, height: 42, crop: :fill, gravity: :face, radius: :max), profile_path(piece.user.profile.id), method: :get  %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
 
     <div class="paginationbox">
       <div class="digg_pagination">
