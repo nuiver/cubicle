@@ -189,7 +189,7 @@ width: 250px;
 .dropdown_box {
   width: 200px;
   position: absolute;
-  top: 66px;
+  top: 25px;
   z-index: 12;
   background-color: #ffffff;
 }

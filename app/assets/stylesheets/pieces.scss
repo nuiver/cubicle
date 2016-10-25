@@ -133,7 +133,7 @@
 .infohead {
 }
 .name_item {
-  margin: 5px 0;
+  margin: 8px 0 5px 0;
   font-weight: bolder;;
   font-size: 20px;
 }
@@ -154,25 +154,27 @@
 //   padding-top: 10px;
 // }
 .infouser {
-  position: relative;
+  position: absolute;
+  bottom: 15px;
+  left: 53%;
 }
 .nametag {
   margin-left: 50px;
-  color: #aaaaaa;
+  color: #555;
   font-weight: 600;
 }
 .nametag a{
-  color: #aaaaaa;
+  color: #555;
 }
 .towntag {
   margin-left: 50px;
-  color: #aaaaaa;
+  color: #555;
   font-size: 12px;
   font-weight: 200;
 }
 .distancebar {
   margin-left: 50px;
-  color: #cccccc;
+  color: #888;
   font-size: 11px;
 }
 .profile_picture_bar {
@@ -353,16 +355,16 @@
     color: #000033;
     border-color: #000033; }
 .digg_pagination .page_info {
-  font-size: 11px;
-  background: #8F2A67;
-  color: white;
-  padding: 0.4em 0.6em;
-  width: 22em;
+  font-size: 12px;
+  // background: #8F2A67;
+  color: #333333;
+  padding: 0em;
+  // width: 22em;
   margin-bottom: 0.3em;
   text-align: left; }
 .digg_pagination .page_info b {
-  color: #ffffff;
-  background: #e24a96;
+  color: #000;
+  // background: #e24a96;
   padding: 0.1em 0.25em; }
 .digg_pagination:after {
   content: ".";
