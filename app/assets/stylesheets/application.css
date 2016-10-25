@@ -238,14 +238,14 @@ width: 250px;
   box-sizing: border-box; }
 
 /* For devices larger than 400px */
-@media (min-width: 400px) {
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation : portrait) {
   .container {
     width: 85%;
     padding: 0; }
 }
 
-/* For devices larger than 550px */
-@media (min-width: 667px) {
+/* For devices larger than 667px */
+@media only screen and (min-width: 668px) {
   .container {
     width: 80%; }
   .column,
