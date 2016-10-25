@@ -4,6 +4,7 @@
 
 .main {
   background-color: #ffffff;
+
 }
 
 .piecesbox {
@@ -120,74 +121,73 @@
   clear:both;
 }
 .item {
-  width: 462px;
-  height: 260px;
-  background: #e2e2e2;
-  float: left;
-  margin: 8px 8px 0 0;
+  position: relative;
+  width: 100%;
+  height: calc(100% - 35px);
+  // background: #e2e2e2;
+  margin: 6px 0 2px 0;
 }
-.infotag {
-  position: relative;;
-  left: 210px;
-  top: -30px;
-  width: 235px;
-  height: 100px;
+.info {
+  padding: 5px;
 }
-.item .name_item {
+.infohead {
+}
+.name_item {
   margin: 5px 0;
   font-weight: bolder;;
-  font-size: 24px;
+  font-size: 20px;
 }
-.item .name_item a {
+.name_item a {
   text-decoration: none;
 }
-.item .brand_item {
+.brand_item {
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 300;
+  font-size: 12px;
 }
-.namebar {
+// .namebar {
+//   position: relative;
+//   left: 0;
+//   top: 25px;
+//   height: 70px;
+//   background-color: #353535;
+//   padding-top: 10px;
+// }
+.infouser {
   position: relative;
-  left: 0;
-  top: 25px;
-  height: 70px;
-  background-color: #353535;
-  padding-top: 10px;
 }
 .nametag {
-  margin-left: 210px;
-  color: #ffffff;
+  margin-left: 50px;
+  color: #aaaaaa;
   font-weight: 600;
 }
 .nametag a{
-  color: #ffffff;
+  color: #aaaaaa;
 }
 .towntag {
-  margin-left: 210px;
-  color: #ffffff;
+  margin-left: 50px;
+  color: #aaaaaa;
   font-size: 12px;
   font-weight: 200;
-  margin-top: 3px;
 }
 .distancebar {
-  margin-left: 210px;
+  margin-left: 50px;
   color: #cccccc;
   font-size: 11px;
-
 }
 .profile_picture_bar {
   position: absolute;
-  left: 400px;
-  margin: 10px;
-  top: 0px;
+  left: 0;
+  top: 0;
 }
 .sizeoval {
-  position: relative;
-  left: 8px;
-  top: -5px;
+  position: absolute;
+  left: 7px;
+  top: 7px;
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background: #CCCCCC;
+  background: #aaaaaa;
   z-index: 10;
 }
 .fit {
@@ -199,16 +199,14 @@
   font-size: 18px;
   font-weight: 700;
   color: #ffffff;
+  margin: 0;
 }
 .img_preview {
   position: relative;
-  top: -215px;
-  left: 20px;
-  height: 220px;
-  width: 160px;
 }
 .img_preview img {
-  height: 220px;
+  // height: 220px;
+  width: 100%;
 }
 .user_dash {
   width: 18px;
@@ -243,11 +241,12 @@
   width: 80px;
   height: 20px;
   background-color: #8F2A67;
-  position: absolute;
-  left: 850px;
+  // position: absolute;
+  // left: 850px;
+  float: right;
   margin-top: 0px;
   padding: 3px 10px;
-
+  z-index: 10;
 }
 .filter_button a {
   font-size: 11px;
