@@ -237,11 +237,9 @@ width: 250px;
   float: left;
   box-sizing: border-box; }
 
-/* For devices larger than 400px */
-
 
 /* For devices larger than 667px */
-@media only screen and (min-device-width: 668px) {
+@media only screen and (min-width: 668px) {
   .container {
     width: 80%; }
   .column,
@@ -309,6 +307,9 @@ width: 250px;
     width: 85%;
     padding: 0; }
 }
+
+
+
 
 /* Clearing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
