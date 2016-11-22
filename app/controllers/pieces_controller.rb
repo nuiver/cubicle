@@ -25,6 +25,7 @@ class PiecesController < ApplicationController
     @pieces = @pieces.coloursearch(params[:colour]) if params[:colour].present?
     @pieces = @pieces.sizesearch(params[:size]) if params[:size].present?
     @pieces = @pieces.are_available_now? if params[:available].present? && params[:available] == true.to_s
+    @pieces = Piece.where(id: @pieces.map(&:id))
     # @pieces = @pieces.sort_by {|i| i[:updated_at] }.reverse
     @pieces = @pieces.paginate(:page => params[:page], :per_page => 10)
     authorize! :read, @pieces
