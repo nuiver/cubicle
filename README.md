@@ -20,6 +20,7 @@ In week two of our training we were asked to build an AirBnB-like platform. The 
 * Ruby
 * Javascript
 * jQuery
+* CSS
 * AJAX
 
 **Aspects I am proud of**
